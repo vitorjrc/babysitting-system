@@ -52,3 +52,4 @@ Motivo
 - fotos de hora a hora, videos
 - profissionais avaliados pelos pais, ranking
 - nome empresa: GuguDada
+- "De pais, para paiss"
