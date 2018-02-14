@@ -1,0 +1,47 @@
+Motivo
+- porquê fazer?
+- o que é suposto resolver?
+
+
+
+
+
+------------------------------ Organização do relatório: ------------------------------
+
+
+1 - Contextualização
+
+
+
+2 - Motivação
+
+
+
+3 - Metas e objetivos
+
+
+
+4 - Análise de Viabilidade
+- é viável fazer sistema? quanto vai ganhar a nossa empresa? vai reduzir fluxo de papel? ter informação 24h acessível? vai permitir libertar recursos?
+
+
+
+5 - Modelo de sistema (maquete)
+- não é use cases, etc
+- é suposto dizer como o sistema vai funcionar num conjunto de caixas, imagem q explique funcionamento
+- user mete dados, o q guardo no sistema, conjunto de pedidos em q tenho uma plataforma móvel, etc
+- tb posso dizer , na parte do q guardo do sistema, posso dizer ah tenho uma impressora, é aqui q se guardam as faturas, tickets, .....
+- falar de quando é feito o acknowlegment 
+- BONECO, CAIXA, CAIXA, CAIXA, ..., BONECO e descrever cada caixa/etapa (pode se desenhar tb a cloud/seridor )
+
+
+
+6 - Diagrama de Gantt
+- enumerar tarefas/descrever e fazer diagrama
+- nota: contabilizar o tempo real que gastamos nisto, para ver o custo do projeto (converter hora em €)
+
+
+7 - Organização do Documento
+
+
+8 - Conclusões e trabalho futuro
