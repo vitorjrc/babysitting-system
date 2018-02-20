@@ -68,9 +68,9 @@ A popularidade deste modelo indica à partida a viabilidade da solução. Foi re
 Constatamos rapidamente que a adoção das entregas ao domicílio é cada vez mais geral, havendo anúncios da abertura destes serviços por parte de grandes marcas com uma frequência elevada. Seguem alguns exemplos:
 
 * "The owner of KFC and Taco Bell is teaming up with Grubhub to expand home delivery [...]" (8 Fev, 2018)
-* "Burger King já faz entregas ao domicílio em Lisboa" (Jan 6, 2017)
-* "UberEats Starts Delivering Food in Detroit Today" (Nov 30, 2017)
 * "McDonald's cheers home delivery success as UK spurs sales rise" (Jan 30, 2018)
+* "UberEats Starts Delivering Food in Detroit Today" (Nov 30, 2017)
+* "Burger King já faz entregas ao domicílio em Lisboa" (Jan 6, 2017)
 
 É também de notar o crescimento da Amazon, empresa que melhora continuamente as suas opções de entrega e que recentemente adquiriu a Whole Foods:
 
