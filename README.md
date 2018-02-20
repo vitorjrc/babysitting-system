@@ -76,6 +76,8 @@ Constatamos rapidamente que a adoção das entregas ao domicílio é cada vez ma
 
 * "Amazon starts free, 2-hour Whole Foods deliveries in fresh test of grocery model" (Feb 8, 2018)
 
+![Amazon on Google Trends](img/amazon-chart.png "Amazon on Google Trends")
+
 De uma forma mais geral, o termo de pesquisa "home delivery" tem visto um crescimento estável já há vários anos, sendo por isso um alvo seguro para um negócio que já esteja estabelecido e queira aumentar as suas chances de se manter relevante numa sociedade que está continuamente em desenvolvimento.
 
 ![Home Delivery on Google Trends](img/home-delivery-chart.png "Home Delivery on Google Trends")
