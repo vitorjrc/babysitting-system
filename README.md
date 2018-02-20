@@ -82,3 +82,7 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 * profissionais avaliados pelos pais, ranking
 * nome empresa: GuguDada
 * "De pais, para paiss"
+
+Ideia: 
+	- Os pais que tenham os filhos a frequentar o infantário têm desconto em serviços ao domicílio de qualquer tipo.
+	- Todos os utilizadores têm um "perfil" na aplicação que pode conceder uma acumulação de "pontos(?)" que dá desconto ao fim de x serviços.
