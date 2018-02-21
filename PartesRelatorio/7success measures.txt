@@ -1,0 +1,11 @@
+foi cumprido o schedule?
+foi cumprido o budget?
+a equipa está satisfeita?
+o cliente está satisfeito?
+qual a qualidade do produto desenvoldido?
+
+Para proceder a uma avaliação de qualidade do projeto definiram-se, desde logo, um conjunto de pontos a verificar. Assim, segue a lista com os tópicos a cumprir para uma boa execução do plano traçado:
+- Todas as etapas do processo de desenvolvimento devem cumprir os prazos estabelecidos. A medida permite um controlo do avanço do projeto ao gestor e uma melhor organização de tempo aos restantes membros da equipa;
+- Todos os requisitos identificados devem estar presentes na aplicação final;
+- Verificar escalabilidade do sistema para outros infantários, de outras organizações;
+- Deve ser verificada a utilização fácil e frequente da aplicação pelos utilizadores alvo, com um crescimento consecutivo no número de usos da plataforma durante o primeiro ano.
