@@ -81,8 +81,35 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 * fotos de hora a hora, videos
 * profissionais avaliados pelos pais, ranking
 * nome empresa: GuguDada
-* "De pais, para paiss"
+* "De pais, para pais"
 
 Ideia: 
 	- Os pais que tenham os filhos a frequentar o infantário têm desconto em serviços ao domicílio de qualquer tipo.
 	- Todos os utilizadores têm um "perfil" na aplicação que pode conceder uma acumulação de "pontos(?)" que dá desconto ao fim de x serviços.
+
+
+
+Horas de trabalho conjuntas:
+	-19/02/18: 1h00
+	-20/02/18: 1h30
+	-21/02/18: 2h00
+	-
+	-
+	-
+	-
+	-
+	-
+	-
+	
+
+(Para trabalho em casa)
+Horas de trabalho individuais ( pessoa/#nHoras ):
+	-
+	-
+	-
+	-
+	-
+	-
+	-
+	-
+	-
