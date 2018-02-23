@@ -153,9 +153,9 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 	
 	
 
-## Horas de trabalho individuais ( pessoa/#nHoras ):
+## Horas de trabalho individuais ( pessoa/data/#nHoras ):
 (Para trabalho em casa)
-	-
+	-Diana/22/02/18/1h
 	-
 	-
 	-
