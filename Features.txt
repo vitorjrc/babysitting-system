@@ -1,0 +1,11 @@
+Clientes:
+-Verificar lista de profissionais
+-Agendar trabalho (com base na lista do site)
+-Avaliar trabalho
+-Realizar pagamento (ao infantário, não ao babysitter)
+
+Profissional:
+-Verificar perfil
+-Verificar trabalhos agendados
+-Ver direções até casa do cliente
+-(Recebe pagamento/ordenado mensal do infantário apenas)

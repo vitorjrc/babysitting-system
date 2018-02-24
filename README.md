@@ -164,7 +164,12 @@ O site web é usado por clientes de maneira a escolher babysitters, agendar trab
 ## Horas de trabalho individuais ( pessoa/data/#nHoras ):
 (Para trabalho em casa)
 	-Diana/22/02/18/1h
-	-
+	-Diana/24/02/18/2h
+	-Vitor/.../1h
+	-Vitor/.../2h
+	-Campos/.../1h
+	-Sérgio/.../1h
+	-Marcos/.../1h
 	-
 	-
 	-
