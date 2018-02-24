@@ -99,12 +99,20 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 
 ### 6. Modelo de sistema (maquete) (MARCOS V1)
 
+```text
 * não é use cases, etc
 * é suposto dizer como o sistema vai funcionar num conjunto de caixas, imagem q explique funcionamento
 * user mete dados, o q guardo no sistema, conjunto de pedidos em q tenho uma plataforma móvel, etc
 * tb posso dizer , na parte do q guardo do sistema, posso dizer ah tenho uma impressora, é aqui q se guardam as faturas, tickets, .....
 * falar de quando é feito o acknowlegment
 * BONECO, CAIXA, CAIXA, CAIXA, ..., BONECO e descrever cada caixa/etapa (pode se desenhar tb a cloud/seridor )
+```
+
+![Maquete](img/maquete.png "Maquete")
+
+O sistema consiste num servidor web ASP.NET ligado a uma base de dados SQL Server. O servidor expõe uma API pública que é disponibilizada através do site, assim como uma API privada que é utilizada pela aplicação móvel.
+
+O site web é usado por clientes de maneira a escolher babysitters, agendar trabalhos, e submeter avaliações, enquanto que a aplicação móvel é usada pelos trabalhadores e permite a verificação do perfil profissional e trabalhos agendados, assim como indica o caminho até ao endereço de cada cliente.
 
 ### 7. Def medidas de sucesso (SERGIO ponto 1,2   ///   VITOR ponto 3,4)
 
@@ -133,7 +141,7 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 * "De pais, para pais"
 
 
-## Ideia: 
+## Ideia:
 	- Os pais que tenham os filhos a frequentar o infantário têm desconto em serviços ao domicílio de qualquer tipo.
 	- Todos os utilizadores têm um "perfil" na aplicação que pode conceder uma acumulação de "pontos(?)" que dá desconto ao fim de x serviços.
 
@@ -150,8 +158,8 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 	-
 	-
 	-
-	
-	
+
+
 
 ## Horas de trabalho individuais ( pessoa/data/#nHoras ):
 (Para trabalho em casa)
