@@ -112,7 +112,7 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 
 O sistema consiste num servidor web ASP.NET ligado a uma base de dados SQL Server. O servidor expõe uma API pública que é disponibilizada através do site, assim como uma API privada que é utilizada pela aplicação móvel.
 
-O site web é usado por clientes de maneira a escolher babysitters, agendar trabalhos, e submeter avaliações, enquanto que a aplicação móvel é usada pelos trabalhadores e permite a verificação do perfil profissional e trabalhos agendados, assim como indica o caminho até ao endereço de cada cliente.
+O site web é usado por clientes de maneira a escolher babysitters, agendar trabalhos, e submeter avaliações. A aplicação móvel é usada pelos trabalhadores e permite a verificação do perfil profissional e dos trabalhos agendados, indicando também o caminho até estes.
 
 ### 7. Def medidas de sucesso (SERGIO ponto 1,2   ///   VITOR ponto 3,4)
 
