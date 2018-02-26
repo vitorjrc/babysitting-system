@@ -165,16 +165,15 @@ O site web é usado por clientes de maneira a escolher babysitters, agendar trab
 (Para trabalho em casa)
 	-Diana/22/02/18/1h
 	-Diana/24/02/18/2h
-	-Vitor/.../1h
+	-Vitor/21/02/18/1h
 	-Vitor/.../2h
-	-Campos/.../1h
-	-Sérgio/.../1h
+	-Campos/21/02/18/1h
+	-Sérgio/21/02/18/1h
 	-Marcos/.../1h
+	-Sérgio/26/02/18/0.30h
+	-Diana/26/02/18/0.30h
 	-
 	-
 	-
 	-
 	-
-	-
-	-
-
