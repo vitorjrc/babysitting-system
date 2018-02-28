@@ -88,7 +88,9 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 * enumerar tarefas/descrever e fazer diagrama
 * nota: contabilizar o tempo real que gastamos nisto, para ver o custo do projeto (converter hora em €)
 
-### 9. Organização do Documento (SERGIO)
+### 9. Organização do Documento (SERGIO) 
+
+* Esta secção só aparecerá no fim do trabalho
 
 ### 10. Conclusões e trabalho futuro (VITOR)
 
