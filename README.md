@@ -59,39 +59,6 @@ merdas assim
 é na mm ordem de ideias que o reduzir papel etc
 ```
 
-De maneira a analisar a viabilidade deste novo serviço, coube-nos cumprir o papel de construir sobre a análise de mercado inicial da empresa contratante, adicionando também a esta análise um estudo da adequação deste empreendimento às circunstâncias da nossa atividade de consultadoria.
-
-Um sistema de entregas ao domicílio 24/365 é um modelo de negócio cada vez mais comum no tempo presente, e esta proposta demonstra uma abertura do cliente à adaptação contínua e adoção de novas formas de comércio.
-
-A popularidade deste modelo indica à partida a viabilidade da solução. Foi realizada, assim mesmo, uma pesquisa breve relativa à presença destes tipos de negócio no mercado atual.
-
-Constatamos rapidamente que a adoção das entregas ao domicílio é cada vez mais geral, havendo anúncios da abertura destes serviços por parte de grandes marcas com uma frequência elevada. Seguem alguns exemplos:
-
-* "The owner of KFC and Taco Bell is teaming up with Grubhub to expand home delivery [...]" (8 Fev, 2018)
-* "McDonald's cheers home delivery success as UK spurs sales rise" (Jan 30, 2018)
-* "UberEats Starts Delivering Food in Detroit Today" (Nov 30, 2017)
-* "Burger King já faz entregas ao domicílio em Lisboa" (Jan 6, 2017)
-
-É também de notar o crescimento da Amazon, empresa que melhora continuamente as suas opções de entrega e que recentemente adquiriu a Whole Foods:
-
-* "Amazon starts free, 2-hour Whole Foods deliveries in fresh test of grocery model" (Feb 8, 2018)
-
-![Amazon on Google Trends](img/amazon-chart.png "Amazon on Google Trends")
-
-De uma forma mais geral, o termo de pesquisa "home delivery" tem visto um crescimento estável já há vários anos, sendo por isso um alvo seguro para um negócio que já esteja estabelecido e queira aumentar as suas chances de se manter relevante numa sociedade que está continuamente em desenvolvimento.
-
-![Home Delivery on Google Trends](img/home-delivery-chart.png "Home Delivery on Google Trends")
-
-Foi demonstrado acima, de maneira resumida, que o modelo de negócio projetado é popular. No entanto, um leitor atento pode já ter reparado que a o tipo negócio que mais participa nesta adoção tende a estar relacionado com a restauração.
-
-A criação de um serviço de babysitting ao domicílio posiciona-se então como uma opção de entrada num mercado estável e de crescimento contínuo, mas ainda assim inovadora o suficiente para se manter um movimento original, mais do que um investimento trivial.
-
-Foram feitos estudos de mercado com recurso a inquéritos por telefone, que demonstraram uma elevada receptividade à possibilidade de agendar um(a) babysitter a qualquer altura do dia, durante todo o ano.
-
-Foi também descoberto que a perda de confiança comum ao movimento inicial de um serviço para um meio digital é compensada pela presença de avaliações pessoais e rankings no sistema, que aumentam o nível de transparência face ao consumidor.
-
-Uma posterior avaliação da proposta por parte de um comité de gestores concluiu que o orçamento estipulado é adequado ao nível de complexidade do projeto. Havendo a possibilidade de manutenção a longo termo, e tendo em conta as projeções positivas da receção do novo modelo de negócio, este empreendimento é dado como uma mais valia para a nossa organização.
-
 ### 5. Identificação dos recursos necessários (VITOR)
 
 Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, infantario), contactos.
@@ -107,12 +74,6 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 * falar de quando é feito o acknowlegment
 * BONECO, CAIXA, CAIXA, CAIXA, ..., BONECO e descrever cada caixa/etapa (pode se desenhar tb a cloud/seridor )
 ```
-
-![Maquete](img/maquete.png "Maquete")
-
-O sistema consiste num servidor web ASP.NET ligado a uma base de dados SQL Server. O servidor expõe uma API pública que é disponibilizada através do site, assim como uma API privada que é utilizada pela aplicação móvel.
-
-O site web é usado por clientes de maneira a escolher babysitters, agendar trabalhos, e submeter avaliações. A aplicação móvel é usada pelos trabalhadores e permite a verificação do perfil profissional e dos trabalhos agendados, indicando também o caminho até estes.
 
 ### 7. Def medidas de sucesso (SERGIO ponto 1,2   ///   VITOR ponto 3,4)
 
@@ -151,7 +112,7 @@ O site web é usado por clientes de maneira a escolher babysitters, agendar trab
 	-19/02/18: 1h00
 	-20/02/18: 1h30
 	-21/02/18: 2h00
-	-
+	-28/02/18: 1h30
 	-
 	-
 	-
