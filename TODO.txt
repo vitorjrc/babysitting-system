@@ -1,0 +1,8 @@
+-RELATORIO
+	-resumo(VITOR)
+	-conclusao(DIANA) TIPO APRECIAÇAO FUTURA
+	-1.7 ler o q está a vermelho(CAMPOS)
+	-1.5 ler o q está a vermelho (SÉRGIO)
+	-1.8(MARCOS)
+
+	-diagrama gantt
