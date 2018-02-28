@@ -24,6 +24,22 @@ Os funcionários devem ter acesso a um mapa onde podem verificar as localizaçõ
 * Porquê fazer?
 * O que é suposto resolver?
 
+## Features
+
+### Clientes
+
+* Verificar lista de profissionais
+* Agendar trabalho (com base na lista do site)
+* Avaliar trabalho
+* Realizar pagamento (ao infantário, não ao babysitter)
+
+### Profissional
+
+* Verificar perfil
+* Verificar trabalhos agendados
+* Ver direções até casa do cliente
+* (Recebe pagamento/ordenado mensal do infantário apenas)
+
 ## Organização do relatório
 
 ### 1. Contextualização (CAMPOS)
@@ -88,7 +104,7 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 * enumerar tarefas/descrever e fazer diagrama
 * nota: contabilizar o tempo real que gastamos nisto, para ver o custo do projeto (converter hora em €)
 
-### 9. Organização do Documento (SERGIO) 
+### 9. Organização do Documento (SERGIO)
 
 * Esta secção só aparecerá no fim do trabalho
 
