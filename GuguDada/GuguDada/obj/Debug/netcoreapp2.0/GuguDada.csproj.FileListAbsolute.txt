@@ -1,0 +1,11 @@
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\bin\Debug\netcoreapp2.0\GuguDada.deps.json
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\bin\Debug\netcoreapp2.0\GuguDada.runtimeconfig.json
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\bin\Debug\netcoreapp2.0\GuguDada.runtimeconfig.dev.json
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\bin\Debug\netcoreapp2.0\GuguDada.dll
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\bin\Debug\netcoreapp2.0\GuguDada.pdb
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\obj\Debug\netcoreapp2.0\GuguDada.csprojResolveAssemblyReference.cache
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\obj\Debug\netcoreapp2.0\GuguDada.csproj.CoreCompileInputs.cache
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\obj\Debug\netcoreapp2.0\GuguDada.AssemblyInfoInputs.cache
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\obj\Debug\netcoreapp2.0\GuguDada.AssemblyInfo.cs
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\obj\Debug\netcoreapp2.0\GuguDada.dll
+C:\Users\sergi\Desktop\UM\babysitting-system\`VS\GuguDada\GuguDada\obj\Debug\netcoreapp2.0\GuguDada.pdb
