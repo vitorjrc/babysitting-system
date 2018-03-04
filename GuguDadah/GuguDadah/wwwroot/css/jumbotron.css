@@ -1,0 +1,21 @@
+﻿/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 75px;
+  padding-bottom: 20px;
+}
+
+#banner {
+    width: 565px;
+    height: 224px;
+    margin: auto;
+    text-align: center; /*centers horizontally*/
+    line-height: 224px; /*same as height and for centering vertically*/
+}
+
+.navbar-inverse {
+    background-color: transparent !important;
+    border: none !important;
+    line-height: 60px;
+    height: 60px;
+        
+}

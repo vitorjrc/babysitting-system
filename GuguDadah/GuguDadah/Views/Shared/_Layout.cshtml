@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap -->
+    <link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("~/css/jumbotron.css")" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="About">Sobre</a>
+                <a class="btn btn-info" asp-area="" asp-controller="Home" asp-action="Contact">Contacto</a>
+                <a class="btn btn-info" asp-area="" asp-controller="Home" asp-action="Registo">Registar</a>
+
+                <form class="navbar-form navbar-right" role="form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Iniciar Sessão</button>
+                </form>
+            </div><!--/.navbar-collapse -->
+        </div>
+    </div>
+
+        <div class="container body-content">
+            <div id="banner">
+                <a target="banner" href="#" title="GuguDaDa">
+                    <img src="../../Images/dddddddd.PNG" border="0" alt="GuguDaDa Banner">
+                </a>
+            </div>
+
+            @RenderBody()
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+            <script src="@Url.Content("~/js/bootstrap.js")"></script>
+
+        </div>
+
+</body>
+</html>
