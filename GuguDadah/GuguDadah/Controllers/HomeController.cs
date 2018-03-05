@@ -29,5 +29,12 @@ return View();
 
             return View();
         }
+
+        public IActionResult Registo()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View();
+        }
     }
 }
