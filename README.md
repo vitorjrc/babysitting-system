@@ -156,3 +156,5 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 	-Sérgio/02/03/18/4h
 	-Sérgio/03/03/18/4h
 	-Sérgio/04/03/18/6h
+	-Vitor/03/03/18/2h
+	-Vitor/03/05/18/2h
