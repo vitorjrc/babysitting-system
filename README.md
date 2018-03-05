@@ -152,6 +152,7 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 	-Diana/26/02/18/0.30h
 	-Diana/28/02/17/0.30h
 	-Campos/04/03/18/1h
-	-
-	-
-	-
+	-Sérgio/01/03/18/1h
+	-Sérgio/02/03/18/4h
+	-Sérgio/03/03/18/4h
+	-Sérgio/04/03/18/6h
