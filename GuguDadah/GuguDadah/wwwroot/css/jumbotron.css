@@ -6,21 +6,33 @@ body {
 }
 
 #banner {
-    width: 863px;
-    height: 265px;
+    width: 100%;
+    height: 100%;
     margin: auto;
     text-align: center; /*centers horizontally*/
     line-height: 224px; /*same as height and for centering vertically*/
 }
 
 .navbar-inverse {
-    background-color: transparent !important;
+    background-color: white !important;
     border: none !important;
     line-height: 60px;
     height: 60px;
 
 }
 
+.navbar-toggle {
+    background-color: red !important;
+}
+
+.navbar-collapse {
+    background-color: white !important;
+}
+
 .jumbotron {
     background-color: transparent !important;
+}
+
+.jumbotron h1, .jumbotron .h1 {
+    color: black;
 }
