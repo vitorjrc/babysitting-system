@@ -1,16 +1,16 @@
 ﻿/* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 0px;
-  padding-bottom: 20px;
-  background-color: white !important;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    background: url("../../../../images/background.png") repeat !important;
+    background-size: 5% 5%;
 }
 
 #banner {
-    width: 100%;
-    height: 100%;
+    width: 40%;
+    height: 40%;
     margin: auto;
     text-align: center; /*centers horizontally*/
-    line-height: 224px; /*same as height and for centering vertically*/
 }
 
 .navbar-inverse {
@@ -36,3 +36,8 @@ body {
 .jumbotron h1, .jumbotron .h1 {
     color: black;
 }
+
+.container.body-content {
+    
+    background-color: white !important;
+}  
