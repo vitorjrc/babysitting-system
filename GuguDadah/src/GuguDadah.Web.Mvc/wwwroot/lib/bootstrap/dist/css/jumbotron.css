@@ -25,6 +25,10 @@ body {
     background-color: red !important;
 }
 
+.navbar {
+    margin-bottom: 0px;
+}
+
 .navbar-collapse {
     background-color: white !important;
 }

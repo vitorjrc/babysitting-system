@@ -4,13 +4,18 @@ using GuguDadah.Controllers;
 
 namespace GuguDadah.Web.Controllers
 {
-    // desativando a autorização inicial
-    // [AbpMvcAuthorize]
     public class HomeController : GuguDadahControllerBase
     {
         public ActionResult Index()
         {
             return View();
         }
-	}
+
+        // chamando a autorização
+        [AbpMvcAuthorize]
+        public ActionResult Login()
+        {
+            return View("~/Views/_ViewStart.cshtml");
+        }
+    }
 }
