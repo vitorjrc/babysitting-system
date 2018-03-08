@@ -15,7 +15,7 @@ namespace GuguDadah.Web.Controllers
         [AbpMvcAuthorize]
         public ActionResult Login()
         {
-            return View("~/Views/_ViewStart.cshtml");
+            return View("~/Views/PersonalArea/Index.cshtml");
         }
     }
 }
