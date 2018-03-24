@@ -119,12 +119,40 @@ Recursos necessários (pessoas necessárias), entrevistas (pais, encarregados, i
 * nome empresa: GuguDada
 * "De pais, para pais"
 
+## Ideia
 
-## Ideia:
-	- Os pais que tenham os filhos a frequentar o infantário têm desconto em serviços ao domicílio de qualquer tipo.
-	- Todos os utilizadores têm um "perfil" na aplicação que pode conceder uma acumulação de "pontos(?)" que dá desconto ao fim de x serviços.
+* Os pais que tenham os filhos a frequentar o infantário têm desconto em serviços ao domicílio de qualquer tipo.
+* Todos os utilizadores têm um "perfil" na aplicação que pode conceder uma acumulação de "pontos(?)" que dá desconto ao fim de x serviços.
 
+***
 
+### Análise de Requisitos - 2 pessoas
+
+* Requisitos Utilizador -> Diana
+* Requisitos Sistema (funcionais e não funcionais) -> Sérgio
+
+### Modelação UML - 5 pessoas
+
+* Use Cases + Especificação -> Diana
+* Sequência -> Vítor
+* Classe -> Marcos
+* Atividade -> Campos
+* Estado -> Sérgio
+
+### Base de Dados - 2 pessoas
+
+* Modelo Concetual (tópicos de BD todos) -> Vítor
+* Modelo Lógico (tópicos de BD todos) -> Campos
+
+### Mockups - 1 pessoa
+
+* Design interface -> Marcos
+
+-> Atualizar Diagrama de Gantt (+Mockups)
+
+-> Apontar datas finais de cada tópico
+
+-> Apontar horas de trabalho
 
 ## Horas de trabalho conjuntas:
 	-19/02/18: 1h00
