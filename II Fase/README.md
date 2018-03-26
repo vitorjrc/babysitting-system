@@ -14,7 +14,7 @@
 
 #### Especificação de requisitos de sistema
 * O sistema deve permitir ao utilizador selecionar o profissional que pretende;
-* O sistema deve permitir selecionar as datas em que o serviço será ser realizado;
+* O sistema deve permitir selecionar as datas em que o serviço irá ser realizado;
 * O sistema deve recorrer à API externa do Bing Maps para conhecer a localização do utilizador ou então obriga a que a localização seja introduzida manualmente;
 * Deverá autorizar a inserção de observações por parte do utilizador;
 
@@ -53,3 +53,20 @@
 
 #### Especificação de requisitos de sistema
 * O sistema deve recorrer-se da API externa disponibilizada pelo Bing Maps de forma a representar a localização do cliente, bem como a trajetória até a este.
+
+### Autenticação no sistema
+#### Definição de requisitos de utilizador
+* O utilizador deve conseguir autenticar-se no sistema.
+
+#### Especificação de requisitos de sistema
+* O sistema deve solicitar email/username e password para se autenticar;
+* O sistema deve verificar a validade dos dados inseridos e associar os dados a um perfil de utilizador.
+
+### Registo no sistema
+#### Definição de requisitos de utilizador
+* O utilizador deve poder registar-se no sistema.
+
+#### Especificação de requisitos de sistema
+* O sistema deve solicitar email/username e password;
+* O sistema não deve permitir o registo de utentes com um username/email já registado;
+* O sistema deve armazenar os dados na base de dados.
