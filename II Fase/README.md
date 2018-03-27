@@ -28,7 +28,7 @@
 * Deverá autorizar a inserção de observações por parte do utilizador, para especificar algumas exigências do mesmo no que toca ao serviço;
 * O sistema deverá permitir que seja mandada uma proposta de serviço devidamente especificada ao profissional, que, posteriormente, poderá aceitar ou recusar.
 
-### Avaliar trabalho
+### Avaliar trabalho (nota: se vai avaliar trabalho, tem q ter área de trabalhos passados)
 #### Definição de requisitos de utilizador
 * O utilizador deve poder avaliar um trabalho de um profissional.
 
@@ -41,7 +41,7 @@
 * O utilizador deve poder realizar o pagamento do serviço, antes da realização do mesmo (depois de confirmado o agendamento).
 
 #### Especificação de requisitos de sistema
-* O sistema deverá permitir que seja elaborado um método de pagamento, em dinheiro(?) ou online, que será sempre a favor do infantário (que acordará depois o pagamento com os respectivos profissionais). Este método é utilizado aquando do agendamento do trabalho.
+* O sistema deverá permitir que seja elaborado um método de pagamento (online), que será sempre a favor do infantário (que acordará depois o pagamento com os respectivos profissionais). Este método é utilizado aquando do agendamento do trabalho.
 
 
 ### Beneficiar de descontos - ser golden ou não
@@ -68,6 +68,7 @@
 ### Verificar propostas de trabalhos
 #### Definição de requisitos de utilizador
 * O utilizador deverá ser capaz de consultar a lista de propostas de novos trabalhos.
+
 #### Especificação de requisitos de sistema
 * O sistema deve fornecer uma lista de propostas de serviços, com a opção de recusa ou aceitamento.
 
