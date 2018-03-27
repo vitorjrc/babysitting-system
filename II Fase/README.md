@@ -38,7 +38,7 @@
 
 ### Realizar pagamento (ao infantário, não ao babysitter)
 #### Definição de requisitos de utilizador
-* O utilizador deve poder realizar o pagamento do serviço, antes da realização do mesmo (depois de confirmado o agendamento).
+* O utilizador deve poder realizar o pagamento do serviço (em dinheiro ou online), antes da realização do mesmo (depois de confirmado o agendamento).
 
 #### Especificação de requisitos de sistema
 * O sistema deverá permitir que seja elaborado um método de pagamento (online), que será sempre a favor do infantário (que acordará depois o pagamento com os respectivos profissionais). Este método é utilizado aquando do agendamento do trabalho.
