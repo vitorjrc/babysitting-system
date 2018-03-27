@@ -16,7 +16,7 @@
 
 * Por profissional, deverão ser fornecidos pelo sistema alguns dados pessoais.
 
-### Agendar trabalho (com base na lista do site)
+### Agendar trabalho (com base na lista do site) (nota: cada tipo de serviço já terá um preço definido pelo infantario para questoes de simplificaçao)
 #### Definição de requisitos de utilizador
 * O utilizador deve poder agendar um trabalho, com base na lista de profissionais.
 
@@ -28,7 +28,7 @@
 * Deverá autorizar a inserção de observações por parte do utilizador, para especificar algumas exigências do mesmo no que toca ao serviço;
 * O sistema deverá permitir que seja mandada uma proposta de serviço devidamente especificada ao profissional, que, posteriormente, poderá aceitar ou recusar.
 
-### Avaliar trabalho (nota: se vai avaliar trabalho, tem q ter área de trabalhos passados)
+### Avaliar trabalho (nota1: se vai avaliar trabalho, tem q ter área de trabalhos passados. nota2: avaliaçao parametrizada, não deixar cliente inserir número à sorte (interface))
 #### Definição de requisitos de utilizador
 * O utilizador deve poder avaliar um trabalho de um profissional.
 
