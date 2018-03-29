@@ -1,0 +1,16 @@
+actor Ator
+title Registo
+participant Sistema
+
+
+
+Ator->Sistema:Insere email, username e password
+Sistema->Sistema:Confirma dados inseridos
+break Dados insuficientes
+Ator<-Sistema:Informa que não foram inseridos os dados necessários
+end
+break Utilizador já existente
+Ator<-Sistema:Informa que o utilizador já existe
+end
+Sistema->Sistema:Regista novo utilizador
+Sistema->Ator:Indica que utilizador foi registado com sucesso

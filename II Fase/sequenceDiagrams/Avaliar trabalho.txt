@@ -1,0 +1,16 @@
+actor Cliente
+title Avaliar trabalho
+participant Sistema
+
+
+
+alt Verificar lista de trabalhos já efetuados
+end
+Cliente->Sistema:Seleciona trabalho para avaliar
+Cliente->Sistema:Insere avaliação (0-5)
+Sistema->Sistema:Verifica avaliação
+break Avaliação já efetuada
+Cliente<-Sistema:Informa cliente que já avaliou o serviço anteriormente
+end
+Sistema->Sistema:Regista avaliação
+Sistema->Cliente:Indica que avaliação foi registada com sucesso

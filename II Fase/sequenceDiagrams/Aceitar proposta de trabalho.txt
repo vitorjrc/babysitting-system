@@ -1,0 +1,19 @@
+actor Profissional
+title Aceitar proposta de trabalho
+participant Sistema
+
+
+
+alt Verificar propostas de trabalho
+end
+Profissional->Sistema:Selecionar proposta de trabalho
+Sistema->Sistema:Verificar estado da proposta
+break Trabalho indisponível
+Profissional<-Sistema:Informa cliente que a proposta de trabalho não está disponível ou foi cancelada
+end
+alt Não aceita proposta de trabalho
+Profissional<-Sistema:Informa que proposta não será aceite e o cliente será notificado
+end
+Profissional->Sistema:Aceita proposta de trabalho
+Sistema->Sistema:Regista confirmação da proposta
+Sistema->Profissional:Indica que o trabalho foi aceite e poderá ser consultado na lista de trabalhos agendados
