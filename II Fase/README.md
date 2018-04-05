@@ -12,7 +12,7 @@
 #### Especificação de requisitos de sistema
 * O sistema mostra a lista dos profissionais registados no sistema, bem como a disponibilidade e seus ratings;
 
-* O sistema disponibilizará a lista dos profissionais registados no sistema ordenados por raking ou por número de trabalhos prestados;
+* O sistema disponibilizará a lista dos profissionais registados no sistema ordenados por rating ou por número de trabalhos prestados;
 
 * Por profissional, deverão ser fornecidos pelo sistema alguns dados pessoais.
 
