@@ -1,0 +1,123 @@
+﻿@page
+@model GuguDadah.Pages.ScheduleModel
+@{
+    ViewData["Title"] = "Schedule";
+}
+
+<h2>Agendar Babysitting</h2>
+
+@section head
+    {
+    <link href="~/lib/bootstrap/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen" type="text" />
+
+}
+
+@section Scripts
+    {
+    <script src="~/lib/bootstrap/dist/js/moment-with-locales.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap-datetimepicker.js"></script>
+    <script>
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                useCurrent: true,
+                format: 'YYYY-MM-DD'
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                useCurrent: true,
+                format: 'HH:mm'
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                useCurrent: true,
+                format: 'HH:mm'
+            });
+        });
+    </script>
+}
+
+
+<div class="row">
+    <div class="col-sm-6 mainContentWrapper">
+        <div class="well">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+            {
+                <fieldset>
+                    @Html.AntiForgeryToken()
+                    <h4>Reservar</h4>
+                    <hr />
+
+                    <section>
+                        @Html.ValidationSummary()
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.date, new { @class = "control-label" })
+                            <div class='input-group date' id='datetimepicker'>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                                @Html.TextBoxFor(model => model.date, new { placeholder = "2018/04/01", @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.address, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.address, new { placeholder = "Rua das 7 casas, nº8", @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.locality, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.locality, new { placeholder = "Lisboa", @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.startTime, new { @class = "control-label" })
+                            <div class='input-group date' id='datetimepicker1'>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                                @Html.TextBoxFor(model => model.startTime, new { placeholder = "15:00", @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.endTime, new { @class = "control-label" })
+                            <div class='input-group date' id='datetimepicker2'>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                                @Html.TextBoxFor(model => model.endTime, new { placeholder = "20:00", @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <label>
+                                    @Html.RadioButtonFor(m => m.extra, "study")
+                                    Acompanhamento ao estudo
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.RadioButtonFor(m => m.extra, "exterior")
+                                    Atividade lúdica no exterior
+                                </label>
+                            </div>
+                        </div>
+
+                            <div class="form-group">
+                                <input type="submit" class="btn btn btn-info" value="Continuar" />
+                            </div>
+                    </section>
+                </fieldset>
+            }
+        </div>
+    </div>
+
+</div>

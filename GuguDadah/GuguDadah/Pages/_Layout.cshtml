@@ -15,6 +15,9 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+
+    @RenderSection("head", required: false)
+
 </head>
 <body>
     <div class="container body-content">
@@ -30,12 +33,13 @@
                 <div class="navbar-collapse collapse">
 
                     <a class="btn btn-primary" asp-page="/Index">Home</a>
-                    <a class="btn btn-success" asp-page="/About">Sobre</a>
-                    <a class="btn btn-info" asp-page="/Contact">Contacto</a>
 
                     <form class="navbar-form navbar-right" role="form">
                         <a class="btn btn-info" asp-page="/Login">Login</a>
                         <a class="btn btn-primary" asp-page="/Register">Registo</a>
+                        <a class="btn btn-primary" asp-page="/ClientArea">Área de Cliente</a>
+                        <a class="btn btn-primary" asp-page="/ProfessionalArea">Área de Profissional</a>
+                        <a class="btn btn-primary" asp-page="/Babysitters">Babysitters</a>
                     </form>
                 </div><!--/.navbar-collapse -->
         </div>
@@ -44,12 +48,13 @@
         <div class="container body-content">
             <div id="banner">
                 <a target="banner" href="/" onclick="return false;">
-                    <img class="img-responsive center-block" src="~/images/bannerDef.png">
+                    <img class="img-responsive center-block" src="~/images/olas.png">
                 </a>
             </div>
         </div>
 
         <div class="container body-content">
+            <hr />
             @RenderBody()
             <hr />
             <footer>
