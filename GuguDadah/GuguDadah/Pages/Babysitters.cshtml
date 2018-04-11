@@ -1,0 +1,39 @@
+﻿@page
+@model GuguDadah.Pages.BabysittersModel
+@{
+    ViewData["Title"] = "Babysitters";
+}
+
+<h2>Agendar Babysitting</h2>
+
+@section head
+    {
+    <link href="~/lib/bootstrap/dist/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="~/lib/bootstrap/dist/css/theme.css" media="all" rel="stylesheet" type="text/css" />
+
+}
+
+@section Scripts
+    {
+    <script src="~/lib/bootstrap/dist/js/star-rating.js" type = "text/javascript" ></script>
+    <script src="~/lib/bootstrap/dist/js/theme.js"></script>
+    <script>
+        $(document).on('ready', function () {
+            $('.kv-ltr-theme-svg-star').rating({
+                hoverOnClear: false,
+                theme: 'krajee-svg'
+            });
+        });
+    </script>
+}
+    <div class="row">
+        <div class="col-sm-6 mainContentWrapper">
+            <div class="well">
+                <form>
+                    <input id="input-3" name="input-3" value="2" class="rating" data-filled="glyphicon glyphicon-heart" data-empty="glyphicon glyphicon-heart-empty" 
+                           data-show-clear="false" data-show-caption="false">
+                    <button class="btn btn-primary">Submeter</button>
+                </form>
+            </div>
+        </div>
+    </div>

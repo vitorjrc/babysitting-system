@@ -27,6 +27,7 @@
 * O sistema deve recorrer à API externa do Bing Maps para conhecer a localização do utilizador ou então obriga a que a localização seja introduzida manualmente;
 * Deverá autorizar a inserção de observações por parte do utilizador, para especificar algumas exigências do mesmo no que toca ao serviço;
 * O sistema deverá permitir que seja mandada uma proposta de serviço devidamente especificada ao profissional, que, posteriormente, poderá aceitar ou recusar.
+* (Insere data, hora, rua e localidade. na proxima pagina, vao ser mostrados os profissionais disponiveis para aquele turno, conta a hora de inicio. TURNOS M T N MANHA(8-16) TARDE(16-24) NOITE(24-8) )
 
 ### Avaliar trabalho (nota1: se vai avaliar trabalho, tem q ter área de trabalhos passados. nota2: avaliaçao parametrizada, não deixar cliente inserir número à sorte (interface))
 #### Definição de requisitos de utilizador
