@@ -1,0 +1,38 @@
+title Agendar Trabalho
+actor Cliente
+participant Sistema
+
+
+
+Cliente->Sistema:Seleciona data desejada para o agendamento
+Cliente->Sistema:Insere rua e localidade
+Cliente->Sistema:Seleciona hora de início e de fim de serviço
+Cliente->Sistema:Seleciona serviços complementares
+Sistema->Sistema:Confirma dados introduzidos
+break Sem data
+Cliente<-Sistema:Informa que cliente não inseriu data válida
+end
+break Sem morada
+Cliente<-Sistema:Informa que cliente não inseriu morada válida
+end
+break Sem horas
+Cliente<-Sistema:Informa que cliente não inseriu horas válidas
+end
+break Sem data
+Cliente<-Sistema:Informa que cliente não inseriu data válida
+end
+Cliente->Sistema:Escolhe um profissional
+Sistema->Sistema:Verifica profissional selecionado
+break Profissional não selecionado
+Cliente<-Sistema:Informa que cliente não selecionou um profissional
+end
+alt Não concorda com valor monetário do serviço
+Cliente->Sistema:Cancela agendamento
+Cliente<-Sistema:Indica que serviço não será agendado
+end
+Cliente->Sistema:Concorda com valor monetário do serviço
+
+ref over Cliente,Sistema:Efetuar Pagamento
+Cliente->Sistema:Confirma agendamento
+Sistema->Sistema:Regista agendamento de serviço
+Cliente<-Sistema:Indica que serviço foi agendado e se encontra pendente de confirmação do profissional
