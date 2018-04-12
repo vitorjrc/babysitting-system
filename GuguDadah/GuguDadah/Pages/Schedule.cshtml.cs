@@ -7,15 +7,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace GuguDadah.Pages
-{
-    public class ScheduleModel : PageModel
-    {
+namespace GuguDadah.Pages {
+
+    public class ScheduleModel : PageModel {
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Data")]
-        public DateTime date {get;set;}
+        public DateTime date { get; set; }
 
         [Display(Name = "Hora Início")]
         public DateTime startTime { get; set; }
@@ -31,8 +30,7 @@ namespace GuguDadah.Pages
 
         public string extra { get; set; }
 
-        public void OnGet()
-        {
+        public void OnGet() {
 
         }
     }
