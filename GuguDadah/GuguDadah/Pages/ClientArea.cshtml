@@ -1,7 +1,8 @@
 ﻿@page
-@model GuguDadah.Pages.ClientAreaModel
+@model GuguDadah.Pages.ClientArea
 @{
     ViewData["Title"] = "Área do Cliente";
+
 }
 
 <h2>Área do Cliente</h2>
@@ -10,7 +11,9 @@
 <a class="btn btn-info" asp-page="/Register">Avaliar trabalhos</a>
 <br><br>
 
-<p>Nome: Diana Costa</p>
-<p>Email: blabla@gmail.com</p>
-<p>Contacto: 912 345 788</p>
+<p>Nome: @Model.userName</p>
+<p>Email: @Model.eMail</p>
+<p>Contacto: @Model.contact</p>
+
+<img src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Avatar)" alt="" />
 
