@@ -30,9 +30,9 @@ alt Não concorda com valor monetário do serviço
 Cliente->Sistema:Cancela agendamento
 Cliente<-Sistema:Indica que serviço não será agendado
 end
-Cliente->Sistema:Concorda com valor monetário do serviço
-
+alt Concorda com valor monetário do serviço
 ref over Cliente,Sistema:Efetuar Pagamento
 Cliente->Sistema:Confirma agendamento
 Sistema->Sistema:Regista agendamento de serviço
 Cliente<-Sistema:Indica que serviço foi agendado e se encontra pendente de confirmação do profissional
+end
