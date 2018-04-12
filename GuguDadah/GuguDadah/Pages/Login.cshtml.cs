@@ -77,5 +77,12 @@ namespace GuguDadah.Pages
             return RedirectToPage("/Index");
         }
 
+        public async Task<IActionResult> OnGetLogout() {
+
+            Response.Cookies.Delete("codigosimples");
+
+            return RedirectToPage("/Index");
+        }
+
     }
 }

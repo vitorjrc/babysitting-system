@@ -10,9 +10,9 @@
 <a class="btn btn-info" asp-page="/Schedule">Agendar trabalho</a>
 <a class="btn btn-info" asp-page="/Register">Avaliar trabalhos</a>
 
-<form asp-page="Logout" id="logoutForm" class="navbar-right">
-    <input type="submit" class="btn btn-default" />
-</form>
+<a class="btn btn-info" asp-page="/Login"
+   asp-page-handler="Logout"
+   asp-route-attendeeid="12">Logout</a>
 
 
     <br><br>
