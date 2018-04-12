@@ -4,11 +4,12 @@ participant Sistema
 
 
 
-Ator->Sistema:Insere email, username e password
+Ator->Sistema:Insere username, email, contacto, password
 Sistema->Sistema:Confirma dados inseridos
 break Dados insuficientes
 Ator<-Sistema:Informa que não foram inseridos os dados necessários
 end
+Sistema->Sistema:Confirma que utilizador não existe
 break Utilizador já existente
 Ator<-Sistema:Informa que o utilizador já existe
 end
