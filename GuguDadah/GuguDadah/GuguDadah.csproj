@@ -5,6 +5,7 @@
   <ItemGroup>
     <Compile Remove="Pages\About.cshtml.cs" />
     <Compile Remove="Pages\Contact.cshtml.cs" />
+    <Compile Remove="Pages\Logout.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Pages\About.cshtml" />

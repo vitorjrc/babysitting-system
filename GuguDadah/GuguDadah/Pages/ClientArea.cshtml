@@ -9,11 +9,17 @@
 
 <a class="btn btn-info" asp-page="/Schedule">Agendar trabalho</a>
 <a class="btn btn-info" asp-page="/Register">Avaliar trabalhos</a>
-<br><br>
 
-<p>Nome: @Model.userName</p>
-<p>Email: @Model.eMail</p>
-<p>Contacto: @Model.contact</p>
+<form asp-page="Logout" id="logoutForm" class="navbar-right">
+    <input type="submit" class="btn btn-default" />
+</form>
 
-<img src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Avatar)" alt="" />
+
+    <br><br>
+
+    <p>Nome: @Model.userName</p>
+    <p>Email: @Model.eMail</p>
+    <p>Contacto: @Model.contact</p>
+
+    <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Avatar)" alt="" />
 
