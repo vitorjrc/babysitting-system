@@ -48,7 +48,7 @@ namespace GuguDadah
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             })
-            .AddCookie(o => { o.LoginPath = new PathString("/Login"); o.Cookie.Name = "codigosimples"; });
+            .AddCookie(o => { o.LoginPath = new PathString("/Login"); o.Cookie.Name = "GuguDadahLogin"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

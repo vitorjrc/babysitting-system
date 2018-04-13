@@ -3,6 +3,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="wwwroot\Data\**" />
+    <Content Remove="wwwroot\Data\**" />
+    <EmbeddedResource Remove="wwwroot\Data\**" />
+    <None Remove="wwwroot\Data\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Remove="Pages\About.cshtml.cs" />
     <Compile Remove="Pages\Contact.cshtml.cs" />
     <Compile Remove="Pages\Logout.cs" />
@@ -11,10 +17,6 @@
     <Content Remove="Pages\About.cshtml" />
     <Content Remove="Pages\Contact.cshtml" />
     <Content Remove="wwwroot\lib\bootstrap\dist\js\DatePickerReady.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="wwwroot\Data\AppDbContext.cs" />
-    <Compile Include="wwwroot\Data\Client.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bootstrap.Datepicker" Version="1.7.1" />

@@ -4,31 +4,31 @@
     ViewData["Title"] = "Login";
 }
 
+<div class="row">
+    <div class="col-sm-6 mainContentWrapper">
+        <div class="well">
+            <form method="POST" class="form-group">
+                <div class="form-group">
+                    <label asp-for="client.userName"></label>
+                    <input asp-for="client.userName" class="form-control" />
+                </div>
 
-<p>
-    @Model.Message
-</p>
+                <div class="form-group">
+                    <label asp-for="client.password"></label>
+                    <input type="password" asp-for="client.password" class="form-control" />
+                </div>
 
-    <div class="row">
-        <div class="col-sm-6 mainContentWrapper">
-            <div class="well">
-                <form method="POST" class="form-group">
-                            <div class="form-group">
-                                <label asp-for="Customer.userName"></label>
-                                <input asp-for="Customer.userName" class="form-control" />
-                            </div>
+                <div class="form-group">
+                    <input type="checkbox" asp-for="RememberMe" />
+                    <label asp-for="RememberMe"></label>
+                </div>
 
-                            <div class="form-group">
-                                <label asp-for="Customer.password"></label>
-                                <input type="password" asp-for="Customer.password" class="form-control" />
-                            </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default" />
+                </div>
+            </form>
 
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-default" />
-                            </div>
-                </form>
-
-            </div>
         </div>
-
     </div>
+
+</div>

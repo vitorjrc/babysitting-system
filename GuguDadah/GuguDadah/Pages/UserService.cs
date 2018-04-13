@@ -13,8 +13,6 @@ namespace GuguDadah.Pages
 
     public class UserService : IUserService {
 
-        private Client clientLogged = null;
-
         private readonly AppDbContext dbContext;
 
         public UserService(AppDbContext context) {
@@ -29,7 +27,7 @@ namespace GuguDadah.Pages
 
             Client client = dbContext.Clients.FirstOrDefault(m => m.userName.Equals(username));
 
-            this.clientLogged = client;
+            if (!password.Equals(client.password)) return null;
 
             return client;
         }

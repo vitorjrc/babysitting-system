@@ -41,7 +41,7 @@
                         <a class="btn btn-primary" asp-page="/ProfessionalArea">Área de Profissional</a>
                         <a class="btn btn-primary" asp-page="/Babysitters">Babysitters</a>
                     </form>
-                </div><!--/.navbar-collapse -->
+                    </div><!--/.navbar-collapse -->
         </div>
     </div>
 
@@ -54,6 +54,20 @@
         </div>
 
         <div class="container body-content">
+
+            <div>
+
+                @if (@User.Identity.Name != null) {
+                    <p>Logado como @User.Identity.Name</p>
+                }
+
+                else {
+                    <p>Utilizador não autenticado</p>
+
+                }
+
+            </div>
+
             <hr />
             @RenderBody()
             <hr />
