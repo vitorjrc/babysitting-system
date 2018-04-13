@@ -12,11 +12,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 
-namespace GuguDadah.Pages
-{
+namespace GuguDadah.Pages {
     [AllowAnonymous]
-    public class Login : PageModel
-    {
+    public class Login : PageModel {
         [BindProperty]
         [Display(Name = "Username")]
         public string userName { get; set; }

@@ -5,13 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace GuguDadah.Pages
-{
-    public class ProfessionalAreaModel : PageModel
-    {
-        public void OnGet()
-        {
+namespace GuguDadah.Pages {
+    public class ProfessionalAreaModel : PageModel {
 
-        }
     }
 }

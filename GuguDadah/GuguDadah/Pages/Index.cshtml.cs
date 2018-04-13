@@ -6,14 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authorization;
 
-namespace GuguDadah.Pages
-{
+namespace GuguDadah.Pages {
     [AllowAnonymous]
-    public class Index : PageModel
-    {
-        public void OnGet()
-        {
+    public class Index : PageModel {
 
-        }
     }
 }
