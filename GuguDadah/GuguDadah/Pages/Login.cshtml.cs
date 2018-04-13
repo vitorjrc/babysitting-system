@@ -17,10 +17,11 @@ namespace GuguDadah.Pages
     [AllowAnonymous]
     public class Login : PageModel
     {
-
+        [BindProperty]
         [Display(Name = "Username")]
         public string userName { get; set; }
 
+        [BindProperty]
         [Display(Name = "Password")]
         public string password { get; set; }
 
@@ -36,11 +37,6 @@ namespace GuguDadah.Pages
 
             _userService = userService;
         }
-
-        //fazendo bind da model para ser usada no front-end
-        [BindProperty]
-        public Client client { get; set; }
-
 
         //metodo Get inicial
         public void OnGet() {
@@ -61,16 +57,32 @@ namespace GuguDadah.Pages
             }
 
             //faz a busca do usuário e verifica se existe
-            var user = _userService.Authenticate(client.userName, client.password);
+            Client client = _userService.AuthenticateClient(userName, password);
+            Professional professional = _userService.AuthenticateProfessional(userName, password);
 
-            if (user == null)
+            var user = (dynamic)null;
+            var claims = (dynamic)null;
+
+            if (client == null && professional == null)
                 return Unauthorized();
 
-            var claims = new[]
+            else if (client == null) {
+                user = professional;
+
+                claims = new[]
             {
                  new Claim(ClaimTypes.Name, user.userName)
             };
+            }
 
+                else {
+                    user = client;
+
+                    claims = new[]
+                {
+                     new Claim(ClaimTypes.Name, user.userName)
+                };
+            }
 
             //faz autenticação via Cookie
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

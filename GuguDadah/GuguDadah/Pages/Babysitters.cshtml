@@ -1,5 +1,5 @@
 ﻿@page
-@model GuguDadah.Pages.BabysittersModel
+@model GuguDadah.Pages.Babysitters
 @{
     ViewData["Title"] = "Babysitters";
 }
@@ -15,7 +15,7 @@
 
 @section Scripts
     {
-    <script src="~/lib/bootstrap/dist/js/star-rating.js" type = "text/javascript" ></script>
+    <script src="~/lib/bootstrap/dist/js/star-rating.js" type="text/javascript"></script>
     <script src="~/lib/bootstrap/dist/js/theme.js"></script>
     <script>
         $(document).on('ready', function () {
@@ -26,14 +26,35 @@
         });
     </script>
 }
-    <div class="row">
-        <div class="col-sm-6 mainContentWrapper">
-            <div class="well">
-                <form>
-                    <input id="input-3" name="input-3" value="2" class="rating" data-filled="glyphicon glyphicon-heart" data-empty="glyphicon glyphicon-heart-empty" 
-                           data-show-clear="false" data-show-caption="false">
-                    <button class="btn btn-primary">Submeter</button>
-                </form>
-            </div>
+<div class="row">
+    <div class="col-sm-6 mainContentWrapper">
+        <div class="well">
+            <form>
+                <input id="input-3" name="input-3" value="2" class="rating" data-filled="glyphicon glyphicon-heart" data-empty="glyphicon glyphicon-heart-empty"
+                       data-show-clear="false" data-show-caption="false">
+                <button class="btn btn-primary">Submeter</button>
+            </form>
         </div>
     </div>
+</div>
+
+
+<div class="row">
+    @foreach (var item in Model.lista) {
+
+        <div class="col-md-4">
+            <ul>
+                <li>@item.userName</li>
+                <li>@item.eMail</li>
+                <li>@item.contact</li>
+                <li>@item.shift</li>
+            </ul>
+            <input type="hidden" class="rating" disabled="disabled" value="@item.rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+            <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.avatar)" alt="" />
+        </div>
+    }
+</div>
+
+
+
+
