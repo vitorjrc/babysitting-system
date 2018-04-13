@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Web.Mvc;
 
 using GuguDadah.Data;
 using System.IO;
@@ -15,7 +14,7 @@ using Microsoft.AspNetCore.Http.Authentication;
 
 namespace GuguDadah.Pages {
 
-    [Microsoft.AspNetCore.Authorization.Authorize(Policy = "ClientOnly")]
+    [Authorize(Policy = "ClientOnly")]
     public class ClientArea : PageModel {
 
         [BindProperty]

@@ -38,22 +38,10 @@ namespace GuguDadah.Pages
             _userService = userService;
         }
 
-        //metodo Get inicial
-        public void OnGet() {
-            //verifica se o usuário está autenticado
-            if (User.Identity.IsAuthenticated) {
-                Message += "Olá User, você está autenticado";
-
-            }
-            else {
-                Message += "Você não está autenticado";
-            }
-        }
-
         //metodo post do formulario
         public IActionResult OnPost() {
             if (!ModelState.IsValid) {
-                return RedirectToPage("/Index");
+                ModelState.AddModelError("", "Username ou Password inválidas");
             }
 
             //faz a busca do usuário e verifica se existe
@@ -63,8 +51,10 @@ namespace GuguDadah.Pages
             var user = (dynamic)null;
             var claims = (dynamic)null;
 
-            if (client == null && professional == null)
-                return Unauthorized();
+            if (client == null && professional == null) {
+                ModelState.AddModelError("", "Username ou Password inválidas.");
+                return Page();
+            }
 
             else if (client == null) {
                 user = professional;
@@ -76,11 +66,11 @@ namespace GuguDadah.Pages
             };
             }
 
-                else {
-                    user = client;
+            else {
+                user = client;
 
-                    claims = new[]
-                {
+                claims = new[]
+            {
                      new Claim(ClaimTypes.Name, user.userName),
                      new Claim(ClaimTypes.Role, "Client")
                 };
@@ -94,6 +84,11 @@ namespace GuguDadah.Pages
                     IsPersistent = this.RememberMe,
                     ExpiresUtc = DateTime.UtcNow.AddDays(30)
                 });
+
+            if (User.Identity.IsAuthenticated) {
+                ModelState.AddModelError("KeyName", "The user name or password provided is incorrect");
+                return RedirectToPage("/Login");
+            }
 
             // redireciona para a Index novamente, porém já autenticado
             return RedirectToPage("/Index");

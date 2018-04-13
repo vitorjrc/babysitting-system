@@ -28,6 +28,7 @@ namespace GuguDadah.Pages {
 
         [BindProperty]
         [Required]
+        [EmailAddress]
         [Display(Name = "Email")]
         public string eMail { get; set; }
 
@@ -38,11 +39,14 @@ namespace GuguDadah.Pages {
 
         [BindProperty]
         [Required]
+        [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string password { get; set; }
 
         [BindProperty]
         [Required]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         [Display(Name = "Confirmar Password")]
         public string confirmPassword { get; set; }
 
