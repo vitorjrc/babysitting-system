@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 namespace GuguDadah.Data {
 
     public class Client {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
 
+        [Key]
         public string userName { get; set; }
 
         public string password { get; set; }

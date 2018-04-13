@@ -14,12 +14,15 @@ using System.Diagnostics;
 using ImageMagick;
 
 using GuguDadah.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GuguDadah.Pages {
 
+    [AllowAnonymous]
     public class Register : PageModel {
 
         [BindProperty]
+        [Required]
         [Display(Name = "Username")]
         public string userName { get; set; }
 
@@ -29,18 +32,20 @@ namespace GuguDadah.Pages {
         public string eMail { get; set; }
 
         [BindProperty]
+        [Required]
         [Display(Name = "Contacto Telefónico")]
         public string contact { get; set; }
 
         [BindProperty]
+        [Required]
         [Display(Name = "Password")]
         public string password { get; set; }
 
         [BindProperty]
+        [Required]
         [Display(Name = "Confirmar Password")]
         public string confirmPassword { get; set; }
 
-        [Required]
         [BindProperty]
         public IFormFile Avatar { get; set; }
 
@@ -52,7 +57,7 @@ namespace GuguDadah.Pages {
         }
 
         [HttpPost]
-        public async Task<IActionResult> OnPostAsync() {
+        public IActionResult OnPost() {
             IFormFile uploadedImage = Avatar;
             if (uploadedImage == null || uploadedImage.ContentType.ToLower().StartsWith("image/")) {
 
@@ -75,7 +80,6 @@ namespace GuguDadah.Pages {
                     }
 
                     Client imageEntity = new Client() {
-                        ID = 1,
                         userName = this.userName,
                         avatar = ms1.ToArray(),
                         password = this.password,

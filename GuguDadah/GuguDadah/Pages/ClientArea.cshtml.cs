@@ -10,8 +10,10 @@ using System.Web.Mvc;
 using GuguDadah.Data;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http.Authentication;
 
 namespace GuguDadah.Pages {
+
     public class ClientArea : PageModel {
 
         [BindProperty]
@@ -30,15 +32,19 @@ namespace GuguDadah.Pages {
         public byte[] Avatar { get; set; }
 
         private readonly AppDbContext dbContext;
+        private IUserService _userService;
 
-        public ClientArea(AppDbContext context) {
+        public ClientArea(AppDbContext context, IUserService userService) {
 
+            _userService = userService;
             dbContext = context;
         }
 
         public void OnGet() {
 
-            Client client = dbContext.Clients.FirstOrDefault(m => m.ID == 1);
+            var userName = User.Identity.Name;
+
+            Client client = dbContext.Clients.FirstOrDefault(m => m.userName.Equals(userName));
 
             this.userName = client.userName;
             this.eMail = client.eMail;

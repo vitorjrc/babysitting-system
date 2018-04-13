@@ -1,1 +1,1 @@
-﻿SELECT * FROM dbo.Customer;
+﻿SELECT * FROM dbo.Client;
