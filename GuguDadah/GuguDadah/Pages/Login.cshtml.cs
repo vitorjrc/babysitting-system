@@ -24,6 +24,10 @@ namespace GuguDadah.Pages
         [Display(Name = "Password")]
         public string password { get; set; }
 
+        [BindProperty]
+        [Display(Name = "Lembrar-me")]
+        public bool RememberMe { get; set; }
+
         //instanciando uma classe de serviço por injeção
         private IUserService _userService;
         public string Message { get; private set; } = string.Empty;
@@ -35,14 +39,14 @@ namespace GuguDadah.Pages
 
         //fazendo bind da model para ser usada no front-end
         [BindProperty]
-        public Client Customer { get; set; }
+        public Client client { get; set; }
 
 
         //metodo Get inicial
         public void OnGet() {
             //verifica se o usuário está autenticado
             if (User.Identity.IsAuthenticated) {
-                Message += "Olá Usuário, você está autenticado";
+                Message += "Olá User, você está autenticado";
 
             }
             else {
@@ -57,7 +61,7 @@ namespace GuguDadah.Pages
             }
 
             //faz a busca do usuário e verifica se existe
-            var user = _userService.Authenticate(Customer.userName, Customer.password);
+            var user = _userService.Authenticate(client.userName, client.password);
 
             if (user == null)
                 return Unauthorized();
@@ -71,7 +75,11 @@ namespace GuguDadah.Pages
             //faz autenticação via Cookie
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(identity));
+                new ClaimsPrincipal(identity),
+                new AuthenticationProperties {
+                    IsPersistent = this.RememberMe,
+                    ExpiresUtc = DateTime.UtcNow.AddDays(30)
+                });
 
             // redireciona para a Index novamente, porém já autenticado
             return RedirectToPage("/Index");
@@ -79,7 +87,7 @@ namespace GuguDadah.Pages
 
         public async Task<IActionResult> OnGetLogout() {
 
-            Response.Cookies.Delete("codigosimples");
+            Response.Cookies.Delete("GuguDadahLogin");
 
             return RedirectToPage("/Index");
         }
