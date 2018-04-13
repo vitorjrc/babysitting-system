@@ -71,7 +71,8 @@ namespace GuguDadah.Pages
 
                 claims = new[]
             {
-                 new Claim(ClaimTypes.Name, user.userName)
+                 new Claim(ClaimTypes.Name, user.userName),
+                 new Claim(ClaimTypes.Role, "Professional")
             };
             }
 
@@ -80,7 +81,8 @@ namespace GuguDadah.Pages
 
                     claims = new[]
                 {
-                     new Claim(ClaimTypes.Name, user.userName)
+                     new Claim(ClaimTypes.Name, user.userName),
+                     new Claim(ClaimTypes.Role, "Client")
                 };
             }
 
@@ -97,7 +99,7 @@ namespace GuguDadah.Pages
             return RedirectToPage("/Index");
         }
 
-        public async Task<IActionResult> OnGetLogout() {
+        public IActionResult OnGetLogout() {
 
             Response.Cookies.Delete("GuguDadahLogin");
 
