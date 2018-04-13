@@ -1,5 +1,5 @@
 ﻿@page
-@model GuguDadah.Pages.ProfessionalAreaModel
+@model GuguDadah.Pages.ProfessionalArea
 @{
     ViewData["Title"] = "Área do Profissional";
 }
@@ -9,10 +9,12 @@
 <a class="btn btn-info" asp-page="/Register">Propostas</a>
 <a class="btn btn-info" asp-page="/Register">Trabalhos pendentes</a>
 <a class="btn btn-info" asp-page="/Register">Histórico</a>
+
 <br><br>
 
-<p>Nome: Diana Costa</p>
-<p>Email: blabla@gmail.com</p>
-<p>Contacto: 912 345 678</p>
-<p>Turno: Tarde</p>
+<p>Nome: @Model.userName</p>
+<p>Email: @Model.eMail</p>
+<p>Contacto: @Model.contact</p>
+
+<img src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Avatar)" alt="" />
 

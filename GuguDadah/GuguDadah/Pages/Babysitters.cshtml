@@ -4,7 +4,7 @@
     ViewData["Title"] = "Babysitters";
 }
 
-<h2>Agendar Babysitting</h2>
+<h2>Lista de Babysitters</h2>
 
 @section head
     {
@@ -41,16 +41,16 @@
 
 <div class="row">
     @foreach (var item in Model.lista) {
+        <div style="text-align:center">
+            <div class="col-md-4">
+                    <p>Nome: @item.userName</p>
+                    <p>Email: @item.eMail</p>
+                    <p>Contacto: @item.contact</p>
+                    <p>Turno: @item.shift</p>
 
-        <div class="col-md-4">
-            <ul>
-                <li>@item.userName</li>
-                <li>@item.eMail</li>
-                <li>@item.contact</li>
-                <li>@item.shift</li>
-            </ul>
-            <input type="hidden" class="rating" disabled="disabled" value="@item.rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
-            <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.avatar)" alt="" />
+                <input type="hidden" class="rating" disabled="disabled" value="@item.rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.avatar)" alt="" />
+            </div>
         </div>
     }
 </div>

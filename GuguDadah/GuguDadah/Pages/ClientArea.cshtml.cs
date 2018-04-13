@@ -33,11 +33,9 @@ namespace GuguDadah.Pages {
         public byte[] Avatar { get; set; }
 
         private readonly AppDbContext dbContext;
-        private IUserService _userService;
 
-        public ClientArea(AppDbContext context, IUserService userService) {
+        public ClientArea(AppDbContext context) {
 
-            _userService = userService;
             dbContext = context;
         }
 
