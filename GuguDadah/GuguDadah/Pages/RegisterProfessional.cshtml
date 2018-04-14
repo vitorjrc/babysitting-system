@@ -1,7 +1,7 @@
 ﻿@page
-@model Register
+@model RegisterProfessional
 @{
-    ViewData["Title"] = "Registo";
+    ViewData["Title"] = "Registo de Profissional";
 }
 <h2>@ViewData["Title"]</h2>
 
@@ -44,6 +44,12 @@
                         <div class="form-group">
                             @Html.LabelFor(m => m.confirmPassword, new { @class = "control-label" })
                             @Html.PasswordFor(m => m.confirmPassword, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.confirmPassword)
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.shift, new { @class = "control-label" })
+                            @Html.PasswordFor(m => m.shift, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.confirmPassword)
                         </div>
 

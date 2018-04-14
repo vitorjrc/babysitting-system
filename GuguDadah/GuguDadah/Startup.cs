@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using System.Security.Claims;
 
 namespace GuguDadah
 {
@@ -48,7 +49,15 @@ namespace GuguDadah
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             })
-            .AddCookie(o => { o.LoginPath = new PathString("/Login"); o.Cookie.Name = "codigosimples"; });
+            .AddCookie(o => { o.LoginPath = new PathString("/Login"); o.Cookie.Name = "GuguDadahLogin"; });
+
+            // configura autorizações
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ClientOnly", policy => policy.RequireClaim(ClaimTypes.Role, "Client"));
+                options.AddPolicy("ProfessionalOnly", policy => policy.RequireClaim(ClaimTypes.Role, "Professional"));
+                options.AddPolicy("AdminOnly", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,4 +88,6 @@ namespace GuguDadah
             app.UseMvc();
         }
     }
+
+
 }

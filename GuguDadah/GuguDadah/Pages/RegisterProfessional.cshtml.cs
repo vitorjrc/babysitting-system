@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace GuguDadah.Pages {
 
     [AllowAnonymous]
-    public class Register : PageModel {
+    public class RegisterProfessional : PageModel {
 
         [BindProperty]
         [Required]
@@ -28,7 +28,6 @@ namespace GuguDadah.Pages {
 
         [BindProperty]
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
         public string eMail { get; set; }
 
@@ -44,16 +43,20 @@ namespace GuguDadah.Pages {
 
         [BindProperty]
         [Required]
-        [Compare("password", ErrorMessage = "The password and confirmation password do not match.")]
         [Display(Name = "Confirmar Password")]
         public string confirmPassword { get; set; }
+
+        [BindProperty]
+        [Required]
+        [Display(Name = "Turno")]
+        public string shift { get; set; }
 
         [BindProperty]
         public IFormFile Avatar { get; set; }
 
         private readonly AppDbContext dbContext;
 
-        public Register(AppDbContext context) {
+        public RegisterProfessional(AppDbContext context) {
 
             dbContext = context;
         }
@@ -81,15 +84,16 @@ namespace GuguDadah.Pages {
                         image.Write(ms1);
                     }
 
-                    Client imageEntity = new Client() {
+                    Professional imageEntity = new Professional() {
                         userName = this.userName,
                         avatar = ms1.ToArray(),
                         password = this.password,
                         eMail = this.eMail,
-                        contact = this.contact
+                        contact = this.contact,
+                        shift = this.shift
                     };
 
-                    dbContext.Clients.Add(imageEntity);
+                    dbContext.Professionals.Add(imageEntity);
 
                     dbContext.SaveChanges();
                 }

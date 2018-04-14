@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Web.Mvc;
 
 using GuguDadah.Data;
 using System.IO;
@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http.Authentication;
 
 namespace GuguDadah.Pages {
 
+    [Authorize(Policy = "ClientOnly")]
     public class ClientArea : PageModel {
 
         [BindProperty]
@@ -32,11 +33,9 @@ namespace GuguDadah.Pages {
         public byte[] Avatar { get; set; }
 
         private readonly AppDbContext dbContext;
-        private IUserService _userService;
 
-        public ClientArea(AppDbContext context, IUserService userService) {
+        public ClientArea(AppDbContext context) {
 
-            _userService = userService;
             dbContext = context;
         }
 
