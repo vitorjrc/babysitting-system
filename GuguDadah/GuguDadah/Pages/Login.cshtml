@@ -9,13 +9,13 @@
         <div class="well">
             <form method="POST" class="form-group">
                 <div class="form-group">
-                    <label asp-for="client.userName"></label>
-                    <input asp-for="client.userName" class="form-control" />
+                    <label asp-for="userName"></label>
+                    <input asp-for="userName" class="form-control" />
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="client.password"></label>
-                    <input type="password" asp-for="client.password" class="form-control" />
+                    <label asp-for="password"></label>
+                    <input type="password" asp-for="password" class="form-control" />
                 </div>
 
                 <div class="form-group">
@@ -23,8 +23,11 @@
                     <label asp-for="RememberMe"></label>
                 </div>
 
+                @Html.ValidationSummary(true)
+                <br />
+
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default" />
+                    <input type="submit" value="Iniciar Sessão" class="btn btn-default" />
                 </div>
             </form>
 

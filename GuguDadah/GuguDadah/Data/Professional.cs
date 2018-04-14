@@ -22,5 +22,7 @@ namespace GuguDadah.Data {
 
         [Column(TypeName = "char(1)")]
         public string shift { get; set; }
+
+        public byte[] avatar { get; set; }
     }
 }

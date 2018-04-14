@@ -12,15 +12,14 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 
-namespace GuguDadah.Pages
-{
+namespace GuguDadah.Pages {
     [AllowAnonymous]
-    public class Login : PageModel
-    {
-
+    public class Login : PageModel {
+        [BindProperty]
         [Display(Name = "Username")]
         public string userName { get; set; }
 
+        [BindProperty]
         [Display(Name = "Password")]
         public string password { get; set; }
 
@@ -37,40 +36,43 @@ namespace GuguDadah.Pages
             _userService = userService;
         }
 
-        //fazendo bind da model para ser usada no front-end
-        [BindProperty]
-        public Client client { get; set; }
-
-
-        //metodo Get inicial
-        public void OnGet() {
-            //verifica se o usuário está autenticado
-            if (User.Identity.IsAuthenticated) {
-                Message += "Olá User, você está autenticado";
-
-            }
-            else {
-                Message += "Você não está autenticado";
-            }
-        }
-
         //metodo post do formulario
         public IActionResult OnPost() {
             if (!ModelState.IsValid) {
-                return RedirectToPage("/Index");
+                ModelState.AddModelError("", "Username ou Password inválidas");
             }
 
             //faz a busca do usuário e verifica se existe
-            var user = _userService.Authenticate(client.userName, client.password);
+            Client client = _userService.AuthenticateClient(userName, password);
+            Professional professional = _userService.AuthenticateProfessional(userName, password);
 
-            if (user == null)
-                return Unauthorized();
+            var user = (dynamic)null;
+            var claims = (dynamic)null;
 
-            var claims = new[]
+            if (client == null && professional == null) {
+                ModelState.AddModelError("", "Username ou Password inválidas.");
+                return Page();
+            }
+
+            else if (client == null) {
+                user = professional;
+
+                claims = new[]
             {
-                 new Claim(ClaimTypes.Name, user.userName)
+                 new Claim(ClaimTypes.Name, user.userName),
+                 new Claim(ClaimTypes.Role, "Professional")
             };
+            }
 
+            else {
+                user = client;
+
+                claims = new[]
+            {
+                     new Claim(ClaimTypes.Name, user.userName),
+                     new Claim(ClaimTypes.Role, "Client")
+                };
+            }
 
             //faz autenticação via Cookie
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -81,11 +83,16 @@ namespace GuguDadah.Pages
                     ExpiresUtc = DateTime.UtcNow.AddDays(30)
                 });
 
+            if (User.Identity.IsAuthenticated) {
+                ModelState.AddModelError("KeyName", "The user name or password provided is incorrect");
+                return RedirectToPage("/Login");
+            }
+
             // redireciona para a Index novamente, porém já autenticado
             return RedirectToPage("/Index");
         }
 
-        public async Task<IActionResult> OnGetLogout() {
+        public IActionResult OnGetLogout() {
 
             Response.Cookies.Delete("GuguDadahLogin");
 

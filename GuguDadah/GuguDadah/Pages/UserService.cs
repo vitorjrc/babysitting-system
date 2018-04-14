@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using GuguDadah.Data;
 
-namespace GuguDadah.Pages
-{
+namespace GuguDadah.Pages {
     public interface IUserService {
 
-        Client Authenticate(string username, string password);
+        Client AuthenticateClient(string username, string password);
+        Professional AuthenticateProfessional(string username, string password);
     }
 
     public class UserService : IUserService {
@@ -20,16 +20,27 @@ namespace GuguDadah.Pages
             dbContext = context;
         }
 
-        public Client Authenticate(string username, string password) {
+        public Client AuthenticateClient(string username, string password) {
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 return null;
 
             Client client = dbContext.Clients.FirstOrDefault(m => m.userName.Equals(username));
+            if (client != null && password.Equals(client.password)) return client;
 
-            if (!password.Equals(client.password)) return null;
+            return null;
+        }
 
-            return client;
+
+        public Professional AuthenticateProfessional(string username, string password) {
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                return null;
+
+            Professional professional = dbContext.Professionals.FirstOrDefault(m => m.userName.Equals(username));
+            if (professional != null && password.Equals(professional.password)) return professional;
+
+            return null;
         }
     }
 }
