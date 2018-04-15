@@ -4,6 +4,28 @@
     ViewData["Title"] = "Home page";
 }
 
+@section Scripts
+    {
+    <script>
+        var currentSlide;
+        var rand;
+        $(document).ready(function () {
+            currentSlide = Math.floor((Math.random() * $('.item').length));
+            rand = currentSlide;
+            $('#myCarousel').carousel(currentSlide);
+            $('#myCarousel').fadeIn(1000);
+            setInterval(function () {
+                while (rand == currentSlide) {
+                    rand = Math.floor((Math.random() * $('.item').length));
+                }
+                currentSlide = rand;
+                $('#myCarousel').carousel(rand);
+            }, 3000);
+        });
+    </script>
+}
+
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -13,7 +35,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="~/images/baby1.jpg" alt="ASP.NET" class="img-responsive" />
+            <img src="~/images/baby1.jpg" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
                     A experiência e o profissionalismo das babysitters GuguDadah permite-nos apresentar a solução ideal para a sua vida
@@ -21,7 +43,7 @@
             </div>
         </div>
         <div class="item">
-            <img src="~/images/baby2.jpg" alt="Visual Studio" class="img-responsive" />
+            <img src="~/images/baby2.jpg" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
                     24 horas disponível para acomodar as suas necessidades
@@ -29,7 +51,7 @@
             </div>
         </div>
         <div class="item">
-            <img src="~/images/baby3.jpg" alt="Package Management" class="img-responsive" />
+            <img src="~/images/baby3.jpg" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
                     Prestamos todos os cuidados a crianças de todas as idades
@@ -37,7 +59,7 @@
             </div>
         </div>
         <div class="item">
-            <img src="~/images/baby4.jpg" alt="Microsoft Azure" class="img-responsive" />
+            <img src="~/images/baby4.jpg" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
                     Garantimos a segurança e a animação das crianças, permitindo tranquilidade e satisfação dos pais

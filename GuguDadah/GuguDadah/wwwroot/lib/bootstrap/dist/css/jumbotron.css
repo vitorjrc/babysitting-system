@@ -18,6 +18,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     width: 70%;
     height: 70%;
     margin: auto;
+    padding-top: 35px;
+    padding-bottom: 15px;
     text-align: center; /*centers horizontally*/
     pointer-events: none;
 }
@@ -25,19 +27,43 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .navbar-inverse {
     background-color: transparent !important;
     border: none !important;
-    line-height: 60px;
-    height: 60px;
 }
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a {
+        line-height: 20px; /*changing this particular line does a lot, this is where the increase and decrease are done */
+        padding-top: 5px;
+        padding-bottom: 0px;
+        text-align: right;
+    }
+}
+
+.navbar-header {
+    background-color: transparent !important;
+}
+
+.navbar-inverse, .navbar-collapse, .navbar-inverse, .navbar-form {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none;
+}
+
+#color {
+    background-color: transparent !important;
+    
+}
+
+#myNavbar {
+    border: none !important;
+    background-color: rgba(83, 101, 111, 0.6) !important;
+}
+    
 
 .navbar-toggle {
     background-color: red !important;
 }
 
-.navbar {
-    margin-bottom: 0px;
-}
-
-.navbar-collapse {
+container body-content .navbar-collapse {
     background-color: transparent !important;
 }
 
