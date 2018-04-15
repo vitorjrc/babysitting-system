@@ -81,7 +81,7 @@ namespace GuguDadah.Pages {
                         image.Write(ms1);
                     }
 
-                    Client imageEntity = new Client() {
+                    Client newClient = new Client() {
                         userName = this.userName,
                         avatar = ms1.ToArray(),
                         password = this.password,
@@ -89,7 +89,7 @@ namespace GuguDadah.Pages {
                         contact = this.contact
                     };
 
-                    dbContext.Clients.Add(imageEntity);
+                    dbContext.Clients.Add(newClient);
 
                     dbContext.SaveChanges();
                 }

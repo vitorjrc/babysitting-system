@@ -7,21 +7,24 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using GuguDadah.Data;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace GuguDadah.Pages {
-    public class Babysitters : PageModel {
+    public class ChooseBabysitter : PageModel {
+
+        [BindProperty]
+        public Work work { get; set; }
 
         private readonly AppDbContext dbContext;
 
-        public Babysitters(AppDbContext context) {
+        public ChooseBabysitter(AppDbContext context) {
 
             dbContext = context;
-            onGet();
         }
 
         public List<Professional> lista = new List<Professional>();
 
-        public void onGet() {
+        public void OnGet() {
 
             var query = (from p in dbContext.Professionals
                          orderby p.userName
@@ -38,6 +41,26 @@ namespace GuguDadah.Pages {
                     rating = item.rating
                 });
             }
+        }
+
+        public async Task<ActionResult> OnPostChoosedProfessionalAsync(string username) {
+
+            work = JsonConvert.DeserializeObject<Work>(TempData["tempWork"].ToString());
+
+            if (work == null) return Page();
+
+            if (!ModelState.IsValid) {
+                return Page();
+            }
+
+            Professional professional = dbContext.Professionals.FirstOrDefault(m => m.userName.Equals(username));
+            work.professional = professional;
+
+            dbContext.Works.Add(work);
+
+            await dbContext.SaveChangesAsync();
+
+            return RedirectToPage("/Index");
         }
     }
 }

@@ -43,6 +43,7 @@ namespace GuguDadah.Pages {
 
         [BindProperty]
         [Required]
+        [Compare("password", ErrorMessage = "The password and confirmation password do not match.")]
         [Display(Name = "Confirmar Password")]
         public string confirmPassword { get; set; }
 
@@ -84,7 +85,7 @@ namespace GuguDadah.Pages {
                         image.Write(ms1);
                     }
 
-                    Professional imageEntity = new Professional() {
+                    Professional newProfessional = new Professional() {
                         userName = this.userName,
                         avatar = ms1.ToArray(),
                         password = this.password,
@@ -93,7 +94,7 @@ namespace GuguDadah.Pages {
                         shift = this.shift
                     };
 
-                    dbContext.Professionals.Add(imageEntity);
+                    dbContext.Professionals.Add(newProfessional);
 
                     dbContext.SaveChanges();
                 }

@@ -13,9 +13,11 @@ namespace GuguDadah.Data {
 
         public DbSet<Client> Clients { get; set; }
         public DbSet<Professional> Professionals { get; set; }
-        public DbSet<Work> Work { get; set; }
+        public DbSet<Work> Works { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
+
+            modelBuilder.HasDefaultSchema("GuguDadah");
 
             modelBuilder.Entity<Professional>().ToTable("Professional");
             modelBuilder.Entity<Client>().ToTable("Client");

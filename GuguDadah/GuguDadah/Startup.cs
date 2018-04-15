@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace GuguDadah
 {
@@ -39,6 +40,19 @@ namespace GuguDadah
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
             services.AddCors();
+
+            services.AddMemoryCache();
+            // Adds a default in-memory implementation of IDistributedCache.
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+            });
+
+            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
 
             // adiciona a classe de serviço ao escopo para utilizarmos na página
             services.AddScoped<IUserService, UserService>();
@@ -86,6 +100,8 @@ namespace GuguDadah
             app.UseStaticFiles();
 
             app.UseMvc();
+
+            app.UseSession();
         }
     }
 

@@ -36,17 +36,41 @@
 
                 <form class="navbar-form navbar-right" role="form">
 
+
+                    @using System.Security.Claims
+
+                    @{
+                        var roleOfUser = (dynamic)null;
+                        var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+
+                        if (User.Identity.Name != null) {
+                            roleOfUser = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value;
+                        }
+
+                    }
+
+                    @if (roleOfUser == "Admin") {
+                        <a class="btn btn-primary" asp-page="/AdminArea">Área de Admin</a>
+                    }
+                    @if (roleOfUser == "Professional") {
+                        <a class="btn btn-primary" asp-page="/ProfessionalArea">Área de Profissional</a>
+                    }
+
+                    @if (roleOfUser == "Client") {
+                        <a class="btn btn-primary" asp-page="/ClientArea">Área de Cliente</a>
+                    }
+
                     @if (@User.Identity.Name == null) {
+
                         <a class="btn btn-info" asp-page="/Login">Login</a>
                         <a class="btn btn-primary" asp-page="/Register">Registo</a>
                     }
+
                     else {
+
                         <a class="btn btn-info" asp-page="/Login" asp-page-handler="Logout">Logout</a>
                     }
-                    <a class="btn btn-primary" asp-page="/RegisterProfessional">Registo de Profissionais</a>
-                    <a class="btn btn-primary" asp-page="/ClientArea">Área de Cliente</a>
-                    <a class="btn btn-primary" asp-page="/ProfessionalArea">Área de Profissional</a>
-                    <a class="btn btn-primary" asp-page="/Babysitters">Babysitters</a>
+
                 </form>
             </div><!--/.navbar-collapse -->
         </div>

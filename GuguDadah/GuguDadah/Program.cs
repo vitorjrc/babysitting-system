@@ -25,7 +25,8 @@ namespace GuguDadah
                 try
                 {
                     var context = services.GetRequiredService<AppDbContext>();
-                    DbInitializer.Initialize(context);
+
+                    context.Database.EnsureCreated();
                 }
                 catch (Exception ex)
                 {

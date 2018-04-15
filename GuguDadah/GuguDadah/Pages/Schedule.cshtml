@@ -1,5 +1,5 @@
 ﻿@page
-@model GuguDadah.Pages.ScheduleModel
+@model GuguDadah.Pages.Schedule
 @{
     ViewData["Title"] = "Schedule";
 }
@@ -46,9 +46,8 @@
 <div class="row">
     <div class="col-sm-6 mainContentWrapper">
         <div class="well">
-            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" })) {
+            <form asp-page-handler="ReturningTempWork" asp-page="Schedule" method="post">
                 <fieldset>
-                    @Html.AntiForgeryToken()
                     <h4>Reservar</h4>
                     <hr />
 
@@ -115,8 +114,8 @@
                         </div>
                     </section>
                 </fieldset>
-            }
-        </div>
+                </form>
+</div>
     </div>
 
 </div>
