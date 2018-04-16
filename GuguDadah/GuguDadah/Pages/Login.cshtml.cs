@@ -32,11 +32,11 @@ namespace GuguDadah.Pages {
         public bool RememberMe { get; set; }
 
         //instanciando uma classe de serviço por injeção
-        private IUserService _userService;
+        private ILoginService _loginService;
 
-        public Login(IUserService userService) {
+        public Login(ILoginService loginService) {
 
-            _userService = userService;
+            _loginService = loginService;
         }
 
         //metodo post do formulario
@@ -66,8 +66,8 @@ namespace GuguDadah.Pages {
             }
 
             //faz a busca do usuário e verifica se existe
-            Client client = _userService.AuthenticateClient(userName, password);
-            Professional professional = _userService.AuthenticateProfessional(userName, password);
+            Client client = _loginService.AuthenticateClient(userName, password);
+            Professional professional = _loginService.AuthenticateProfessional(userName, password);
 
             if (client == null && professional == null) {
                 ModelState.AddModelError("", "Username ou Password inválidas.");
@@ -103,11 +103,6 @@ namespace GuguDadah.Pages {
                     IsPersistent = this.RememberMe,
                     ExpiresUtc = DateTime.UtcNow.AddDays(30)
                 });
-
-            if (User.Identity.IsAuthenticated) {
-                ModelState.AddModelError("KeyName", "The user name or password provided is incorrect");
-                return RedirectToPage("/Login");
-            }
 
             // redireciona para a Index novamente, porém já autenticado
             return RedirectToPage("/Index");

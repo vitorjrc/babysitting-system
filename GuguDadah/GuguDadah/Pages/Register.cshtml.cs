@@ -22,7 +22,7 @@ namespace GuguDadah.Pages {
     public class Register : PageModel {
 
         [BindProperty]
-        public string  ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }
 
         [BindProperty]
         public IFormFile Avatar { get; set; }
@@ -35,12 +35,6 @@ namespace GuguDadah.Pages {
         public Register(AppDbContext context) {
 
             dbContext = context;
-        }
-
-        public ActionResult Get() {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "/images", "/user.png");
-
-            return File(path, "image/png");
         }
 
         [HttpPost]
@@ -110,21 +104,20 @@ namespace GuguDadah.Pages {
             }
 
 
-        Client newClient = new Client() {
-            userName = client.userName,
-            avatar = ms1.ToArray(),
-            password = client.password,
-            eMail = client.eMail,
-            contact = client.contact
-        };
+            Client newClient = new Client() {
+                userName = client.userName,
+                avatar = ms1.ToArray(),
+                password = client.password,
+                eMail = client.eMail,
+                contact = client.contact
+            };
 
-        dbContext.Clients.Add(newClient);
+            dbContext.Clients.Add(newClient);
 
-        dbContext.SaveChanges();
+            dbContext.SaveChanges();
 
+            return RedirectToPage("./Index");
+        }
 
-        return RedirectToPage("./Index");
     }
-
-}
 }

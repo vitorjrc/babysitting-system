@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using GuguDadah.Data;
 
 namespace GuguDadah.Pages {
-    public interface IUserService {
+    public interface ILoginService {
 
         Client AuthenticateClient(string username, string password);
         Professional AuthenticateProfessional(string username, string password);
     }
 
-    public class UserService : IUserService {
+    public class LoginService : ILoginService {
 
         private readonly AppDbContext dbContext;
 
-        public UserService(AppDbContext context) {
+        public LoginService(AppDbContext context) {
 
             dbContext = context;
         }
