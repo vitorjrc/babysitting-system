@@ -23,7 +23,7 @@
                     <label asp-for="RememberMe"></label>
                 </div>
 
-                @Html.ValidationSummary(true)
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <br />
 
                 <div class="form-group">

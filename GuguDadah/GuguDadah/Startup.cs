@@ -87,7 +87,6 @@ namespace GuguDadah
                 app.UseExceptionHandler("/Error");
             }
 
-
             app.UseCors(x => x
            .AllowAnyOrigin()
            .AllowAnyMethod()

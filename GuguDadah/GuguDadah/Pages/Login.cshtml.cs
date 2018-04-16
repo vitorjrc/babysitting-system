@@ -15,21 +15,24 @@ using Microsoft.AspNetCore.Authorization;
 namespace GuguDadah.Pages {
     [AllowAnonymous]
     public class Login : PageModel {
+
+        [Required]
         [BindProperty]
         [Display(Name = "Username")]
         public string userName { get; set; }
 
+        [Required]
         [BindProperty]
         [Display(Name = "Password")]
         public string password { get; set; }
 
+        [Required]
         [BindProperty]
         [Display(Name = "Lembrar-me")]
         public bool RememberMe { get; set; }
 
         //instanciando uma classe de serviço por injeção
         private IUserService _userService;
-        public string Message { get; private set; } = string.Empty;
 
         public Login(IUserService userService) {
 
@@ -42,8 +45,12 @@ namespace GuguDadah.Pages {
             string AdminUsername = "admin";
             string PasswordUsername = "securityhole";
 
-            if (!ModelState.IsValid) {
-                ModelState.AddModelError("", "Username ou Password inválidas");
+            if (ModelState.IsValid) {
+
+                if (userName == null || password == null) {
+                    ModelState.AddModelError("", "Preencha os campos");
+                    return Page();
+                }
             }
 
             var user = (dynamic)null;

@@ -1,0 +1,26 @@
+﻿@page
+@model GuguDadah.Pages.List
+@{
+    ViewData["Title"] = "Área do Administrador";
+
+}
+
+
+<div class="row">
+    @foreach (var item in Model.lista) {
+        <div style="text-align:center">
+            <div class="col-md-4">
+                <div class="items col-xs-12 col-sm-6 col-md-6 col-lg-6 clearfix">
+                    <div class="info-block block-info clearfix">
+                        <span><img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.avatar)" alt="" /></span>
+                        <h5>Company Name</h5>
+                        <h4>Name: @item.userName</h4>
+                        <p>Title: Manager</p>
+                        <span>Phone: 555-555-5555</span>
+                        <span>Email: sample@company.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

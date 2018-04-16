@@ -22,34 +22,13 @@ namespace GuguDadah.Pages {
     public class Register : PageModel {
 
         [BindProperty]
-        [Required]
-        [Display(Name = "Username")]
-        public string userName { get; set; }
-
-        [BindProperty]
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string eMail { get; set; }
-
-        [BindProperty]
-        [Required]
-        [Display(Name = "Contacto Telefónico")]
-        public string contact { get; set; }
-
-        [BindProperty]
-        [Required]
-        [Display(Name = "Password")]
-        public string password { get; set; }
-
-        [BindProperty]
-        [Required]
-        [Compare("password", ErrorMessage = "The password and confirmation password do not match.")]
-        [Display(Name = "Confirmar Password")]
-        public string confirmPassword { get; set; }
+        public string  ConfirmPassword { get; set; }
 
         [BindProperty]
         public IFormFile Avatar { get; set; }
+
+        [BindProperty]
+        public Client client { get; set; }
 
         private readonly AppDbContext dbContext;
 
@@ -58,44 +37,94 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
+        public ActionResult Get() {
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "/images", "/user.png");
+
+            return File(path, "image/png");
+        }
+
         [HttpPost]
         public IActionResult OnPost() {
-            IFormFile uploadedImage = Avatar;
-            if (uploadedImage == null || uploadedImage.ContentType.ToLower().StartsWith("image/")) {
 
-                {
+            if (ModelState.IsValid) {
 
-                    MemoryStream ms = new MemoryStream();
-                    uploadedImage.OpenReadStream().CopyTo(ms);
-                    byte[] data = ms.ToArray();
+                //check whether name is already exists in the database or not
+                bool clientAlreadyExists = dbContext.Clients.Any(o => o.userName == client.userName);
+                bool professionalAlreadyExists = dbContext.Professionals.Any(o => o.userName == client.userName);
 
+                if (clientAlreadyExists || professionalAlreadyExists) {
 
-                    MemoryStream ms1 = new MemoryStream();
+                    ModelState.AddModelError(string.Empty, "Username already exists.");
 
-                    using (MagickImage image = new MagickImage(data)) {
+                    return Page();
+                }
 
-                        image.Resize(200, 0);
-                        image.Format = MagickFormat.Jpeg;
+                if (ConfirmPassword != client.password) {
 
-                        // Save the result
-                        image.Write(ms1);
-                    }
+                    ModelState.AddModelError(string.Empty, "Passwords não coincidem");
 
-                    Client newClient = new Client() {
-                        userName = this.userName,
-                        avatar = ms1.ToArray(),
-                        password = this.password,
-                        eMail = this.eMail,
-                        contact = this.contact
-                    };
-
-                    dbContext.Clients.Add(newClient);
-
-                    dbContext.SaveChanges();
+                    return Page();
                 }
             }
 
-            return RedirectToPage("./Index");
-        }
+
+            IFormFile uploadedImage = Avatar;
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "user.png");
+
+            byte[] data = null;
+
+            MemoryStream ms1 = new MemoryStream();
+
+            if (uploadedImage != null && uploadedImage.ContentType.ToLower().StartsWith("image/")) {
+
+                MemoryStream ms = new MemoryStream();
+                uploadedImage.OpenReadStream().CopyTo(ms);
+                data = ms.ToArray();
+
+                using (MagickImage image = new MagickImage(data)) {
+
+                    MagickGeometry size = new MagickGeometry(150, 150);
+                    size.IgnoreAspectRatio = true;
+
+                    image.Resize(size);
+                    image.Format = MagickFormat.Jpeg;
+
+                    // Save the result
+                    image.Write(ms1);
+
+                }
+            }
+
+            if (uploadedImage == null) {
+                using (MagickImage image = new MagickImage(path)) {
+
+                    MagickGeometry size = new MagickGeometry(150, 150);
+                    size.IgnoreAspectRatio = true;
+
+                    image.Resize(size);
+
+                    // Save the result
+                    image.Write(ms1);
+
+                }
+            }
+
+
+        Client newClient = new Client() {
+            userName = client.userName,
+            avatar = ms1.ToArray(),
+            password = client.password,
+            eMail = client.eMail,
+            contact = client.contact
+        };
+
+        dbContext.Clients.Add(newClient);
+
+        dbContext.SaveChanges();
+
+
+        return RedirectToPage("./Index");
     }
+
+}
 }
