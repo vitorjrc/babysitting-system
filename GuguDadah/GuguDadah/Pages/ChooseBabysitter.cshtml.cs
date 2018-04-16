@@ -12,9 +12,6 @@ using Newtonsoft.Json;
 namespace GuguDadah.Pages {
     public class ChooseBabysitter : PageModel {
 
-        [BindProperty]
-        public Work work { get; set; }
-
         private readonly AppDbContext dbContext;
 
         public ChooseBabysitter(AppDbContext context) {
@@ -45,6 +42,7 @@ namespace GuguDadah.Pages {
 
         public async Task<ActionResult> OnPostChoosedProfessionalAsync(string username) {
 
+            Work work;
             work = JsonConvert.DeserializeObject<Work>(TempData["tempWork"].ToString());
 
             if (work == null) return Page();

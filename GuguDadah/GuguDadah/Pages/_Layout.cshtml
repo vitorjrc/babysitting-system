@@ -7,6 +7,7 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/jumbotron.css" />
     </environment>
     <environment exclude="Development">
@@ -20,22 +21,20 @@
 
 </head>
 <body>
-    <div class="container body-content">
-        <div class="navbar navbar-inverse" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-
-                <a class="btn btn-primary" asp-page="/Index">Home</a>
-
-                <form class="navbar-form navbar-right" role="form">
-
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="container body-content" id="color">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a asp-page="/Index"><span class="glyphicon glyphicon-user"></span> Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
 
                     @using System.Security.Claims
 
@@ -50,31 +49,32 @@
                     }
 
                     @if (roleOfUser == "Admin") {
-                        <a class="btn btn-primary" asp-page="/AdminArea">Área de Admin</a>
+                        <li><a asp-page="/AdminArea"><span class="glyphicon glyphicon-user"></span> Área de Admin</a></li>
                     }
                     @if (roleOfUser == "Professional") {
-                        <a class="btn btn-primary" asp-page="/ProfessionalArea">Área de Profissional</a>
+                        <li><a asp-page="/ProfessionalArea"><span class="glyphicon glyphicon-user"></span> Área de Profissional</a></li>
                     }
 
                     @if (roleOfUser == "Client") {
-                        <a class="btn btn-primary" asp-page="/ClientArea">Área de Cliente</a>
+                        <li><a asp-page="/ClientArea"><span class="glyphicon glyphicon-user"></span> Área de Cliente</a></li>
                     }
 
                     @if (@User.Identity.Name == null) {
 
-                        <a class="btn btn-info" asp-page="/Login">Login</a>
-                        <a class="btn btn-primary" asp-page="/Register">Registo</a>
+                        <li><a asp-page="/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a asp-page="/Register"><span class="glyphicon glyphicon-pencil"></span> Registo</a></li>
                     }
 
                     else {
 
-                        <a class="btn btn-info" asp-page="/Login" asp-page-handler="Logout">Logout</a>
+                        <li><a asp-page="/Login" asp-page-handler="Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     }
 
-                </form>
-            </div><!--/.navbar-collapse -->
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
+
 
     <div class="container body-content">
         <div id="banner">
