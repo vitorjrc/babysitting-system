@@ -1,0 +1,110 @@
+﻿@page
+@model GuguDadah.Pages.UserArea
+@{
+    ViewData["Title"] = "Área Pessoal";
+
+}
+
+<!--CLIENT AREA-->
+
+@if (User.IsInRole("Client")) {
+    <h2>Área do Cliente</h2>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <div class="panel panel-default col-centered">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8">
+                                <h2 class="text-primary"><b><span class="glyphicon glyphicon-user"></span> @Model.client.userName</b></h2>
+                                <p><strong><span class="glyphicon glyphicon-envelope"></span> Email: </strong>@Model.client.eMail</p>
+                                <p><strong><span class="glyphicon glyphicon glyphicon-phone"></span> Contacto: </strong>@Model.client.contact</p>
+                                <p><strong><span class="glyphicon glyphicon-certificate"></span> Estatuto: </strong>la la la la</p>
+                            </div><!--/col-->
+                            <div id="profileID" class="col-xs-12 col-sm-4 text-center">
+                                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.client.avatar)" alt="" class="center-block img-circle img-responsive profile-img">
+                                <br />
+                            </div><!--/col-->
+
+
+                            <div class="col-xs-12 col-sm-4">
+                                <a class="btn btn-primary btn-block" asp-page="/Schedule">Agendar trabalho</a>
+
+                            </div><!--/col-->
+
+                            <div class="col-xs-12 col-sm-4">
+                                <a class="btn btn-primary btn-block" asp-page="/Babysitters">Babysitters</a>
+                            </div><!--/col-->
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="btn-group" style="width: 100%">
+                                    <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown">
+                                        Trabalhos <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a asp-page="/Register">Avaliar trabalhos</a></li>
+                                        <li><a asp-page="/Babysitters">Histórico</a></li>
+                                        <li><a asp-page="/Babysitters">Propostas</a></li>
+                                        <li><a asp-page="/Babysitters">Pendentes</a></li>
+                                    </ul>
+                                </div>
+                            </div><!--/col-->
+                        </div><!--/row-->
+                    </div><!--/panel-body-->
+                </div><!--/panel-->
+            </div>
+        </div>
+    </div>
+}
+
+<!--Professional AREA-->
+
+@if (User.IsInRole("Professional")) {
+    <h2>Área do Profissional</h2>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <div class="panel panel-default col-centered">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8">
+                                <h2 class="text-primary"><b><span class="glyphicon glyphicon-user"></span> @Model.professional.userName</b></h2>
+                                <p><strong><span class="glyphicon glyphicon-envelope"></span> Email: </strong>@Model.professional.eMail</p>
+                                <p><strong><span class="glyphicon glyphicon glyphicon-phone"></span> Contacto: </strong>@Model.professional.contact</p>
+                                <p><strong><span class="glyphicon glyphicon-certificate"></span> Estatuto: </strong>la la la la</p>
+                            </div><!--/col-->
+                            <div id="profileID" class="col-xs-12 col-sm-4 text-center">
+                                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.professional.avatar)" alt="" class="center-block img-circle img-responsive profile-img">
+                                <br />
+                            </div><!--/col-->
+
+
+                            <div class="col-xs-12 col-sm-4">
+                                <a class="btn btn-primary btn-block" asp-page="/Schedule">Agendar trabalho</a>
+
+                            </div><!--/col-->
+
+                            <div class="col-xs-12 col-sm-4">
+                                <a class="btn btn-primary btn-block" asp-page="/Babysitters">Babysitters</a>
+                            </div><!--/col-->
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="btn-group" style="width: 100%">
+                                    <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown">
+                                        Trabalhos <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a asp-page="/Register">Avaliar trabalhos</a></li>
+                                        <li><a asp-page="/Babysitters">Histórico</a></li>
+                                        <li><a asp-page="/Babysitters">Propostas</a></li>
+                                        <li><a asp-page="/Babysitters">Pendentes</a></li>
+                                    </ul>
+                                </div>
+                            </div><!--/col-->
+                        </div><!--/row-->
+                    </div><!--/panel-body-->
+                </div><!--/panel-->
+            </div>
+        </div>
+    </div>
+}

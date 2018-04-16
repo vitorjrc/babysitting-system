@@ -36,27 +36,15 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
 
-                    @using System.Security.Claims
-
-                    @{
-                        var roleOfUser = (dynamic)null;
-                        var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
-
-                        if (User.Identity.Name != null) {
-                            roleOfUser = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value;
-                        }
-
-                    }
-
-                    @if (roleOfUser == "Admin") {
+                    @if (User.IsInRole("Admin")) {
                         <li><a asp-page="/AdminArea"><span class="glyphicon glyphicon-user"></span> Área de Admin</a></li>
                     }
-                    @if (roleOfUser == "Professional") {
-                        <li><a asp-page="/ProfessionalArea"><span class="glyphicon glyphicon-user"></span> Área de Profissional</a></li>
+                    @if (User.IsInRole("Professional")) {
+                        <li><a asp-page="/UserArea" asp-page-handler="ProfessionalLoggedIn"><span class="glyphicon glyphicon-user"></span> Área de Profissional</a></li>
                     }
 
-                    @if (roleOfUser == "Client") {
-                        <li><a asp-page="/ClientArea"><span class="glyphicon glyphicon-user"></span> Área de Cliente</a></li>
+                    @if (User.IsInRole("Client")) {
+                        <li><a asp-page="/UserArea" asp-page-handler="ClientLoggedIn"><span class="glyphicon glyphicon-user"></span> Área de Cliente</a></li>
                     }
 
                     @if (@User.Identity.Name == null) {
