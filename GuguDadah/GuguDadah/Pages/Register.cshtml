@@ -18,27 +18,33 @@
         <section>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.client.userName, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.client.userName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.client.userName)
+                @Html.LabelFor(m => m.client.UserName, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.client.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.client.UserName)
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.client.eMail, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.client.eMail, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.client.eMail)
+                @Html.LabelFor(m => m.client.Name, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.client.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.client.Name)
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.client.contact, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.client.contact, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.client.contact)
+                @Html.LabelFor(m => m.client.Email, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.client.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.client.Email)
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.client.password, new { @class = "control-label" })
-                @Html.PasswordFor(m => m.client.password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.client.password)
+                @Html.LabelFor(m => m.client.Contact, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.client.Contact, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.client.Contact)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.client.Password, new { @class = "control-label" })
+                @Html.PasswordFor(m => m.client.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.client.Password)
             </div>
 
             <div class="form-group">

@@ -25,8 +25,8 @@ namespace GuguDadah.Pages {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 return null;
 
-            Client client = dbContext.Clients.FirstOrDefault(m => m.userName.Equals(username));
-            if (client != null && password.Equals(client.password)) return client;
+            Client client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(username));
+            if (client != null && password.Equals(client.Password)) return client;
 
             return null;
         }
@@ -37,8 +37,8 @@ namespace GuguDadah.Pages {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 return null;
 
-            Professional professional = dbContext.Professionals.FirstOrDefault(m => m.userName.Equals(username));
-            if (professional != null && password.Equals(professional.password)) return professional;
+            Professional professional = dbContext.Professionals.FirstOrDefault(m => m.UserName.Equals(username));
+            if (professional != null && password.Equals(professional.Password)) return professional;
 
             return null;
         }

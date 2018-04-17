@@ -15,39 +15,40 @@ namespace GuguDadah.Pages {
     public class Schedule : PageModel {
 
         [BindProperty]
-        [Display(Name = "Data")]
-        public DateTime date { get; set; }
-
-        [BindProperty]
         [Display(Name = "Hora Início")]
-        public DateTime startTime { get; set; }
+        public DateTime StartTime { get; set; }
 
         [BindProperty]
         [Display(Name = "Hora Fim")]
-        public DateTime endTime { get; set; }
-
-        [BindProperty]
-        [Display(Name = "Rua")]
-        public string address { get; set; }
+        public DateTime EndTime { get; set; }
 
         [BindProperty]
         [Display(Name = "Localidade")]
-        public string locality { get; set; }
+        public string Locality { get; set; }
 
         [BindProperty]
-        public string extra { get; set; }
+        public string Extra { get; set; }
 
-        public void OnGet() {
+        [BindProperty]
+        public Work Work { get; set; }
 
+        private readonly AppDbContext dbContext;
+
+        public Schedule(AppDbContext context) {
+
+            dbContext = context;
         }
 
         public ActionResult OnPostReturningTempWork() {
 
-            Work work = new Work();
+            Work.Cost = 23;
+            Work.Client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(User.Identity.Name));
+            Work.Payment = "N";
+            Work.Rating = 0;
+            Work.Status = "O";
+            Work.Type = "N";
 
-            work.cost = 23;
-
-            TempData["tempWork"] = JsonConvert.SerializeObject(work);
+            TempData["tempWork"] = JsonConvert.SerializeObject(Work);
 
             return RedirectToPage("/ChooseBabysitter");
 

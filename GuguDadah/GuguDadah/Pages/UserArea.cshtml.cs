@@ -43,7 +43,7 @@ namespace GuguDadah.Pages {
 
             var userName = User.Identity.Name;
 
-            client = dbContext.Clients.FirstOrDefault(m => m.userName.Equals(userName));
+            client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(userName));
 
             return Page();
 
@@ -55,7 +55,7 @@ namespace GuguDadah.Pages {
 
             var userName = User.Identity.Name;
 
-            professional = dbContext.Professionals.FirstOrDefault(m => m.userName.Equals(userName));
+            professional = dbContext.Professionals.FirstOrDefault(m => m.UserName.Equals(userName));
 
             return Page();
 

@@ -16,17 +16,14 @@ namespace GuguDadah.Pages {
     [AllowAnonymous]
     public class Login : PageModel {
 
-        [Required]
         [BindProperty]
-        [Display(Name = "Username")]
-        public string userName { get; set; }
+        [Display(Name = "Nicknaame")]
+        public string UserName { get; set; }
 
-        [Required]
         [BindProperty]
         [Display(Name = "Password")]
-        public string password { get; set; }
+        public string Password { get; set; }
 
-        [Required]
         [BindProperty]
         [Display(Name = "Lembrar-me")]
         public bool RememberMe { get; set; }
@@ -47,7 +44,7 @@ namespace GuguDadah.Pages {
 
             if (ModelState.IsValid) {
 
-                if (userName == null || password == null) {
+                if (UserName == null || Password == null) {
                     ModelState.AddModelError("", "Preencha os campos");
                     return Page();
                 }
@@ -56,7 +53,7 @@ namespace GuguDadah.Pages {
             var user = (dynamic)null;
             var claims = (dynamic)null;
 
-            if (userName.Equals(AdminUsername) && password.Equals(PasswordUsername)) {
+            if (UserName.Equals(AdminUsername) && Password.Equals(PasswordUsername)) {
                 claims = new[]
 {
                      new Claim(ClaimTypes.Name, "Administrador - Rei disto tudo"),
@@ -66,8 +63,8 @@ namespace GuguDadah.Pages {
             }
 
             //faz a busca do usuário e verifica se existe
-            Client client = _loginService.AuthenticateClient(userName, password);
-            Professional professional = _loginService.AuthenticateProfessional(userName, password);
+            Client client = _loginService.AuthenticateClient(UserName, Password);
+            Professional professional = _loginService.AuthenticateProfessional(UserName, Password);
 
             if (client == null && professional == null) {
                 ModelState.AddModelError("", "Username ou Password inválidas.");
@@ -79,7 +76,7 @@ namespace GuguDadah.Pages {
 
                 claims = new[]
             {
-                 new Claim(ClaimTypes.Name, user.userName),
+                 new Claim(ClaimTypes.Name, user.UserName),
                  new Claim(ClaimTypes.Role, "Professional")
             };
             }
@@ -89,7 +86,7 @@ namespace GuguDadah.Pages {
 
                 claims = new[]
             {
-                     new Claim(ClaimTypes.Name, user.userName),
+                     new Claim(ClaimTypes.Name, user.UserName),
                      new Claim(ClaimTypes.Role, "Client")
                 };
             }

@@ -10,6 +10,7 @@
     {
     <link href="~/lib/bootstrap/dist/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
     <link href="~/lib/bootstrap/dist/css/theme.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="~/lib/bootstrap/dist/css/cards.css" media="all" rel="stylesheet" type="text/css" />
 
 }
 
@@ -27,27 +28,97 @@
     </script>
 }
 
-<div class="row">
-    @foreach (var item in Model.lista) {
-        <div style="text-align:center">
-            <div class="col-md-4">
-                <p>Nome: @item.userName</p>
-                <p>Email: @item.eMail</p>
-                <p>Contacto: @item.contact</p>
-                <p>Turno: @item.shift</p>
-
-                <input type="hidden" class="rating" disabled="disabled" value="@item.rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
-                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.avatar)" alt="" />
-
-                <form asp-page-handler="ChoosedProfessional" asp-route-username="@item.userName" method="post">
-
-                    <button type="submit" class="btn btn-default">Selecionar</button>
-
-                </form>
-            </div>
+@if (Model.ClientHistoryList != null) {
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model.ClientHistoryList) {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="panel panel-blue userlist">
+                        <div class="panel-body text-center">
+                            <div class="userprofile">
+                                <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Professional.Avatar)" alt="" class="userpicimg"> </div>
+                                <h3 class="username">@item.Professional.Name</h3>
+                                <input type="hidden" class="rating" disabled="disabled" value="@item.Professional.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            </div>
+                            <br>
+                            <p>Data </p>
+                            <p>Preço: @item.Cost</p>
+                            <p>Morada: @item.Address</p>
+                            <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            <div class="panel-footer">
+                                <a class="btn btn-primary btn-block" asp-page-handler="ChoosedProfessional">Avaliar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
-    }
-</div>
+    </div>
+}
+
+
+
+
+
+@if (Model.ClientPendentList != null) {
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model.ClientPendentList) {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="panel panel-blue userlist">
+                        <div class="panel-body text-center">
+                            <div class="userprofile">
+                                <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Professional.Avatar)" alt="" class="userpicimg"> </div>
+                                <h3 class="username">@item.Professional.Name</h3>
+                                <input type="hidden" class="rating" disabled="disabled" value="@item.Professional.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            </div>
+                            <br>
+                            <p>Data </p>
+                            <p>Preço: @item.Cost</p>
+                            <p>Morada: @item.Address</p>
+                            <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            <div class="panel-footer">
+                                <a class="btn btn-primary btn-block" asp-page-handler="ChoosedProfessional">Avaliar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+
+
+
+
+@if (Model.ClientOffersList != null) {
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model.ClientOffersList) {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="panel panel-blue userlist">
+                        <div class="panel-body text-center">
+                            <div class="userprofile">
+                                <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Professional.Avatar)" alt="" class="userpicimg"> </div>
+                                <h3 class="username">@item.Professional.Name</h3>
+                                <input type="hidden" class="rating" disabled="disabled" value="@item.Professional.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            </div>
+                            <br>
+                            <p>Data </p>
+                            <p>Preço: @item.Cost</p>
+                            <p>Morada: @item.Address</p>
+                            <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            <div class="panel-footer">
+                                <a class="btn btn-primary btn-block" asp-page-handler="ChoosedProfessional">Avaliar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
 
 
 

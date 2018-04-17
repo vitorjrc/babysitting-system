@@ -11,15 +11,35 @@ namespace GuguDadah.Data {
     public class Client {
 
         [Key]
-        public string userName { get; set; }
+        [Column(TypeName = "varchar(20)")]
+        [Required]
+        [Display(Name = "Nickname")]
+        public string UserName { get; set; }
 
-        public string password { get; set; }
+        [Column(TypeName = "varchar(100)")]
+        [Required]
+        [Display(Name = "Nome")]
+        public string Name { get; set; }
 
-        public string eMail { get; set; }
+        [Column(TypeName = "varchar(50)")]
+        [Required]
+        public string Email { get; set; }
 
-        public string contact { get; set; }
+        [Column(TypeName = "varchar(50)")]
+        [Required]
+        public string Password { get; set; }
 
-        public byte[] avatar { get; set; }
+        [Column(TypeName = "char(1)")]
+        [Required]
+        [Display(Name = "Estatuto")]
+        public string Status { get; set; }
+
+        [Required]
+        [Display(Name = "Contacto telefónico")]
+        public int Contact { get; set; }
+
+        [Required]
+        public byte[] Avatar { get; set; }
 
     }
 }

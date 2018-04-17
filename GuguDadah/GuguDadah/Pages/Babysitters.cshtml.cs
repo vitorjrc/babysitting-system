@@ -23,18 +23,18 @@ namespace GuguDadah.Pages {
         public void OnGet() {
 
             var query = (from p in dbContext.Professionals
-                         orderby p.userName
+                         orderby p.UserName
                          select p).ToList();
 
             foreach (var item in query) //retrieve each item and assign to model
             {
                 lista.Add(new Professional() {
-                    userName = item.userName,
-                    contact = item.contact,
-                    eMail = item.eMail,
-                    avatar = item.avatar,
-                    shift = item.shift,
-                    rating = item.rating
+                    UserName = item.UserName,
+                    Contact = item.Contact,
+                    Email = item.Email,
+                    Avatar = item.Avatar,
+                    Shift = item.Shift,
+                    Rating = item.Rating
                 });
             }
         }

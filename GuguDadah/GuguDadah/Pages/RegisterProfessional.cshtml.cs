@@ -34,7 +34,7 @@ namespace GuguDadah.Pages {
         [BindProperty]
         [Required]
         [Display(Name = "Contacto Telefónico")]
-        public string contact { get; set; }
+        public int contact { get; set; }
 
         [BindProperty]
         [Required]
@@ -86,12 +86,12 @@ namespace GuguDadah.Pages {
                     }
 
                     Professional newProfessional = new Professional() {
-                        userName = this.userName,
-                        avatar = ms1.ToArray(),
-                        password = this.password,
-                        eMail = this.eMail,
-                        contact = this.contact,
-                        shift = this.shift
+                        UserName = this.userName,
+                        Avatar = ms1.ToArray(),
+                        Password = this.password,
+                        Email = this.eMail,
+                        Contact = this.contact,
+                        Shift = this.shift
                     };
 
                     dbContext.Professionals.Add(newProfessional);

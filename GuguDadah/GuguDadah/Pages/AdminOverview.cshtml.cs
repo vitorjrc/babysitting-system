@@ -16,13 +16,10 @@ namespace GuguDadah.Pages {
 
     public class AdminOverview : PageModel {
 
-        [BindProperty]
         public List<Client> ClientsList { get; set; }
 
-        [BindProperty]
         public List<Professional> ProfessionalsList { get; set; }
 
-        [BindProperty]
         public List<Work> WorksList { get; set; }
 
         private readonly AppDbContext dbContext;
@@ -35,7 +32,7 @@ namespace GuguDadah.Pages {
     public ActionResult OnGetListOfClients() {
 
             var query = (from p in dbContext.Clients
-                         orderby p.userName
+                         orderby p.UserName
                          select p).ToList();
 
             ClientsList = new List<Client>();
@@ -43,10 +40,10 @@ namespace GuguDadah.Pages {
             //retrieve each item and assign to model
             foreach (var item in query) {
                 ClientsList.Add(new Client() {
-                    userName = item.userName,
-                    contact = item.contact,
-                    eMail = item.eMail,
-                    avatar = item.avatar,
+                    UserName = item.UserName,
+                    Contact = item.Contact,
+                    Email = item.Email,
+                    Avatar = item.Avatar,
                 });
             }
 
@@ -55,7 +52,7 @@ namespace GuguDadah.Pages {
 
         public ActionResult OnGetListOfProfessionals() {
             var query = (from p in dbContext.Professionals
-                         orderby p.userName
+                         orderby p.UserName
                          select p).ToList();
 
             ProfessionalsList = new List<Professional>();
@@ -63,10 +60,10 @@ namespace GuguDadah.Pages {
             //retrieve each item and assign to model
             foreach (var item in query) {
                 ProfessionalsList.Add(new Professional() {
-                    userName = item.userName,
-                    contact = item.contact,
-                    eMail = item.eMail,
-                    avatar = item.avatar,
+                    UserName = item.UserName,
+                    Contact = item.Contact,
+                    Email = item.Email,
+                    Avatar = item.Avatar,
                 });
             }
 
@@ -75,7 +72,7 @@ namespace GuguDadah.Pages {
 
         public ActionResult OnGetListOfWorks() {
             var query = (from p in dbContext.Works
-                         orderby p.date
+                         orderby p.Date
                          select p).ToList();
 
             WorksList = new List<Work>();
@@ -83,16 +80,16 @@ namespace GuguDadah.Pages {
             //retrieve each item and assign to model
             foreach (var item in query) {
                 WorksList.Add(new Work() {
-                    address = item.address,
-                    client = item.client,
-                    professional = item.professional,
-                    cost = item.cost,
-                    date = item.date,
-                    duration = item.duration,
-                    payment = item.payment,
-                    status = item.status,
-                    rating = item.rating,
-                    type = item.type
+                    Address = item.Address,
+                    Client = item.Client,
+                    Professional = item.Professional,
+                    Cost = item.Cost,
+                    Date = item.Date,
+                    Duration = item.Duration,
+                    Payment = item.Payment,
+                    Status = item.Status,
+                    Rating = item.Rating,
+                    Type = item.Type
                 });
             }
 

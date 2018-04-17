@@ -42,18 +42,18 @@
                     @foreach (var item in Model.ClientsList) {
                         <tr>
                             <td>
-                                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.avatar)" width="50" height="50" alt="" />
-                                <span>@item.userName</span>
+                                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" width="50" height="50" alt="" />
+                                <span>@item.UserName</span>
                             </td>
                             <td>2013/08/12</td>
                             <td class="text-center">
                                 <span class="label label-default">pending</span>
                             </td>
                             <td>
-                                <span>@item.eMail</span>
+                                <span>@item.Email</span>
                             </td>
                             <td>
-                                <span>@item.contact</span>
+                                <span>@item.Contact</span>
                             </td>
                             <td style="width: 15%;">
                                 <a href="#" class="table-link">
@@ -101,18 +101,18 @@
                     @foreach (var item in Model.ProfessionalsList) {
                         <tr>
                             <td>
-                                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.avatar)" width="50" height="50" alt="" />
-                                <span>@item.userName</span>
+                                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" width="50" height="50" alt="" />
+                                <span>@item.UserName</span>
                             </td>
                             <td>2013/08/12</td>
                             <td class="text-center">
                                 <span class="label label-default">pending</span>
                             </td>
                             <td>
-                                <span>@item.eMail</span>
+                                <span>@item.Email</span>
                             </td>
                             <td>
-                                <span>@item.contact</span>
+                                <span>@item.Contact</span>
                             </td>
                             <td style="width: 15%;">
                                 <a href="#" class="table-link">
@@ -160,17 +160,17 @@
                     @foreach (var item in Model.WorksList) {
                         <tr>
                             <td>
-                                <span>@item.date</span>
+                                <span>@item.Date</span>
                             </td>
                             <td>2013/08/12</td>
                             <td class="text-center">
                                 <span class="label label-default">pending</span>
                             </td>
                             <td>
-                                <span>@item.professional</span>
+                                <span>@item.Professional</span>
                             </td>
                             <td>
-                                <span>@item.client</span>
+                                <span>@item.Client</span>
                             </td>
                             <td style="width: 15%;">
                                 <a href="#" class="table-link">

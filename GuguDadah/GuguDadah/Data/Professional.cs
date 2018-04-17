@@ -10,19 +10,46 @@ namespace GuguDadah.Data {
     public class Professional {
 
         [Key]
-        public string userName { get; set; }
+        [Column(TypeName = "varchar(20)")]
+        [Required]
+        [Display(Name = "Nickname")]
+        public string UserName { get; set; }
 
-        public string password { get; set; }
+        [Column(TypeName = "varchar(100)")]
+        [Required]
+        [Display(Name = "Nome")]
+        public string Name { get; set; }
 
-        public string eMail { get; set; }
+        [Column(TypeName = "varchar(50)")]
+        [Required]
+        public string Email { get; set; }
 
-        public string contact { get; set; }
-
-        public double rating { get; set; }
+        [Column(TypeName = "varchar(50)")]
+        [Required]
+        public string Password { get; set; }
 
         [Column(TypeName = "char(1)")]
-        public string shift { get; set; }
+        [Required]
+        [Display(Name = "Turno")]
+        public string Shift { get; set; }
 
-        public byte[] avatar { get; set; }
+        [Column(TypeName = "decimal(2, 1)")]
+        [Required]
+        public float Rating { get; set; }
+
+        [Required]
+        [Display(Name = "Contacto telefónico")]
+        public int Contact { get; set; }
+
+        [Required]
+        public byte[] Avatar { get; set; }
+
+        [Required]
+        [Display(Name = "Data de registo")]
+        public DateTime RegistrationDate { get; set; }
+
+        [Column(TypeName = "text")] 
+        [Display(Name = "Apresentação")]
+        public string Presentation { get; set; }
     }
 }

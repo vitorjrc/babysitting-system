@@ -43,8 +43,8 @@ namespace GuguDadah.Pages {
             if (ModelState.IsValid) {
 
                 //check whether name is already exists in the database or not
-                bool clientAlreadyExists = dbContext.Clients.Any(o => o.userName == client.userName);
-                bool professionalAlreadyExists = dbContext.Professionals.Any(o => o.userName == client.userName);
+                bool clientAlreadyExists = dbContext.Clients.Any(o => o.UserName == client.UserName);
+                bool professionalAlreadyExists = dbContext.Professionals.Any(o => o.UserName == client.UserName);
 
                 if (clientAlreadyExists || professionalAlreadyExists) {
 
@@ -53,7 +53,7 @@ namespace GuguDadah.Pages {
                     return Page();
                 }
 
-                if (ConfirmPassword != client.password) {
+                if (ConfirmPassword != client.Password) {
 
                     ModelState.AddModelError(string.Empty, "Passwords não coincidem");
 
@@ -105,11 +105,13 @@ namespace GuguDadah.Pages {
 
 
             Client newClient = new Client() {
-                userName = client.userName,
-                avatar = ms1.ToArray(),
-                password = client.password,
-                eMail = client.eMail,
-                contact = client.contact
+                UserName = client.UserName,
+                Avatar = ms1.ToArray(),
+                Password = client.Password,
+                Email = client.Email,
+                Contact = client.Contact,
+                Name = client.Name,
+                Status = "N"
             };
 
             dbContext.Clients.Add(newClient);
