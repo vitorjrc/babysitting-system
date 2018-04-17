@@ -30,19 +30,34 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
-        public void OnGetClientLoggedIn() {
+        public ActionResult OnGet() {
+
+            if (client == null && professional == null) return Unauthorized();
+
+            return Page();
+        }
+
+        public ActionResult OnGetClientLoggedIn() {
+
+            if (User.IsInRole("Professional")) return Unauthorized();
 
             var userName = User.Identity.Name;
 
             client = dbContext.Clients.FirstOrDefault(m => m.userName.Equals(userName));
 
+            return Page();
+
         }
 
-        public void OnGetProfessionalLoggedIn() {
+        public ActionResult OnGetProfessionalLoggedIn() {
+
+            if (User.IsInRole("Client")) return Unauthorized();
 
             var userName = User.Identity.Name;
 
             professional = dbContext.Professionals.FirstOrDefault(m => m.userName.Equals(userName));
+
+            return Page();
 
         }
 
