@@ -52,9 +52,9 @@ namespace GuguDadah.Pages {
                 bool clientAlreadyExists = dbContext.Clients.Any(o => o.UserName == client.UserName);
                 bool professionalAlreadyExists = dbContext.Professionals.Any(o => o.UserName == client.UserName);
 
-                if (clientAlreadyExists || professionalAlreadyExists) {
+                if (clientAlreadyExists || professionalAlreadyExists || client.UserName.Equals("admin")) {
 
-                    ModelState.AddModelError(string.Empty, "Username already exists.");
+                    ModelState.AddModelError(string.Empty, "O nickname já existe.");
 
                     return Page();
                 }
