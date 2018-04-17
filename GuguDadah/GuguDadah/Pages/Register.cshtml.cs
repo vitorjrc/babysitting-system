@@ -21,6 +21,7 @@ namespace GuguDadah.Pages {
     [AllowAnonymous]
     public class Register : PageModel {
 
+        [Required]
         [BindProperty]
         public string ConfirmPassword { get; set; }
 
@@ -37,8 +38,13 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
-        [HttpPost]
-        public IActionResult OnPost() {
+        public IActionResult OnPostRegisterClient() {
+
+            ModelState.Remove("client.Avatar");
+            ModelState.Remove("client.Status");
+
+            if (!ModelState.IsValid) return Page();
+
 
             if (ModelState.IsValid) {
 

@@ -18,8 +18,70 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script>
-        $('#example').DataTable({
-            paging: true
+        $('#clients').DataTable({
+            paging: true,
+            "columnDefs": [{
+                "targets": 5,
+                "searchable": false,
+                "orderable": false,
+                "visible": true
+            }],
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ linhas por página",
+                "zeroRecords": "Nada encontrado.",
+                "info": "A mostrar a página _PAGE_ de _PAGES_",
+                "infoEmpty": "Sem linhas disponíveis",
+                "infoFiltered": "(filtrado de _MAX_ linhas)",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Seguinte"
+                }
+            }
+        });
+    </script>
+
+    <script>
+        $('#works').DataTable({
+            paging: true,
+            "columnDefs": [{
+                "targets": 5,
+                "searchable": false,
+                "orderable": false,
+                "visible": true
+            }],
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ linhas por página",
+                "zeroRecords": "Nada encontrado.",
+                "info": "A mostrar a página _PAGE_ de _PAGES_",
+                "infoEmpty": "Sem linhas disponíveis",
+                "infoFiltered": "(filtrado de _MAX_ linhas)",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Seguinte"
+                }
+            }
+        });
+    </script>
+    <script>
+        $('#professionals').DataTable({
+            paging: true,
+            "columnDefs": [{
+                "targets": 5,
+                "searchable": false,
+                "orderable": false,
+                "visible": true
+            }],
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ linhas por página",
+                "zeroRecords": "Nada encontrado.",
+                "info": "A mostrar a página _PAGE_ de _PAGES_",
+                "infoEmpty": "Sem linhas disponíveis",
+                "infoFiltered": "(filtrado de _MAX_ linhas)",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Seguinte"
+                }
+            }
         });
     </script>
 }
@@ -27,14 +89,14 @@
 @if (Model.ClientsList != null) {
     <div class="container-fluid">
         <div class="table-responsive">
-            <table id="example" class="row-border" style="width:100%">
+            <table id="clients" class="row-border" style="width:100%">
                 <thead>
                     <tr>
-                        <th><span>User</span></th>
-                        <th><span>Created</span></th>
-                        <th class="text-center"><span>Status</span></th>
+                        <th><span>Nickname</span></th>
+                        <th><span>Nome</span></th>
                         <th><span>Email</span></th>
                         <th><span>Contacto</span></th>
+                        <th class="text-center"><span>Estatuto</span></th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -43,17 +105,17 @@
                         <tr>
                             <td>
                                 <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" width="50" height="50" alt="" />
-                                <span>@item.UserName</span>
+                                <span><strong> @item.UserName</strong></span>
                             </td>
-                            <td>2013/08/12</td>
-                            <td class="text-center">
-                                <span class="label label-default">pending</span>
-                            </td>
+                            <td>@item.Name</td>
                             <td>
                                 <span>@item.Email</span>
                             </td>
                             <td>
                                 <span>@item.Contact</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="label label-default">@item.Status</span>
                             </td>
                             <td style="width: 15%;">
                                 <a href="#" class="table-link">
@@ -86,7 +148,7 @@
 @if (Model.ProfessionalsList != null) {
     <div class="container-fluid">
         <div class="table-responsive">
-            <table id="example" class="row-border" style="width:100%">
+            <table id="professionals" class="row-border" style="width:100%">
                 <thead>
                     <tr>
                         <th><span>User</span></th>
@@ -145,7 +207,7 @@
 @if (Model.WorksList != null) {
     <div class="container-fluid">
         <div class="table-responsive">
-            <table id="example" class="row-border" style="width:100%">
+            <table id="works" class="row-border" style="width:100%">
                 <thead>
                     <tr>
                         <th><span>User</span></th>

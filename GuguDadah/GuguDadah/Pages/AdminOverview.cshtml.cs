@@ -39,11 +39,18 @@ namespace GuguDadah.Pages {
 
             //retrieve each item and assign to model
             foreach (var item in query) {
+
+                string displayStatus = null;
+                if (item.Status.Equals("N")) displayStatus = "Normal";
+                else displayStatus = "Golden";
+
                 ClientsList.Add(new Client() {
                     UserName = item.UserName,
+                    Name = item.Name,
                     Contact = item.Contact,
                     Email = item.Email,
                     Avatar = item.Avatar,
+                    Status = displayStatus
                 });
             }
 
