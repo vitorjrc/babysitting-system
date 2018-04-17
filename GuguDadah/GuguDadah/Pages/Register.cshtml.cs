@@ -67,18 +67,16 @@ namespace GuguDadah.Pages {
                 }
             }
 
-
-            IFormFile uploadedImage = Avatar;
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "user.png");
 
             byte[] data = null;
 
             MemoryStream ms1 = new MemoryStream();
 
-            if (uploadedImage != null && uploadedImage.ContentType.ToLower().StartsWith("image/")) {
+            if (Avatar != null && Avatar.ContentType.ToLower().StartsWith("image/")) {
 
                 MemoryStream ms = new MemoryStream();
-                uploadedImage.OpenReadStream().CopyTo(ms);
+                Avatar.OpenReadStream().CopyTo(ms);
                 data = ms.ToArray();
 
                 using (MagickImage image = new MagickImage(data)) {
@@ -95,7 +93,7 @@ namespace GuguDadah.Pages {
                 }
             }
 
-            if (uploadedImage == null) {
+            if (Avatar == null) {
                 using (MagickImage image = new MagickImage(path)) {
 
                     MagickGeometry size = new MagickGeometry(150, 150);
