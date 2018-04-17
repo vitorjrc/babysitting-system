@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Http.Authentication;
 
 namespace GuguDadah.Pages {
 
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Roles = "Admin")]
     public class AdminArea : PageModel {
 
         public void OnGet() {

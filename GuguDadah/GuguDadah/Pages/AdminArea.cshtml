@@ -7,18 +7,7 @@
 
 @section Scripts
     {
-    <script type='text/javascript'>
-        $(function () {
-            $('#input-search').on('keyup', function () {
-                var rex = new RegExp($(this).val(), 'i');
-                $('.searchable-container .items').hide();
-                $('.searchable-container .items').filter(function () {
-                    return rex.test($(this).text());
-                }).show();
-            });
-        });
 
-    </script>
 }
 
 
@@ -27,64 +16,6 @@
 <a class="btn btn-primary" asp-page="/RegisterProfessional">Registo de Profissionais</a>
 <a class="btn btn-primary" asp-page="/RegisterProfessional">Marcar clientes golden</a>
 <a class="btn btn-primary" asp-page="/RegisterProfessional">Gerir Pagamentos</a>
-<a class="btn btn-primary" asp-page="/RegisterProfessional">Ver lista de utilizadores</a>
-<a class="btn btn-primary" asp-page="/RegisterProfessional">Ver lista de trabalhos</a>
-
-<div class="container">
-    <div class="row">
-        <h2>Filtered List</h2>
-        <div class="col-lg-10">
-            <input type="search" class="form-control" id="input-search" placeholder="Search Attendees...">
-        </div>
-        <div class="searchable-container">
-            <div class="items col-xs-12 col-sm-6 col-md-6 col-lg-6 clearfix">
-                <div class="info-block block-info clearfix">
-                    <div class="square-box pull-left">
-                        <span class="glyphicon glyphicon-user glyphicon-lg"></span>
-                    </div>
-                    <h5>Company Name</h5>
-                    <h4>Name: Tyreese Burn</h4>
-                    <p>Title: Manager</p>
-                    <span>Phone: 555-555-5555</span>
-                    <span>Email: sample@company.com</span>
-                </div>
-            </div>
-            <div class="items col-xs-12 col-sm-12 col-md-6 col-lg-6 clearfix">
-                <div class="info-block block-info clearfix">
-                    <div class="square-box pull-left">
-                        <span class="glyphicon glyphicon-user glyphicon-lg"></span>
-                    </div>
-                    <h5>Company Name</h5>
-                    <h4>Name: Brenda Tree</h4>
-                    <p>Title: Manager</p>
-                    <span>Phone: 555-555-5555</span>
-                    <span>Email: sample@company.com</span>
-                </div>
-            </div>
-            <div class="items col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="info-block block-info clearfix">
-                    <div class="square-box pull-left">
-                        <span class="glyphicon glyphicon-user glyphicon-lg"></span>
-                    </div>
-                    <h5>Company Name</h5>
-                    <h4>Name: Glenn Pho shizzle</h4>
-                    <p>Title: Manager</p>
-                    <span>Phone: 555-555-5555</span>
-                    <span>Email: sample@company.com</span>
-                </div>
-            </div>
-            <div class="items col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="info-block block-info clearfix">
-                    <div class="square-box pull-left">
-                        <span class="glyphicon glyphicon-user glyphicon-lg"></span>
-                    </div>
-                    <h5>Company Name</h5>
-                    <h4>Name: Brian Hoyies</h4>
-                    <p>Title: Manager</p>
-                    <span>Phone: 555-555-5555</span>
-                    <span>Email: sample@company.com</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<a class="btn btn-primary" asp-page="/AdminOverview" asp-page-handler="ListOfClients">Ver lista de utilizadores</a>
+<a class="btn btn-primary" asp-page="/AdminOverview" asp-page-handler="ListOfProfessionals">Ver lista de profissionais</a>
+<a class="btn btn-primary" asp-page="/AdminOverview" asp-page-handler="ListOfWorks">Ver lista de trabalhos</a>

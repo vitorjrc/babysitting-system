@@ -1,0 +1,201 @@
+﻿@page
+@model GuguDadah.Pages.AdminOverview
+@{
+    ViewData["Title"] = "Visão Geral";
+
+}
+
+@section head
+    {
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+
+}
+
+@section Scripts
+    {
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $('#example').DataTable({
+            paging: true
+        });
+    </script>
+}
+
+@if (Model.ClientsList != null) {
+    <div class="container-fluid">
+        <div class="table-responsive">
+            <table id="example" class="row-border" style="width:100%">
+                <thead>
+                    <tr>
+                        <th><span>User</span></th>
+                        <th><span>Created</span></th>
+                        <th class="text-center"><span>Status</span></th>
+                        <th><span>Email</span></th>
+                        <th><span>Contacto</span></th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ClientsList) {
+                        <tr>
+                            <td>
+                                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.avatar)" width="50" height="50" alt="" />
+                                <span>@item.userName</span>
+                            </td>
+                            <td>2013/08/12</td>
+                            <td class="text-center">
+                                <span class="label label-default">pending</span>
+                            </td>
+                            <td>
+                                <span>@item.eMail</span>
+                            </td>
+                            <td>
+                                <span>@item.contact</span>
+                            </td>
+                            <td style="width: 15%;">
+                                <a href="#" class="table-link">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square fa-stack-2x"></i>
+                                        <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                                <a href="#" class="table-link">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square fa-stack-2x"></i>
+                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                                <a href="#" class="table-link danger">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square fa-stack-2x"></i>
+                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@if (Model.ProfessionalsList != null) {
+    <div class="container-fluid">
+        <div class="table-responsive">
+            <table id="example" class="row-border" style="width:100%">
+                <thead>
+                    <tr>
+                        <th><span>User</span></th>
+                        <th><span>Created</span></th>
+                        <th class="text-center"><span>Status</span></th>
+                        <th><span>Email</span></th>
+                        <th><span>Contacto</span></th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ProfessionalsList) {
+                        <tr>
+                            <td>
+                                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.avatar)" width="50" height="50" alt="" />
+                                <span>@item.userName</span>
+                            </td>
+                            <td>2013/08/12</td>
+                            <td class="text-center">
+                                <span class="label label-default">pending</span>
+                            </td>
+                            <td>
+                                <span>@item.eMail</span>
+                            </td>
+                            <td>
+                                <span>@item.contact</span>
+                            </td>
+                            <td style="width: 15%;">
+                                <a href="#" class="table-link">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square fa-stack-2x"></i>
+                                        <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                                <a href="#" class="table-link">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square fa-stack-2x"></i>
+                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                                <a href="#" class="table-link danger">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square fa-stack-2x"></i>
+                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@if (Model.WorksList != null) {
+    <div class="container-fluid">
+        <div class="table-responsive">
+            <table id="example" class="row-border" style="width:100%">
+                <thead>
+                    <tr>
+                        <th><span>User</span></th>
+                        <th><span>Created</span></th>
+                        <th class="text-center"><span>Status</span></th>
+                        <th><span>Email</span></th>
+                        <th><span>Contacto</span></th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.WorksList) {
+                        <tr>
+                            <td>
+                                <span>@item.date</span>
+                            </td>
+                            <td>2013/08/12</td>
+                            <td class="text-center">
+                                <span class="label label-default">pending</span>
+                            </td>
+                            <td>
+                                <span>@item.professional</span>
+                            </td>
+                            <td>
+                                <span>@item.client</span>
+                            </td>
+                            <td style="width: 15%;">
+                                <a href="#" class="table-link">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square fa-stack-2x"></i>
+                                        <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                                <a href="#" class="table-link">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square fa-stack-2x"></i>
+                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                                <a href="#" class="table-link danger">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square fa-stack-2x"></i>
+                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
