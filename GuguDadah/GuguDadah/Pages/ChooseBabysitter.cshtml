@@ -47,7 +47,9 @@
                         <p>@item.Email | @item.Contact</p>
                         <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
                         <div class="panel-footer">
-                            <a class="btn btn-primary btn-block" asp-page-handler="ChoosedProfessional" asp-route-username="@item.UserName">Selecionar</a>
+                            <form asp-page-handler="ChoosedProfessional" asp-page="ChooseBabysitter" asp-route-username="@item.UserName" method="post">
+                                <button type="submit" class="btn btn-default">Selecionar</button>
+                            </form>
                         </div>
                     </div>
                 </div>

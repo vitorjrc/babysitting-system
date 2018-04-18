@@ -90,6 +90,8 @@ namespace GuguDadah.Pages {
 
         public IActionResult OnPost() {
 
+            TryUpdateModelAsync(this);
+
             ModelState.Remove("Client.Avatar");
             ModelState.Remove("Client.Status");
 

@@ -84,18 +84,19 @@ container body-content .navbar-collapse {
 }
 
 .datepicker {
-    background-color: #fff;
+    background-color: white;
     color: #333;
 }
 
-    .datepicker.dropdown-menu table {
-        background-color: #000;
-    }
+.datepicker.dropdown-menu table {
+    background-color: transparent;
+    color: black;
+}
 
-    .datepicker table tr td.active, .datepicker table tr td.active:hover {
-        background-color: red;
-        text-shadow: none;
-    }
+.datepicker table tr td.active, .datepicker table tr td.active:hover {
+    background-color: red;
+    text-shadow: none;
+}
 
 .bootstrap-datetimepicker-widget table td.active.today:before {
     border-bottom-color: #fff;
@@ -107,30 +108,30 @@ container body-content .navbar-collapse {
 }
 
 .glyphicon-lg {
-    font-size: 4em
+    font-size: 4em;
 }
 
 .info-block {
-    margin-bottom: 25px
+    margin-bottom: 25px;
 }
 
-    .info-block .square-box {
-        width: 100px;
-        min-height: 110px;
-        margin-right: 22px;
-        text-align: center !important;
-        background-color: #676767;
-        padding: 20px 0
-    }
+.info-block .square-box {
+    width: 100px;
+    min-height: 110px;
+    margin-right: 22px;
+    text-align: center !important;
+    background-color: #676767;
+    padding: 20px 0;
+}
 
-    .info-block.block-info {
-        border-color: #20819e
-    }
+.info-block.block-info {
+    border-color: #20819e;
+}
 
-        .info-block.block-info .square-box {
-            background-color: #20819e;
-            color: #FFF
-        }
+.info-block.block-info .square-box {
+    background-color: #20819e;
+    color: #FFF
+}
 
 .btn-space {
     margin-right: 5px;
@@ -186,12 +187,4 @@ tbody tr {
 /* linha da tabela entre headers e body*/
 thead th {
     border-bottom: none !important;
-}
-
-/*rating, userAREA*/
-.myRating input {
-    float: left;
-    display: flex;
-    flex-direction: row;
-    vertical-align: top;
 }

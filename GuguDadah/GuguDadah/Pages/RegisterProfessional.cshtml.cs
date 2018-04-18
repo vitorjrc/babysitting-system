@@ -42,6 +42,8 @@ namespace GuguDadah.Pages {
 
         public IActionResult OnPost() {
 
+            TryUpdateModelAsync(this);
+
             ModelState.Remove("Professional.Avatar");
             ModelState.Remove("Professional.Rating");
             ModelState.Remove("Professional.RegistrationDate");

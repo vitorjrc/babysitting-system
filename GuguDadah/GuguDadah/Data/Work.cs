@@ -9,9 +9,9 @@ namespace GuguDadah.Data
 {
     public class Work
     {
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Display(Name = "Avaliação")]
@@ -59,9 +59,11 @@ namespace GuguDadah.Data
         public string Observations { get; set; }
 
         [Display(Name = "Cliente")]
+        [Required]
         public Client Client { get; set; }
 
         [Display(Name = "Profissional")]
+        [Required]
         public Professional Professional { get; set; }
 
     }
