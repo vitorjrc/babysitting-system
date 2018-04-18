@@ -82,25 +82,28 @@ namespace GuguDadah.Pages {
         }
 
         public ActionResult OnGetListOfWorks() {
-            var query = (from p in dbContext.Works
-                         orderby p.Date
-                         select p).ToList();
+            var query = (from work in dbContext.Works
+                         join pro in dbContext.Professionals on work.Professional.UserName equals pro.UserName
+                         join cli in dbContext.Clients on work.Client.UserName equals cli.UserName
+                         orderby work.Date
+                         select new { work, pro, cli }).ToList();
 
             WorksList = new List<Work>();
 
             //retrieve each item and assign to model
             foreach (var item in query) {
                 WorksList.Add(new Work() {
-                    Address = item.Address,
-                    Client = item.Client,
-                    Professional = item.Professional,
-                    Cost = item.Cost,
-                    Date = item.Date,
-                    Duration = item.Duration,
-                    Payment = item.Payment,
-                    Status = item.Status,
-                    Rating = item.Rating,
-                    Type = item.Type
+                    Id = item.work.Id,
+                    Address = item.work.Address,
+                    Client = item.cli,
+                    Professional = item.pro,
+                    Cost = item.work.Cost,
+                    Date = item.work.Date,
+                    Duration = item.work.Duration,
+                    Payment = item.work.Payment,
+                    Status = item.work.Status,
+                    Rating = item.work.Rating,
+                    Type = item.work.Type
                 });
             }
 
