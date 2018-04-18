@@ -5,6 +5,66 @@
 
 }
 
+@section head
+    {
+    <link href="~/lib/bootstrap/dist/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="~/lib/bootstrap/dist/css/theme.css" media="all" rel="stylesheet" type="text/css" />
+
+}
+
+@section Scripts
+    {
+
+    @if (User.IsInRole("Client")) {
+
+        <script type='text/javascript'>
+
+            var StatusDisplay = "Sem estatuto";
+
+            if ("@Model.client.Status" == "N") {
+                StatusDisplay = "Normal";
+            }
+            if ("@Model.client.Status" == "G") {
+                StatusDisplay = "Golden";
+            }
+
+            document.getElementById("status").innerHTML = StatusDisplay;
+        </script>
+    }
+
+    @if (User.IsInRole("Professional")) {
+
+        <script src="~/lib/bootstrap/dist/js/star-rating.js" type="text/javascript"></script>
+        <script src="~/lib/bootstrap/dist/js/theme.js"></script>
+        <script>
+            $(document).on('ready', function () {
+                $('.kv-ltr-theme-svg-star').rating({
+                    hoverOnClear: false,
+                    theme: 'krajee-svg'
+                });
+            });
+        </script>
+        <script type='text/javascript'>
+
+            var ShiftDisplay = "Sem turno";
+
+            if ("@Model.professional.Shift" == "M") {
+                ShiftDisplay = "Manhã";
+            }
+            if ("@Model.professional.Shift" == "T") {
+                ShiftDisplay = "Tarde";
+            }
+
+            if ("@Model.professional.Shift" == "N") {
+                ShiftDisplay = "Noite";
+            }
+
+            document.getElementById("shift").innerHTML = ShiftDisplay;
+        </script>
+
+    }
+}
+
 <!--CLIENT AREA-->
 
 @if (User.IsInRole("Client")) {
@@ -17,42 +77,41 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12 col-sm-8">
-                                <h2 class="text-primary"><b><span class="glyphicon glyphicon-user"></span> @Model.client.UserName</b></h2>
+                                <h2 class="text-primary"><b><span class="glyphicon glyphicon-user"></span> @Model.client.Name</b></h2>
                                 <p><strong><span class="glyphicon glyphicon-envelope"></span> Email: </strong>@Model.client.Email</p>
                                 <p><strong><span class="glyphicon glyphicon glyphicon-phone"></span> Contacto: </strong>@Model.client.Contact</p>
-                                <p><strong><span class="glyphicon glyphicon-certificate"></span> Estatuto: </strong>la la la la</p>
+                                <p><strong><span class="glyphicon glyphicon-certificate"></span> Estatuto: </strong><span id="status"></span></p>
                             </div><!--/col-->
                             <div id="profileID" class="col-xs-12 col-sm-4 text-center">
+                                <br />
                                 <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.client.Avatar)" alt="" class="center-block img-circle img-responsive profile-img">
                                 <br />
-                            </div><!--/col-->
+                            </div><!--/col!-->
+                        </div>
+                        <hr />
+                        <div class="col-xs-12 col-sm-4">
+                            <a class="btn btn-primary btn-block" asp-page="/Schedule">Agendar trabalho</a>
+                        </div><!--/col-->
 
-
-                            <div class="col-xs-12 col-sm-4">
-                                <a class="btn btn-primary btn-block" asp-page="/Schedule">Agendar trabalho</a>
-
-                            </div><!--/col-->
-
-                            <div class="col-xs-12 col-sm-4">
-                                <a class="btn btn-primary btn-block" asp-page="/Babysitters">Babysitters</a>
-                            </div><!--/col-->
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="btn-group" style="width: 100%">
-                                    <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown">
-                                        Trabalhos <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a asp-page="/Register">Avaliar trabalhos</a></li>
-                                        <li><a asp-page="/Babysitters">Histórico</a></li>
-                                        <li><a asp-page="/Babysitters">Propostas</a></li>
-                                        <li><a asp-page="/Babysitters">Pendentes</a></li>
-                                    </ul>
-                                </div>
-                            </div><!--/col-->
-                        </div><!--/row-->
-                    </div><!--/panel-body-->
-                </div><!--/panel-->
-            </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <a class="btn btn-primary btn-block" asp-page="/Babysitters">Babysitters</a>
+                        </div><!--/col-->
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="btn-group" style="width: 100%">
+                                <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown">
+                                    Trabalhos <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-page="/Register">Avaliar trabalhos</a></li>
+                                    <li><a asp-page="/Babysitters">Histórico</a></li>
+                                    <li><a asp-page="/Babysitters">Propostas</a></li>
+                                    <li><a asp-page="/Babysitters">Pendentes</a></li>
+                                </ul>
+                            </div>
+                        </div><!--/col-->
+                    </div><!--/row-->
+                </div><!--/panel-body-->
+            </div><!--/panel-->
         </div>
     </div>
 }
@@ -67,44 +126,46 @@
             <div class="col-md-6 col-centered">
                 <div class="panel panel-default col-centered">
                     <div class="panel-body">
+
                         <div class="row">
                             <div class="col-xs-12 col-sm-8">
-                                <h2 class="text-primary"><b><span class="glyphicon glyphicon-user"></span> @Model.professional.UserName</b></h2>
+                                <h2 class="text-primary"><b><span class="glyphicon glyphicon-user"></span> @Model.professional.Name</b></h2>
                                 <p><strong><span class="glyphicon glyphicon-envelope"></span> Email: </strong>@Model.professional.Email</p>
-                                <p><strong><span class="glyphicon glyphicon glyphicon-phone"></span> Contacto: </strong>@Model.professional.Contact</p>
-                                <p><strong><span class="glyphicon glyphicon-certificate"></span> Estatuto: </strong>la la la la</p>
+                                <p><strong><span class="glyphicon glyphicon-phone"></span> Contacto: </strong>@Model.professional.Contact</p>
+                                <p><strong><span class="glyphicon glyphicon-pencil"></span> Inscrito desde: </strong>@Model.professional.RegistrationDate.ToShortDateString()</p>
+                                <p><strong><span class="glyphicon glyphicon-time"></span> Turno: </strong><span id="shift"></span></p>
+                                <input type="hidden" class="rating" disabled="disabled" value="@Model.professional.Rating" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
                             </div><!--/col-->
                             <div id="profileID" class="col-xs-12 col-sm-4 text-center">
+                                <br />
                                 <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.professional.Avatar)" alt="" class="center-block img-circle img-responsive profile-img">
                                 <br />
-                            </div><!--/col-->
+                            </div><!--/col!-->
+                        </div>
+                        <hr />
+                        <div class="col-xs-12 col-sm-4">
+                            <a class="btn btn-primary btn-block" asp-page="/Schedule">Agendar trabalho</a>
+                        </div><!--/col-->
 
-
-                            <div class="col-xs-12 col-sm-4">
-                                <a class="btn btn-primary btn-block" asp-page="/Schedule">Agendar trabalho</a>
-
-                            </div><!--/col-->
-
-                            <div class="col-xs-12 col-sm-4">
-                                <a class="btn btn-primary btn-block" asp-page="/Babysitters">Babysitters</a>
-                            </div><!--/col-->
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="btn-group" style="width: 100%">
-                                    <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown">
-                                        Trabalhos <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a asp-page="/Register">Avaliar trabalhos</a></li>
-                                        <li><a asp-page="/Babysitters">Histórico</a></li>
-                                        <li><a asp-page="/Babysitters">Propostas</a></li>
-                                        <li><a asp-page="/Babysitters">Pendentes</a></li>
-                                    </ul>
-                                </div>
-                            </div><!--/col-->
-                        </div><!--/row-->
-                    </div><!--/panel-body-->
-                </div><!--/panel-->
-            </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <a class="btn btn-primary btn-block" asp-page="/Babysitters">Babysitters</a>
+                        </div><!--/col-->
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="btn-group" style="width: 100%">
+                                <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown">
+                                    Trabalhos <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-page="/Register">Avaliar trabalhos</a></li>
+                                    <li><a asp-page="/Babysitters">Histórico</a></li>
+                                    <li><a asp-page="/Babysitters">Propostas</a></li>
+                                    <li><a asp-page="/Babysitters">Pendentes</a></li>
+                                </ul>
+                            </div>
+                        </div><!--/col-->
+                    </div><!--/row-->
+                </div><!--/panel-body-->
+            </div><!--/panel-->
         </div>
     </div>
 }

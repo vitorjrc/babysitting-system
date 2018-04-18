@@ -13,33 +13,38 @@ namespace GuguDadah.Data {
         [Column(TypeName = "varchar(20)")]
         [Required]
         [Display(Name = "Nickname")]
+        [StringLength(20)]
         public string UserName { get; set; }
 
         [Column(TypeName = "varchar(100)")]
         [Required]
         [Display(Name = "Nome")]
+        [StringLength(100)]
         public string Name { get; set; }
 
         [Column(TypeName = "varchar(50)")]
         [Required]
+        [StringLength(50)]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Column(TypeName = "varchar(50)")]
         [Required]
+        [StringLength(50)]
         public string Password { get; set; }
 
         [Column(TypeName = "char(1)")]
         [Required]
         [Display(Name = "Turno")]
+        [StringLength(1)]
         public string Shift { get; set; }
 
-        [Column(TypeName = "decimal(2, 1)")]
         [Required]
-        public float Rating { get; set; }
+        public float? Rating { get; set; }
 
         [Required]
         [Display(Name = "Contacto telefónico")]
-        public int Contact { get; set; }
+        public int? Contact { get; set; }
 
         [Required]
         public byte[] Avatar { get; set; }

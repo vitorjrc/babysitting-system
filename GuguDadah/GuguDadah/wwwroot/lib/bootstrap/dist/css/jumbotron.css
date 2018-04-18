@@ -188,3 +188,10 @@ thead th {
     border-bottom: none !important;
 }
 
+/*rating, userAREA*/
+.myRating input {
+    float: left;
+    display: flex;
+    flex-direction: row;
+    vertical-align: top;
+}

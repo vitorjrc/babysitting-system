@@ -11,15 +11,19 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace GuguDadah.Pages {
+
     [AllowAnonymous]
     public class Login : PageModel {
 
+        [BindRequired]
         [BindProperty]
-        [Display(Name = "Nicknaame")]
+        [Display(Name = "Nickname")]
         public string UserName { get; set; }
 
+        [BindRequired]
         [BindProperty]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -37,18 +41,20 @@ namespace GuguDadah.Pages {
         }
 
         //metodo post do formulario
-        public IActionResult OnPost() {
+        public IActionResult OnPostLoginUser() {
+            
+            // para o caso de as credenciais não terem sido preenchidas. Mostra mensagens de erro...
+            if (!ModelState.IsValid) return Page();
 
-            string AdminUsername = "admin";
-            string PasswordUsername = "securityhole";
-
-            if (ModelState.IsValid) {
-
-                if (UserName == null || Password == null) {
-                    ModelState.AddModelError("", "Preencha os campos");
-                    return Page();
-                }
+            // verificação dupla
+            if (UserName == null || Password == null) {
+                ModelState.AddModelError("", "Preencha os campos");
+                return Page();
             }
+
+            // desta forma, não mais é possível alterar o valor das strings
+            const string AdminUsername = "admin";
+            const string PasswordUsername = "securityhole";
 
             var user = (dynamic)null;
             var claims = (dynamic)null;
@@ -56,7 +62,7 @@ namespace GuguDadah.Pages {
             if (UserName.Equals(AdminUsername) && Password.Equals(PasswordUsername)) {
                 claims = new[]
 {
-                     new Claim(ClaimTypes.Name, "Administrador - Rei disto tudo"),
+                     new Claim(ClaimTypes.Name, "Administrador"),
                      new Claim(ClaimTypes.Role, "Admin")
                 };
                 goto Checked;

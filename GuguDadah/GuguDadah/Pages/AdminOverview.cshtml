@@ -66,7 +66,7 @@
         $('#professionals').DataTable({
             paging: true,
             "columnDefs": [{
-                "targets": 5,
+                "targets": 7,
                 "searchable": false,
                 "orderable": false,
                 "visible": true
@@ -151,11 +151,13 @@
             <table id="professionals" class="row-border" style="width:100%">
                 <thead>
                     <tr>
-                        <th><span>User</span></th>
-                        <th><span>Created</span></th>
-                        <th class="text-center"><span>Status</span></th>
+                        <th><span>Nickname</span></th>
+                        <th><span>Nome</span></th>
                         <th><span>Email</span></th>
                         <th><span>Contacto</span></th>
+                        <th class="text-center"><span>Rating</span></th>
+                        <th><span>Turno</span></th>
+                        <th><span>Data de Registo</span></th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -164,17 +166,25 @@
                         <tr>
                             <td>
                                 <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" width="50" height="50" alt="" />
-                                <span>@item.UserName</span>
+                                <span><strong> @item.UserName</strong></span>
                             </td>
-                            <td>2013/08/12</td>
-                            <td class="text-center">
-                                <span class="label label-default">pending</span>
-                            </td>
+                            <td>@item.Name</td>
                             <td>
                                 <span>@item.Email</span>
                             </td>
                             <td>
                                 <span>@item.Contact</span>
+                            </td>
+                            <td>
+                                <span>@item.Rating</span>
+                            </td>
+                            <td>
+                                <span>@item.Shift</span>
+                            </td>
+                            <td>
+                                <span>
+                                    @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.RegistrationDate))
+                                                            </span>
                             </td>
                             <td style="width: 15%;">
                                 <a href="#" class="table-link">
@@ -210,51 +220,61 @@
             <table id="works" class="row-border" style="width:100%">
                 <thead>
                     <tr>
-                        <th><span>User</span></th>
-                        <th><span>Created</span></th>
-                        <th class="text-center"><span>Status</span></th>
-                        <th><span>Email</span></th>
-                        <th><span>Contacto</span></th>
+                        <th><span>ID</span></th>
+                        <th><span>Cliente</span></th>
+                        <th><span>Profissional</span></th>
+                        <th class="text-center"><span>Preço</span></th>
+                        <th><span>Data</span></th>
+                        <th><span>Pagamento</span></th>
+                        <th><span>Estado</span></th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.WorksList) {
-                        <tr>
-                            <td>
-                                <span>@item.Date</span>
-                            </td>
-                            <td>2013/08/12</td>
-                            <td class="text-center">
-                                <span class="label label-default">pending</span>
-                            </td>
-                            <td>
-                                <span>@item.Professional</span>
-                            </td>
-                            <td>
-                                <span>@item.Client</span>
-                            </td>
-                            <td style="width: 15%;">
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                                <a href="#" class="table-link danger">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <span>@item.ID</span>
+                        </td>
+                        <td>
+                            <span>@item.Client.UserName</span>
+                        </td>
+                        <td>
+                            <span>@item.Professional.UserName</span>
+                        </td>
+                        <td>
+                            <span>@item.Cost</span>
+                        </td>
+                        <td>
+                            <span>@item.Date</span>
+                        </td>
+                        <td>
+                            <span>@item.Payment</span>
+                        </td>
+                        <td>
+                            <span>@item.Status</span>
+                        </td>
+                        <td style="width: 15%;">
+                            <a href="#" class="table-link">
+                                <span class="fa-stack">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                            <a href="#" class="table-link">
+                                <span class="fa-stack">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                            <a href="#" class="table-link danger">
+                                <span class="fa-stack">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

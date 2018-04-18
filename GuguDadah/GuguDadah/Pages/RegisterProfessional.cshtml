@@ -3,68 +3,70 @@
 @{
     ViewData["Title"] = "Registo de Profissional";
 }
-<h2>@ViewData["Title"]</h2>
+
 
 <div class="row">
     <div class="col-sm-6 mainContentWrapper">
         <div class="well">
-            @using (Html.BeginForm("Register", "SaveEmployee", FormMethod.Post, new { enctype = "multipart/form-data" })) {
-                <fieldset>
-                    @Html.AntiForgeryToken()
-                    <h4>Criar conta</h4>
-                    <hr />
+            @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" })) {
+                @Html.AntiForgeryToken()
+                <h4>Registar Profissional</h4>
+                <hr />
 
-                    <section>
-                        @Html.ValidationSummary()
+                <section>
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.userName, new { @class = "control-label" })
-                            @Html.TextBoxFor(m => m.userName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.userName)
-                        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Professional.UserName, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Professional.UserName, new { @class = "form-control" })
+                    </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.eMail, new { @class = "control-label" })
-                            @Html.TextBoxFor(m => m.eMail, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.eMail)
-                        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Professional.Name, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Professional.Name, new { @class = "form-control" })
+                    </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.contact, new { @class = "control-label" })
-                            @Html.TextBoxFor(m => m.contact, new { @class = "form-control", @required = "required" })
-                            @Html.ValidationMessageFor(m => m.contact)
-                        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Professional.Email, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Professional.Email, new { @class = "form-control" })
+                    </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.password, new { @class = "control-label" })
-                            @Html.PasswordFor(m => m.password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.password)
-                        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Professional.Contact, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Professional.Contact, new { @class = "form-control", @type = "number" })
+                    </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.confirmPassword, new { @class = "control-label" })
-                            @Html.PasswordFor(m => m.confirmPassword, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.confirmPassword)
-                        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Professional.Password, new { @class = "control-label" })
+                        @Html.PasswordFor(m => m.Professional.Password, new { @class = "form-control" })
+                    </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.shift, new { @class = "control-label" })
-                            @Html.PasswordFor(m => m.shift, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.confirmPassword)
-                        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    </div>
 
-                        <div class="form-group">
-                            <label asp-for="Avatar"></label>
-                            <input type="file" asp-for="Avatar" />
-                        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Professional.Shift, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Professional.Shift, new { @class = "form-control" })
+                    </div>
 
-                        <div class="form-group">
-                            <input type="submit" value="Registar" class="btn btn-default" />
-                        </div>
-                    </section>
-                </fieldset>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Professional.Presentation, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Professional.Presentation, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Avatar"></label>
+                        <input type="file" asp-for="Avatar" />
+                    </div>
+
+                    @Html.ValidationSummary(false)
+
+                    <div class="form-group">
+                        <input type="submit" value="Registar" class="btn btn-default" />
+                    </div>
+                </section>
             }
         </div>
     </div>
-
 </div>

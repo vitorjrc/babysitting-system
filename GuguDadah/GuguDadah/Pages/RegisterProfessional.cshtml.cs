@@ -15,45 +15,23 @@ using ImageMagick;
 
 using GuguDadah.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace GuguDadah.Pages {
 
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class RegisterProfessional : PageModel {
 
+        [BindRequired]
         [BindProperty]
-        [Required]
-        [Display(Name = "Username")]
-        public string userName { get; set; }
-
-        [BindProperty]
-        [Required]
-        [Display(Name = "Email")]
-        public string eMail { get; set; }
-
-        [BindProperty]
-        [Required]
-        [Display(Name = "Contacto Telefónico")]
-        public int contact { get; set; }
-
-        [BindProperty]
-        [Required]
-        [Display(Name = "Password")]
-        public string password { get; set; }
-
-        [BindProperty]
-        [Required]
-        [Compare("password", ErrorMessage = "The password and confirmation password do not match.")]
         [Display(Name = "Confirmar Password")]
-        public string confirmPassword { get; set; }
-
-        [BindProperty]
-        [Required]
-        [Display(Name = "Turno")]
-        public string shift { get; set; }
+        public string ConfirmPassword { get; set; }
 
         [BindProperty]
         public IFormFile Avatar { get; set; }
+
+        [BindProperty]
+        public Professional Professional { get; set; }
 
         private readonly AppDbContext dbContext;
 
@@ -62,45 +40,70 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
-        [HttpPost]
         public IActionResult OnPost() {
-            IFormFile uploadedImage = Avatar;
-            if (uploadedImage == null || uploadedImage.ContentType.ToLower().StartsWith("image/")) {
 
-                {
+            ModelState.Remove("Professional.Avatar");
+            ModelState.Remove("Professional.Rating");
+            ModelState.Remove("Professional.RegistrationDate");
 
-                    MemoryStream ms = new MemoryStream();
-                    uploadedImage.OpenReadStream().CopyTo(ms);
-                    byte[] data = ms.ToArray();
+            if (!ModelState.IsValid) return Page();
 
 
-                    MemoryStream ms1 = new MemoryStream();
+            if (ModelState.IsValid) {
 
-                    using (MagickImage image = new MagickImage(data)) {
+                //check whether username is already exists in the database or not
+                bool clientUsernameAlreadyExists = dbContext.Clients.Any(o => o.UserName == Professional.UserName);
+                bool professionalUsernameAlreadyExists = dbContext.Professionals.Any(o => o.UserName == Professional.UserName);
 
-                        image.Resize(200, 0);
-                        image.Format = MagickFormat.Jpeg;
+                if (clientUsernameAlreadyExists || professionalUsernameAlreadyExists || Professional.UserName.Equals("admin")) {
 
-                        // Save the result
-                        image.Write(ms1);
-                    }
+                    ModelState.AddModelError(string.Empty, "Este nickname já existe no sistema.");
 
-                    Professional newProfessional = new Professional() {
-                        UserName = this.userName,
-                        Avatar = ms1.ToArray(),
-                        Password = this.password,
-                        Email = this.eMail,
-                        Contact = this.contact,
-                        Shift = this.shift
-                    };
+                    return Page();
+                }
 
-                    dbContext.Professionals.Add(newProfessional);
+                //check whether email is already exists in the database or not
+                bool clientEmailAlreadyExists = dbContext.Clients.Any(o => o.Email == Professional.Email);
+                bool professionalEmailAlreadyExists = dbContext.Professionals.Any(o => o.Email == Professional.Email);
 
-                    dbContext.SaveChanges();
+                if (clientEmailAlreadyExists || professionalEmailAlreadyExists) {
+
+                    ModelState.AddModelError(string.Empty, "Este email já existe no sistema.");
+
+                    return Page();
+                }
+
+                if (ConfirmPassword != Professional.Password) {
+
+                    ModelState.AddModelError(string.Empty, "Passwords não coincidem");
+
+                    return Page();
                 }
             }
 
+            var dateAndTime = DateTime.Now;
+            var date = dateAndTime.Date;
+
+            Register register = new Register(dbContext);
+
+            Professional newProfessional = new Professional() {
+                UserName = Professional.UserName,
+                Avatar = register.GetAvatar(Avatar).ToArray(),
+                Password = Professional.Password,
+                Email = Professional.Email,
+                Contact = Professional.Contact,
+                Name = Professional.Name,
+                Shift = Professional.Shift,
+                Rating = 0,
+                RegistrationDate = date
+            };
+
+            dbContext.Professionals.Add(newProfessional);
+
+            dbContext.SaveChanges();
+
             return RedirectToPage("./Index");
         }
+
     }
 }

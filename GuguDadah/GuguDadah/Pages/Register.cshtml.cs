@@ -15,21 +15,23 @@ using ImageMagick;
 
 using GuguDadah.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace GuguDadah.Pages {
 
     [AllowAnonymous]
     public class Register : PageModel {
 
-        [Required]
+        [BindRequired]
         [BindProperty]
+        [Display(Name = "Confirmar Password")]
         public string ConfirmPassword { get; set; }
 
         [BindProperty]
         public IFormFile Avatar { get; set; }
 
         [BindProperty]
-        public Client client { get; set; }
+        public Client Client { get; set; }
 
         private readonly AppDbContext dbContext;
 
@@ -38,34 +40,8 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
-        public IActionResult OnPostRegisterClient() {
-
-            ModelState.Remove("client.Avatar");
-            ModelState.Remove("client.Status");
-
-            if (!ModelState.IsValid) return Page();
-
-
-            if (ModelState.IsValid) {
-
-                //check whether name is already exists in the database or not
-                bool clientAlreadyExists = dbContext.Clients.Any(o => o.UserName == client.UserName);
-                bool professionalAlreadyExists = dbContext.Professionals.Any(o => o.UserName == client.UserName);
-
-                if (clientAlreadyExists || professionalAlreadyExists || client.UserName.Equals("admin")) {
-
-                    ModelState.AddModelError(string.Empty, "O nickname já existe.");
-
-                    return Page();
-                }
-
-                if (ConfirmPassword != client.Password) {
-
-                    ModelState.AddModelError(string.Empty, "Passwords não coincidem");
-
-                    return Page();
-                }
-            }
+        // público porque o método é acedido pelo RegisterProfessional
+        public MemoryStream GetAvatar(IFormFile imageUploaded) {
 
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "user.png");
 
@@ -73,10 +49,10 @@ namespace GuguDadah.Pages {
 
             MemoryStream ms1 = new MemoryStream();
 
-            if (Avatar != null && Avatar.ContentType.ToLower().StartsWith("image/")) {
+            if (imageUploaded != null && imageUploaded.ContentType.ToLower().StartsWith("image/")) {
 
                 MemoryStream ms = new MemoryStream();
-                Avatar.OpenReadStream().CopyTo(ms);
+                imageUploaded.OpenReadStream().CopyTo(ms);
                 data = ms.ToArray();
 
                 using (MagickImage image = new MagickImage(data)) {
@@ -91,9 +67,11 @@ namespace GuguDadah.Pages {
                     image.Write(ms1);
 
                 }
+
+                return ms1;
             }
 
-            if (Avatar == null) {
+            if (imageUploaded == null) {
                 using (MagickImage image = new MagickImage(path)) {
 
                     MagickGeometry size = new MagickGeometry(150, 150);
@@ -107,14 +85,56 @@ namespace GuguDadah.Pages {
                 }
             }
 
+            return ms1;
+        }
+
+        public IActionResult OnPost() {
+
+            ModelState.Remove("Client.Avatar");
+            ModelState.Remove("Client.Status");
+
+            if (!ModelState.IsValid) return Page();
+
+
+            if (ModelState.IsValid) {
+
+                //check whether username is already exists in the database or not
+                bool clientUsernameAlreadyExists = dbContext.Clients.Any(o => o.UserName == Client.UserName);
+                bool professionalUsernameAlreadyExists = dbContext.Professionals.Any(o => o.UserName == Client.UserName);
+
+                if (clientUsernameAlreadyExists || professionalUsernameAlreadyExists || Client.UserName.Equals("admin")) {
+
+                    ModelState.AddModelError(string.Empty, "Este nickname já existe no sistema.");
+
+                    return Page();
+                }
+
+                //check whether email is already exists in the database or not
+                bool clientEmailAlreadyExists = dbContext.Clients.Any(o => o.Email == Client.Email);
+                bool professionalEmailAlreadyExists = dbContext.Professionals.Any(o => o.Email == Client.Email);
+
+                if (clientEmailAlreadyExists || professionalEmailAlreadyExists) {
+
+                    ModelState.AddModelError(string.Empty, "Este email já existe no sistema.");
+
+                    return Page();
+                }
+
+                if (ConfirmPassword != Client.Password) {
+
+                    ModelState.AddModelError(string.Empty, "Passwords não coincidem");
+
+                    return Page();
+                }
+            }
 
             Client newClient = new Client() {
-                UserName = client.UserName,
-                Avatar = ms1.ToArray(),
-                Password = client.Password,
-                Email = client.Email,
-                Contact = client.Contact,
-                Name = client.Name,
+                UserName = Client.UserName,
+                Avatar = GetAvatar(Avatar).ToArray(),
+                Password = Client.Password,
+                Email = Client.Email,
+                Contact = Client.Contact,
+                Name = Client.Name,
                 Status = "N"
             };
 
@@ -124,6 +144,5 @@ namespace GuguDadah.Pages {
 
             return RedirectToPage("./Index");
         }
-
     }
 }

@@ -7,15 +7,15 @@
 <div class="row">
     <div class="col-sm-6 mainContentWrapper">
         <div class="well">
-            <form method="POST" class="form-group">
+            <form asp-page-handler="LoginUser" method="post">
                 <div class="form-group">
-                    <label asp-for="UserName"></label>
-                    <input asp-for="UserName" class="form-control" />
+                    @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Password"></label>
-                    <input type="password" asp-for="Password" class="form-control" />
+                    @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                 </div>
 
                 <div class="form-group">
@@ -23,8 +23,7 @@
                     <label asp-for="RememberMe"></label>
                 </div>
 
-                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-                <br />
+                @Html.ValidationSummary(false)
 
                 <div class="form-group">
                     <input type="submit" value="Iniciar Sessão" class="btn btn-default" />

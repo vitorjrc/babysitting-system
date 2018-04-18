@@ -71,6 +71,10 @@ namespace GuguDadah.Pages {
                     Contact = item.Contact,
                     Email = item.Email,
                     Avatar = item.Avatar,
+                    Rating = item.Rating,
+                    Shift = item.Shift,
+                    RegistrationDate = item.RegistrationDate,
+                    Name = item.Name
                 });
             }
 
