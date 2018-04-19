@@ -4,77 +4,74 @@
     ViewData["Title"] = "Schedule";
 }
 
-<h2>Agendar Babysitting</h2>
+<h4>Reservar</h4>
+<hr />
 
 <div class="row">
     <div class="col-sm-6 mainContentWrapper">
         <div class="well">
             <form asp-page-handler="ReturningTempWork" asp-page="Schedule" method="post">
-                <fieldset>
-                    <h4>Reservar</h4>
-                    <hr />
 
-                    <section>
+                <section>
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Work.Address, new { @class = "control-label" })
-                            @Html.TextBoxFor(m => m.Work.Address, new { placeholder = "Rua das 7 casas, nº8", @class = "form-control" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Work.Address, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Work.Address, new { placeholder = "Rua das 7 casas, nº8", @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.StartDate, new { @class = "control-label" })
+                        <p><input type="date" asp-for="StartDate" class="datepicker form-control"></p>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.StartTime, new { @class = "control-label" })
+                        <p><input type="time" class="timepicker form-control" asp-for="StartTime"></p>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.EndDate, new { @class = "control-label" })
+                        <p><input type="date" asp-for="EndDate" class="datepicker form-control"></p>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.EndTime, new { @class = "control-label" })
+                        <p><input type="time" class="timepicker form-control" asp-for="EndTime"></p>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Work.Observations, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Work.Observations, new { placeholder = "Lisboa", @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Type, new { @class = "control-label" })
+                        <div>
+                            <label>
+                                @Html.RadioButtonFor(m => m.Type, "normal")
+                                Normal - 10€/h
+                            </label>
                         </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.StartDate, new { @class = "control-label" })
-                            <p><input type="date" asp-for="StartDate" class="datepicker form-control"></p>
+                        <div>
+                            <label>
+                                @Html.RadioButtonFor(m => m.Type, "study")
+                                Acompanhamento ao estudo (acresce 10€/h)
+                            </label>
                         </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.StartTime, new { @class = "control-label" })
-                            <p><input type="time" class="timepicker form-control" asp-for="StartTime"></p>
+                        <div>
+                            <label>
+                                @Html.RadioButtonFor(m => m.Type, "exterior")
+                                Atividade lúdica no exterior (acresce 5€/h)
+                            </label>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.EndDate, new { @class = "control-label" })
-                            <p><input type="date" asp-for="EndDate" class="datepicker form-control"></p>
-                        </div>
+                    @Html.ValidationSummary(false)
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.EndTime, new { @class = "control-label" })
-                            <p><input type="time" class="timepicker form-control" asp-for="EndTime"></p>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Work.Observations, new { @class = "control-label" })
-                            @Html.TextBoxFor(m => m.Work.Observations, new { placeholder = "Lisboa", @class = "form-control" })
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Type, new { @class = "control-label" })
-                            <div>
-                                <label>
-                                    @Html.RadioButtonFor(m => m.Type, "normal")
-                                    Normal - 10€/h
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    @Html.RadioButtonFor(m => m.Type, "study")
-                                    Acompanhamento ao estudo (acresce 10€/h)
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    @Html.RadioButtonFor(m => m.Type, "exterior")
-                                    Atividade lúdica no exterior (acresce 5€/h)
-                                </label>
-                            </div>
-                        </div>
-
-                        <div asp-validation-summary="All"></div>
-
-                        <div class="form-group">
-                            <input type="submit" class="btn btn btn-info" value="Continuar" />
-                        </div>
-                    </section>
-                </fieldset>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn btn-info" value="Continuar" />
+                    </div>
+                </section>
             </form>
         </div>
     </div>

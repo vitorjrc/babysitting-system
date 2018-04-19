@@ -14,6 +14,9 @@ namespace GuguDadah.Pages {
 
         private readonly AppDbContext dbContext;
 
+        [BindProperty]
+        public float Rating { get; set; }
+
         public List<Work> ClientHistoryList { get; set; }
 
         public List<Work> ClientOffersList { get; set; }
@@ -25,85 +28,104 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
-        private ActionResult getHistoryList() {
+        public ActionResult OnGetHistoryList() {
 
-            var query = (from p in dbContext.Works
-                         orderby p.Date
-                         where p.Status == "C" && p.Client.UserName.Equals(User.Identity.Name)
-                         select p).ToList();
+            var query = (from work in dbContext.Works
+                         orderby work.Date
+                         where work.Status == "C" && work.Client.UserName.Equals(User.Identity.Name)
+                         join pro in dbContext.Professionals on work.Professional.UserName equals pro.UserName
+                         select new { work, pro }).ToList();
 
             ClientHistoryList = new List<Work>();
 
             foreach (var item in query) {
                 ClientHistoryList.Add(new Work() {
 
-                    Address = item.Address,
-                    Cost = item.Cost,
-                    Date = item.Date,
-                    Duration = item.Duration,
-                    Payment = item.Payment,
-                    Professional = item.Professional,
-                    Rating = item.Rating,
-                    Status = item.Status,
-                    Type = item.Type
+                    Id = item.work.Id,
+                    Professional = item.pro,
+                    Date = item.work.Date,
+                    Duration = item.work.Duration,
+                    Address = item.work.Address,
+                    Cost = item.work.Cost,
+                    Payment = item.work.Payment
                 });
             }
 
             return Page();
         }
 
-        private ActionResult getPendentList() {
+        public ActionResult OnGetPendentList() {
 
-            var query = (from p in dbContext.Works
-                         orderby p.Date
-                         where p.Status == "P" && p.Client.UserName.Equals(User.Identity.Name)
-                         select p).ToList();
+            var query = (from work in dbContext.Works
+                         orderby work.Date
+                         where work.Status == "P" && work.Client.UserName.Equals(User.Identity.Name)
+                         join pro in dbContext.Professionals on work.Professional.UserName equals pro.UserName
+                         select new { work, pro }).ToList();
 
             ClientPendentList = new List<Work>();
 
             foreach (var item in query) {
                 ClientPendentList.Add(new Work() {
 
-                    Address = item.Address,
-                    Cost = item.Cost,
-                    Date = item.Date,
-                    Duration = item.Duration,
-                    Payment = item.Payment,
-                    Professional = item.Professional,
-                    Rating = item.Rating,
-                    Status = item.Status,
-                    Type = item.Type
+                    Id = item.work.Id,
+                    Professional = item.pro,
+                    Date = item.work.Date,
+                    Duration = item.work.Duration,
+                    Address = item.work.Address,
+                    Cost = item.work.Cost,
+                    Payment = item.work.Payment
                 });
             }
 
             return Page();
         }
 
-        private ActionResult getOffersList() {
+        public ActionResult OnGetOffersList() {
 
-            var query = (from p in dbContext.Works
-                         orderby p.Date
-                         where p.Status == "P" && p.Client.UserName.Equals(User.Identity.Name)
-                         select p).ToList();
+            var query = (from work in dbContext.Works
+                         orderby work.Date
+                         where work.Status == "O" && work.Client.UserName.Equals(User.Identity.Name)
+                         join pro in dbContext.Professionals on work.Professional.UserName equals pro.UserName
+                         select new { work, pro }).ToList();
 
             ClientOffersList = new List<Work>();
 
             foreach (var item in query) {
                 ClientOffersList.Add(new Work() {
 
-                    Address = item.Address,
-                    Cost = item.Cost,
-                    Date = item.Date,
-                    Duration = item.Duration,
-                    Payment = item.Payment,
-                    Professional = item.Professional,
-                    Rating = item.Rating,
-                    Status = item.Status,
-                    Type = item.Type
+                    Id = item.work.Id,
+                    Professional = item.pro,
+                    Date = item.work.Date,
+                    Cost = item.work.Cost,
+                    Payment = item.work.Payment,
+                    Rating = item.work.Rating
                 });
             }
 
             return Page();
+        }
+
+        // TODO
+        public ActionResult OnPostCancelOffer(int id) {
+
+            return RedirectToPage("/UserArea", "ClientLoggedIn");
+        }
+
+        // TODO
+        public ActionResult OnPostRateOffer(int id) {
+
+            var query = (from work in dbContext.Works
+                         join pro in dbContext.Professionals on work.Professional.UserName equals pro.UserName
+                         where work.Id == id
+                         select new { work, pro }).FirstOrDefault();
+
+            query.work.Rating = Rating;
+
+            query.pro.Rating = (float) (query.pro.Rating * 0.8) + (float) (Rating * 0.2);
+
+            dbContext.SaveChanges();
+
+            return RedirectToPage("/UserArea", "ClientLoggedIn");
         }
 
 

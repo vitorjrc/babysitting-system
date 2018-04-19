@@ -59,7 +59,6 @@ namespace GuguDadah.Pages {
             ModelState.Remove("Work.Date");
             ModelState.Remove("Work.Client");
             ModelState.Remove("Work.Payment");
-            ModelState.Remove("Work.Rating");
             ModelState.Remove("Work.Status");
             ModelState.Remove("Work.Type");
             ModelState.Remove("Work.Duration");
@@ -68,7 +67,6 @@ namespace GuguDadah.Pages {
             if (!ModelState.IsValid) return Page();
 
             Work.Payment = "N";
-            Work.Rating = 0;
 
             // offered
             Work.Status = "O";
@@ -105,7 +103,7 @@ namespace GuguDadah.Pages {
 
             TempData["tempWork"] = JsonConvert.SerializeObject(Work);
 
-            return RedirectToPage("/ChooseBabysitter");
+            return RedirectToPage("/ChooseBabysitter", "ChooseBS");
 
         }
 

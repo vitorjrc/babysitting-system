@@ -217,7 +217,7 @@
 
 .panel-blue {
     color: #ffffff;
-    background-color: #03A9F4;
+    background-color: rgba(83, 101, 111, 0.7);
 }
 
 .panel-red.userlist .username, .panel-green.userlist .username, .panel-yellow.userlist .username, .panel-blue.userlist .username {

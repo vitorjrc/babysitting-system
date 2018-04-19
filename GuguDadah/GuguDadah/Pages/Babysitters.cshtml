@@ -39,22 +39,36 @@
 </div>
 
 
-<div class="row">
-    @foreach (var item in Model.lista) {
-        <div style="text-align:center">
-            <div class="col-md-4">
-                    <p>Nome: @item.UserName</p>
-                    <p>Email: @item.Email</p>
-                    <p>Contacto: @item.Contact</p>
-                    <p>Turno: @item.Shift</p>
+@if (Model.ClientHistoryList != null) {
 
-                <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
-                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" alt="" />
-            </div>
+    <h4>Histórico de trabalhos</h4>
+    <hr />
+
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model.ClientHistoryList) {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="panel panel-blue userlist">
+                        <div class="panel-body text-center">
+                            <div class="userprofile">
+                                <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Professional.Avatar)" alt="" class="userpicimg"> </div>
+                                <h3 class="username">@item.Professional.Name</h3>
+                                <input type="hidden" class="rating" disabled="disabled" value="@item.Professional.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            </div>
+                            <br>
+                            <p>Data </p>
+                            <p>Preço: @item.Cost</p>
+                            <p>Morada: @item.Address</p>
+                            <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            <div class="panel-footer">
+                                <a class="btn btn-primary btn-block" asp-page-handler="ChoosedProfessional">Avaliar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
-    }
-</div>
-
-
+    </div>
+}
 
 

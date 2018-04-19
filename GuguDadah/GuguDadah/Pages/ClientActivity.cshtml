@@ -1,10 +1,9 @@
 ﻿@page
 @model GuguDadah.Pages.ClientActivity
 @{
-    ViewData["Title"] = "Escolha do Babysitter";
+    ViewData["Title"] = "Trabalhos";
 }
 
-<h2>Lista de Babysitters</h2>
 
 @section head
     {
@@ -29,6 +28,10 @@
 }
 
 @if (Model.ClientHistoryList != null) {
+
+    <h4>Histórico de trabalhos</h4>
+    <hr />
+
     <div class="container-fluid">
         <div class="row">
             @foreach (var item in Model.ClientHistoryList) {
@@ -41,13 +44,21 @@
                                 <input type="hidden" class="rating" disabled="disabled" value="@item.Professional.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
                             </div>
                             <br>
-                            <p>Data </p>
-                            <p>Preço: @item.Cost</p>
-                            <p>Morada: @item.Address</p>
-                            <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
-                            <div class="panel-footer">
-                                <a class="btn btn-primary btn-block" asp-page-handler="ChoosedProfessional">Avaliar</a>
-                            </div>
+                            <p><strong>Data:</strong> @item.Date</p>
+                            <p><strong>Preço: </strong> @item.Cost</p>
+                            <p><strong>Pago: </strong> @item.Payment</p>
+
+                            <form asp-page-handler="RateOffer" asp-route-id="@item.Id" method="post">
+                                <div class="panel-footer">
+                                    @if (item.Rating == 0.0f) {
+                                        <input type="hidden" class="rating" asp-for="Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                        <input type="submit" class="btn btn btn-info" value="Avaliar" />
+                                    }
+                                    else {
+                                        <input type="hidden" class="rating" disabled="disabled" value="item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                    }
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -56,11 +67,11 @@
     </div>
 }
 
-
-
-
-
 @if (Model.ClientPendentList != null) {
+
+    <h4>Trabalhos pendentes</h4>
+    <hr />
+
     <div class="container-fluid">
         <div class="row">
             @foreach (var item in Model.ClientPendentList) {
@@ -70,16 +81,13 @@
                             <div class="userprofile">
                                 <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Professional.Avatar)" alt="" class="userpicimg"> </div>
                                 <h3 class="username">@item.Professional.Name</h3>
-                                <input type="hidden" class="rating" disabled="disabled" value="@item.Professional.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
                             </div>
                             <br>
-                            <p>Data </p>
-                            <p>Preço: @item.Cost</p>
-                            <p>Morada: @item.Address</p>
-                            <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
-                            <div class="panel-footer">
-                                <a class="btn btn-primary btn-block" asp-page-handler="ChoosedProfessional">Avaliar</a>
-                            </div>
+                            <p><strong>Data:</strong> @item.Date</p>
+                            <p><strong>Duração:</strong> @item.Duration horas</p>
+                            <p><strong>Preço:</strong> @item.Cost €</p>
+                            <p><strong>Pago:</strong> @item.Payment</p>
+                            <p><strong>Morada:</strong> @item.Address</p>
                         </div>
                     </div>
                 </div>
@@ -89,10 +97,11 @@
 }
 
 
-
-
-
 @if (Model.ClientOffersList != null) {
+
+    <h4>Ofertas de trabalho</h4>
+    <hr />
+
     <div class="container-fluid">
         <div class="row">
             @foreach (var item in Model.ClientOffersList) {
@@ -105,12 +114,11 @@
                                 <input type="hidden" class="rating" disabled="disabled" value="@item.Professional.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
                             </div>
                             <br>
-                            <p>Data </p>
-                            <p>Preço: @item.Cost</p>
-                            <p>Morada: @item.Address</p>
-                            <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            <p><strong>Data:</strong> @item.Date.ToShortDateString()</p>
+                            <p><strong>Pago:</strong> @item.Payment</p>
+                            <p><strong>Preço:</strong> @item.Cost €</p>
                             <div class="panel-footer">
-                                <a class="btn btn-primary btn-block" asp-page-handler="ChoosedProfessional">Avaliar</a>
+                                <a class="btn btn-primary btn-block" asp-page-handler="CancelOffer" asp-route-id="@item.Id">Cancelar</a>
                             </div>
                         </div>
                     </div>

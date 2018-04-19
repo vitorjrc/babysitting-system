@@ -1,10 +1,8 @@
 ﻿@page
 @model GuguDadah.Pages.ChooseBabysitter
 @{
-    ViewData["Title"] = "Escolha do Babysitter";
+    ViewData["Title"] = "Babysitters";
 }
-
-<h2>Lista de Babysitters</h2>
 
 @section head
     {
@@ -28,35 +26,63 @@
     </script>
 }
 
-<div class="container-fluid">
-    <div class="row">
-        @foreach (var item in Model.lista) {
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="panel panel-blue userlist">
-                    <div class="panel-body text-center">
-                        <div class="userprofile">
-                            <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" alt="" class="userpicimg"> </div>
-                            <h3 class="username">@item.UserName</h3>
-                            <p>New York, USA</p>
-                        </div>
-                        <strong>Information</strong><br>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere.<br>
+
+@if (Model.ChooseBabysitters == 1) {
+
+    <h4>Escolha de Babysitter</h4>
+    <hr />
+
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model.list) {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="panel panel-blue userlist">
+                        <div class="panel-body text-center">
+                            <div class="userprofile">
+                                <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" alt="" class="userpicimg"> </div>
+                                <h3 class="username">@item.Name</h3>
+                                <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            </div>
                             <br>
-                        <p>Turno: @item.Shift</p>
-                        <p>@item.Email | @item.Contact</p>
-                        <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
-                        <div class="panel-footer">
-                            <form asp-page-handler="ChoosedProfessional" asp-page="ChooseBabysitter" asp-route-username="@item.UserName" method="post">
-                                <button type="submit" class="btn btn-default">Selecionar</button>
-                            </form>
+                            <p><strong>Data de registo:</strong> @item.RegistrationDate.ToShortDateString()</p>
+                            <p>@item.Presentation</p>
+                            <div class="panel-footer">
+                                <form asp-page-handler="ChoosedProfessional" asp-page="ChooseBabysitter" asp-route-username="@item.UserName" method="post">
+                                    <button type="submit" class="btn btn-default">Selecionar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
+}
+
+@if (Model.ShowBabysitters == 1) {
+
+    <h4>Babysitters</h4>
+    <hr />
+
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model.list) {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="panel panel-blue userlist">
+                        <div class="panel-body text-center">
+                            <div class="userprofile">
+                                <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" alt="" class="userpicimg"> </div>
+                                <h3 class="username">@item.Name</h3>
+                                <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
 
 
 

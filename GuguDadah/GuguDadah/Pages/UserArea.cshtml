@@ -71,8 +71,9 @@
 <!--CLIENT AREA-->
 
 @if (User.IsInRole("Client")) {
-    <h2>Área do Cliente</h2>
 
+    <h4>Área de Cliente</h4>
+    <hr />
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-centered">
@@ -97,18 +98,18 @@
                         </div><!--/col-->
 
                         <div class="col-xs-12 col-sm-4">
-                            <a class="btn btn-primary btn-block" asp-page="/Babysitters">Babysitters</a>
+                            <a class="btn btn-primary btn-block" asp-page="/ChooseBabysitter" asp-page-handler="ShowBS">Babysitters</a>
                         </div><!--/col-->
+
                         <div class="col-xs-12 col-sm-4">
                             <div class="btn-group" style="width: 100%">
                                 <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown">
                                     Trabalhos <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a asp-page="/Register">Avaliar trabalhos</a></li>
-                                    <li><a asp-page="/Babysitters">Histórico</a></li>
-                                    <li><a asp-page="/Babysitters">Propostas</a></li>
-                                    <li><a asp-page="/Babysitters">Pendentes</a></li>
+                                    <li><a class="dropdown-item" asp-page="/ClientActivity" asp-page-handler="OffersList"><span class="glyphicon glyphicon-user"></span> Ofertas</a></li>
+                                    <li><a class="dropdown-item" asp-page="/ClientActivity" asp-page-handler="PendentList"><span class="glyphicon glyphicon-user"></span> Pendentes</a></li>
+                                    <li><a class="dropdown-item" asp-page="/ClientActivity" asp-page-handler="HistoryList"><span class="glyphicon glyphicon-user"></span> Histórico</a></li>
                                 </ul>
                             </div>
                         </div><!--/col-->
@@ -122,7 +123,9 @@
 <!--Professional AREA-->
 
 @if (User.IsInRole("Professional")) {
-    <h2>Área do Profissional</h2>
+
+    <h4>Área do Profissional</h4>
+    <hr />
 
     <div class="container">
         <div class="row">
@@ -146,23 +149,14 @@
                         </div>
                         <hr />
                         <div class="col-xs-12 col-sm-4">
-                            <a class="btn btn-primary btn-block" asp-page="/Schedule">Agendar trabalho</a>
+                            <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="OffersList"><span class="glyphicon glyphicon-user"></span> Ofertas</a>
                         </div><!--/col-->
 
                         <div class="col-xs-12 col-sm-4">
-                            <a class="btn btn-primary btn-block" asp-page="/Babysitters">Babysitters</a>
+                            <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="PendentList"><span class="glyphicon glyphicon-user"></span> Pendentes</a>
                         </div><!--/col-->
                         <div class="col-xs-12 col-sm-4">
-                            <div class="dropdown" style="width: 100%">
-                                <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown">
-                                    Trabalhos <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a class="dropdown-item" asp-page="/ProfessionalActivity" asp-page-handler="OffersList"><span class="glyphicon glyphicon-user"></span> Ofertas</a></li>
-                                    <li><a class="dropdown-item" asp-page="/ProfessionalActivity" asp-page-handler="PendentList"><span class="glyphicon glyphicon-user"></span> Pendentes</a></li>
-                                    <li><a class="dropdown-item" asp-page="/ProfessionalActivity" asp-page-handler="HistoryList"><span class="glyphicon glyphicon-user"></span> Histórico</a></li>
-                                </ul>
-                            </div>
+                            <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="HistoryList"><span class="glyphicon glyphicon-user"></span> Histórico</a>
                         </div><!--/col-->
                         <br />
                         <br />

@@ -32,6 +32,7 @@
                 "info": "A mostrar a página _PAGE_ de _PAGES_",
                 "infoEmpty": "Sem linhas disponíveis",
                 "infoFiltered": "(filtrado de _MAX_ linhas)",
+                "search": "Procurar: ",
                 "paginate": {
                     "previous": "Anterior",
                     "next": "Seguinte"
@@ -55,6 +56,7 @@
                 "info": "A mostrar a página _PAGE_ de _PAGES_",
                 "infoEmpty": "Sem linhas disponíveis",
                 "infoFiltered": "(filtrado de _MAX_ linhas)",
+                "search": "Procurar: ",
                 "paginate": {
                     "previous": "Anterior",
                     "next": "Seguinte"
@@ -77,6 +79,7 @@
                 "info": "A mostrar a página _PAGE_ de _PAGES_",
                 "infoEmpty": "Sem linhas disponíveis",
                 "infoFiltered": "(filtrado de _MAX_ linhas)",
+                "search": "Procurar: ",
                 "paginate": {
                     "previous": "Anterior",
                     "next": "Seguinte"
@@ -97,7 +100,7 @@
                         <th class="text-center"><span>Email</span></th>
                         <th class="text-center"><span>Contacto</span></th>
                         <th class="text-center"><span>Estatuto</span></th>
-                        <th class="text-center">Ações</th>
+                        <th class="text-center">Normal/Golden</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -118,24 +121,26 @@
                                 <span class="label label-default">@item.Status</span>
                             </td>
                             <td class="text-center" style="width: 15%;">
+
+                                @if(item.Status.Equals("Normal")) {
+
                                 <a href="#" class="table-link">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                        <i class="fa fa-google fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
+                                }
+
+                                else {
                                 <a href="#" class="table-link">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                        <i class="fa fa-angle-left fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
-                                <a href="#" class="table-link danger">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
+
+                                }
                             </td>
                         </tr>
                     }
@@ -228,7 +233,7 @@
                         <th class="text-center"><span>Duração</span></th>
                         <th class="text-center"><span>Pagamento</span></th>
                         <th class="text-center"><span>Estado</span></th>
-                        <th class="text-center">Ações</th>
+                        <th class="text-center">Marcar como pago</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -244,13 +249,13 @@
                             <span>@item.Professional.UserName</span>
                         </td>
                         <td class="text-center">
-                            <span>@item.Cost</span>
+                            <span>@item.Cost €</span>
                         </td>
                         <td class="text-center">
                             <span>@item.Date</span>
                         </td>
                         <td class="text-center">
-                            <span>@item.Duration</span>
+                            <span>@item.Duration horas</span>
                         </td>
                         <td class="text-center">
                             <span class="label label-default">@item.Payment</span>
@@ -258,26 +263,18 @@
                         <td class="text-center">
                             <span class="label label-default">@item.Status</span>
                         </td>
+
                         <td class="text-center" style="width: 15%;">
-                            <a href="#" class="table-link">
-                                <span class="fa-stack">
-                                    <i class="fa fa-square fa-stack-2x"></i>
-                                    <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                            <a href="#" class="table-link">
-                                <span class="fa-stack">
-                                    <i class="fa fa-square fa-stack-2x"></i>
-                                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                            <a href="#" class="table-link danger">
-                                <span class="fa-stack">
-                                    <i class="fa fa-square fa-stack-2x"></i>
-                                    <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
+                            @if (item.Payment.Equals("Não Pago")) {
+                        <a href="#" class="table-link">
+                            <span class="fa-stack">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa fa-credit-card fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                            }
                         </td>
+
                     </tr>
                     }
                 </tbody>

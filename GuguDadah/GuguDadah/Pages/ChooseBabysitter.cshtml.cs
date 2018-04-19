@@ -19,9 +19,15 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
-        public List<Professional> lista = new List<Professional>();
+        public List<Professional> list = new List<Professional>();
 
-        public void OnGet() {
+        public int ShowBabysitters { get; set; }
+
+        public int ChooseBabysitters { get; set; }
+
+        public ActionResult OnGetShowBS() {
+
+            ShowBabysitters = 1;
 
             var query = (from p in dbContext.Professionals
                          orderby p.UserName
@@ -29,8 +35,9 @@ namespace GuguDadah.Pages {
 
             foreach (var item in query) //retrieve each item and assign to model
             {
-                lista.Add(new Professional() {
+                list.Add(new Professional() {
                     UserName = item.UserName,
+                    Name = item.Name,
                     Contact = item.Contact,
                     Email = item.Email,
                     Avatar = item.Avatar,
@@ -38,6 +45,35 @@ namespace GuguDadah.Pages {
                     Rating = item.Rating
                 });
             }
+
+            return Page();
+        }
+
+        public ActionResult OnGetChooseBS() {
+
+            ChooseBabysitters = 1;
+
+            var query = (from p in dbContext.Professionals
+                         orderby p.UserName
+                         select p).ToList();
+
+            foreach (var item in query) //retrieve each item and assign to model
+            {
+                list.Add(new Professional() {
+                    UserName = item.UserName,
+                    Name = item.Name,
+                    Contact = item.Contact,
+                    Email = item.Email,
+                    Avatar = item.Avatar,
+                    Shift = item.Shift,
+                    Rating = item.Rating,
+                    RegistrationDate = item.RegistrationDate,
+                    Presentation = item.Presentation
+                });
+            }
+
+            return Page();
+
         }
 
         public ActionResult OnPostChoosedProfessional(string username) {

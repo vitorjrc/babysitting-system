@@ -96,7 +96,7 @@ namespace GuguDadah.Pages {
                 Contact = Professional.Contact,
                 Name = Professional.Name,
                 Shift = Professional.Shift,
-                Rating = 0,
+                Rating = 3,
                 RegistrationDate = date
             };
 
