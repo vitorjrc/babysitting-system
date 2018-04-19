@@ -125,19 +125,21 @@
                             <td class="text-center">
                                 <span>@item.Address</span>
                             </td>
-                            <td class="text-center" style="width: 15%;">
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-times fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
+                            <td class="text-center" style="width: 20%;">
+                                <form asp-page-handler="ReturningTempWork" method="post" style="display: inline;">
+                                    <button type="submit" class="myButton">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </button>
+                                </form>
+                                <form asp-page-handler="ReturningTempWork" method="post" style="display: inline;">
+                                    <button type="submit" class="myButton">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-times fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     }
@@ -189,12 +191,13 @@
                                 <span>@item.Observations</span>
                             </td>
                             <td class="text-center" style="width: 15%;">
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-location-arrow fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
+                                <form asp-page-handler="GPSLocation" asp-page="GPSLocation" asp-route-address="@item.Address" method="post">
+                                    <button type="submit" class="myButton">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-location-arrow fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     }

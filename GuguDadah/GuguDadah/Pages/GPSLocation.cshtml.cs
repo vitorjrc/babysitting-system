@@ -16,8 +16,11 @@ namespace GuguDadah.Pages {
 
     public class GPSLocation : PageModel {
 
-        public void OnGet() {
+        public string Address{ get; set; }
 
+        public void OnPostGPSLocation(string address) {
+
+            Address = address;
         }
 
     }

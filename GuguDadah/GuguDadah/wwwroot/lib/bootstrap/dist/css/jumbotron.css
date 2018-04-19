@@ -188,3 +188,9 @@ tbody tr {
 thead th {
     border-bottom: none !important;
 }
+
+/* botao para as tabelas */
+.myButton {
+    background-color: transparent;
+    border: none;
+}

@@ -9,7 +9,7 @@
     {
     <script type='text/javascript'>
 
-        var address = document.getElementById('address').value;
+        var address = '@Model.Address'
 
         function myNavFunc() {
 
@@ -29,8 +29,6 @@
         document.getElementById('foo').innerHTML = '<img src="https://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=16&size=600x400&key=AIzaSyCEiIZpFRIPjRrynmKw0tiIF4rfLQdNI6o" id="imageBox"/>';
     </script>
 }
-
-<input type="hidden" name="address" value="Braga" id="address"><br>
 
 <input type="button" class="btn btn-info" value="Iniciar Navegação" onclick="myNavFunc()" />
 
