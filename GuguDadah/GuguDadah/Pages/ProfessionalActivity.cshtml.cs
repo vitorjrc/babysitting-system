@@ -29,81 +29,77 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
-        private ActionResult getHistoryList() {
+        public ActionResult OnGetHistoryList() {
 
-            var query = (from p in dbContext.Works
-                         orderby p.Date
-                         where p.Status == "C" && p.Client.UserName.Equals(User.Identity.Name)
-                         select p).ToList();
+            var query = (from work in dbContext.Works
+                         orderby work.Date
+                         where work.Status == "C" && work.Professional.UserName.Equals(User.Identity.Name)
+                         join cli in dbContext.Clients on work.Client.UserName equals cli.UserName
+                         select new { work, cli }).ToList();
 
             ProfessionalHistoryList = new List<Work>();
 
             foreach (var item in query) {
                 ProfessionalHistoryList.Add(new Work() {
 
-                    Address = item.Address,
-                    Cost = item.Cost,
-                    Date = item.Date,
-                    Duration = item.Duration,
-                    Payment = item.Payment,
-                    Professional = item.Professional,
-                    Rating = item.Rating,
-                    Status = item.Status,
-                    Type = item.Type
+                    Id = item.work.Id,
+                    Client = item.cli,
+                    Date = item.work.Date,
+                    Duration = item.work.Duration,
+                    Rating = item.work.Rating,
+                    Type = item.work.Type
                 });
             }
 
             return Page();
         }
 
-        private ActionResult getPendentList() {
+        public ActionResult OnGetPendentList() {
 
-            var query = (from p in dbContext.Works
-                         orderby p.Date
-                         where p.Status == "P" && p.Client.UserName.Equals(User.Identity.Name)
-                         select p).ToList();
+            var query = (from work in dbContext.Works
+                         orderby work.Date
+                         where work.Status == "P" && work.Professional.UserName.Equals(User.Identity.Name)
+                         join cli in dbContext.Clients on work.Client.UserName equals cli.UserName
+                         select new { work, cli }).ToList();
 
             ProfessionalPendentList = new List<Work>();
 
             foreach (var item in query) {
                 ProfessionalPendentList.Add(new Work() {
 
-                    Address = item.Address,
-                    Cost = item.Cost,
-                    Date = item.Date,
-                    Duration = item.Duration,
-                    Payment = item.Payment,
-                    Professional = item.Professional,
-                    Rating = item.Rating,
-                    Status = item.Status,
-                    Type = item.Type
+                    Id = item.work.Id,
+                    Address = item.work.Address,
+                    Client = item.cli,
+                    Cost = item.work.Cost,
+                    Date = item.work.Date,
+                    Duration = item.work.Duration,
+                    Observations = item.work.Observations,
+                    Type = item.work.Type
                 });
             }
 
             return Page();
         }
 
-        private ActionResult getOffersList() {
+        public ActionResult OnGetOffersList() {
 
-            var query = (from p in dbContext.Works
-                         orderby p.Date
-                         where p.Status == "P" && p.Client.UserName.Equals(User.Identity.Name)
-                         select p).ToList();
+            var query = (from work in dbContext.Works
+                         orderby work.Date
+                         where work.Status == "O" && work.Professional.UserName.Equals(User.Identity.Name)
+                         join cli in dbContext.Clients on work.Client.UserName equals cli.UserName
+                         select new { work, cli }).ToList();
 
             ProfessionalOffersList = new List<Work>();
 
             foreach (var item in query) {
                 ProfessionalOffersList.Add(new Work() {
 
-                    Address = item.Address,
-                    Cost = item.Cost,
-                    Date = item.Date,
-                    Duration = item.Duration,
-                    Payment = item.Payment,
-                    Professional = item.Professional,
-                    Rating = item.Rating,
-                    Status = item.Status,
-                    Type = item.Type
+                    Id = item.work.Id,
+                    Address = item.work.Address,
+                    Client = item.cli,
+                    Date = item.work.Date,
+                    Duration = item.work.Duration,
+                    Type = item.work.Type
                 });
             }
 

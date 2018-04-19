@@ -1,7 +1,7 @@
 ﻿@page
 @model GuguDadah.Pages.ProfessionalActivity
 @{
-    ViewData["Title"] = "Visão Geral";
+    ViewData["Title"] = "Trabalhos";
 
 }
 
@@ -32,6 +32,7 @@
                 "info": "A mostrar a página _PAGE_ de _PAGES_",
                 "infoEmpty": "Sem linhas disponíveis",
                 "infoFiltered": "(filtrado de _MAX_ linhas)",
+                "search": "Procurar: ",
                 "paginate": {
                     "previous": "Anterior",
                     "next": "Seguinte"
@@ -55,6 +56,7 @@
                 "info": "A mostrar a página _PAGE_ de _PAGES_",
                 "infoEmpty": "Sem linhas disponíveis",
                 "infoFiltered": "(filtrado de _MAX_ linhas)",
+                "search": "Procurar: ",
                 "paginate": {
                     "previous": "Anterior",
                     "next": "Seguinte"
@@ -77,6 +79,7 @@
                 "info": "A mostrar a página _PAGE_ de _PAGES_",
                 "infoEmpty": "Sem linhas disponíveis",
                 "infoFiltered": "(filtrado de _MAX_ linhas)",
+                "search": "Procurar: ",
                 "paginate": {
                     "previous": "Anterior",
                     "next": "Seguinte"
@@ -92,167 +95,31 @@
             <table id="clients" class="row-border" style="width:100%">
                 <thead>
                     <tr>
-                        <th class="text-center"><span>Nickname</span></th>
-                        <th class="text-center"><span>Nome</span></th>
-                        <th class="text-center"><span>Email</span></th>
-                        <th class="text-center"><span>Contacto</span></th>
-                        <th class="text-center"><span>Estatuto</span></th>
-                        <th class="text-center">Ações</th>
+                        <th class="text-center"><span>Cliente</span></th>
+                        <th class="text-center"><span>Tipo</span></th>
+                        <th class="text-center"><span>Data</span></th>
+                        <th class="text-center"><span>Duração</span></th>
+                        <th class="text-center"><span>Morada</span></th>
+                        <th class="text-center">Ações botão aceitar e recusar</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.ProfessionalOffersList) {
-                        <tr>
-                            <td class="text-center">
-                                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" width="50" height="50" alt="" />
-                                <span><strong> @item.UserName</strong></span>
-                            </td>
-                            <td class="text-center">@item.Name</td>
-                            <td class="text-center">
-                                <span>@item.Email</span>
-                            </td>
-                            <td class="text-center">
-                                <span>@item.Contact</span>
-                            </td>
-                            <td class="text-center">
-                                <span class="label label-default">@item.Status</span>
-                            </td>
-                            <td class="text-center" style="width: 15%;">
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                                <a href="#" class="table-link danger">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-}
-
-@if (Model.ProfessionalPendentList != null) {
-    <div class="container-fluid">
-        <div class="table-responsive">
-            <table id="professionals" class="row-border" style="width:100%">
-                <thead>
                     <tr>
-                        <th class="text-center"><span>Nickname</span></th>
-                        <th class="text-center"><span>Nome</span></th>
-                        <th class="text-center"><span>Email</span></th>
-                        <th class="text-center"><span>Contacto</span></th>
-                        <th class="text-center"><span>Rating</span></th>
-                        <th class="text-center"><span>Turno</span></th>
-                        <th class="text-center"><span>Data de Registo</span></th>
-                        <th class="text-center">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.ProfessionalPendentList) {
-                        <tr>
-                            <td class="text-center">
-                                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" width="50" height="50" alt="" />
-                                <span><strong> @item.UserName</strong></span>
-                            </td>
-                            <td class="text-center">@item.Name</td>
-                            <td class="text-center">
-                                <span>@item.Email</span>
-                            </td>
-                            <td class="text-center">
-                                <span>@item.Contact</span>
-                            </td>
-                            <td class="text-center">
-                                <span>@item.Rating</span>
-                            </td>
-                            <td class="text-center">
-                                <span>@item.Shift</span>
-                            </td>
-                            <td class="text-center">
-                                <span>
-                                    @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.RegistrationDate))
-                                </span>
-                            </td>
-                            <td class="text-center" style="width: 15%;">
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                                <a href="#" class="table-link danger">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-}
-
-@if (Model.ProfessionalHistoryList != null) {
-    <div class="container-fluid">
-        <div class="table-responsive">
-            <table id="works" class="row-border" style="width:100%">
-                <thead>
-                    <tr>
-                        <th class="text-center"><span>ID</span></th>
-                        <th class="text-center"><span>Cliente</span></th>
-                        <th class="text-center"><span>Profissional</span></th>
-                        <th class="text-center"><span>Preço</span></th>
-                        <th class="text-center"><span>Data</span></th>
-                        <th class="text-center"><span>Pagamento</span></th>
-                        <th class="text-center"><span>Estado</span></th>
-                        <th class="text-center">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.ProfessionalHistoryList) {
-                    <tr>
-                        <td class="text-center">
-                            <span>@item.Id</span>
-                        </td>
                         <td class="text-center">
                             <span>@item.Client.UserName</span>
                         </td>
                         <td class="text-center">
-                            <span>@item.Professional.UserName</span>
-                        </td>
-                        <td class="text-center">
-                            <span>@item.Cost</span>
+                            <span>@item.Type</span>
                         </td>
                         <td class="text-center">
                             <span>@item.Date</span>
                         </td>
                         <td class="text-center">
-                            <span class="label label-default">@item.Payment</span>
+                            <span>@item.Duration horas</span>
                         </td>
                         <td class="text-center">
-                            <span class="label label-default">@item.Status</span>
+                            <span>@item.Address</span>
                         </td>
                         <td class="text-center" style="width: 15%;">
                             <a href="#" class="table-link">
@@ -273,6 +140,110 @@
                                     <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@if (Model.ProfessionalPendentList != null) {
+    <div class="container-fluid">
+        <div class="table-responsive">
+            <table id="professionals" class="row-border" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="text-center"><span>Cliente</span></th>
+                        <th class="text-center"><span>Tipo</span></th>
+                        <th class="text-center"><span>Data</span></th>
+                        <th class="text-center"><span>Duração</span></th>
+                        <th class="text-center"><span>Morada</span></th>
+                        <th class="text-center"><span>Observações</span></th>
+                        <th class="text-center">Botão NAVEGAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ProfessionalPendentList) {
+                    <tr>
+                        <td class="text-center">
+                            <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Client.Avatar)" width="50" height="50" alt="" />
+                            <span><strong> @item.Client.UserName</strong></span>
+                        </td>
+                        <td class="text-center">
+                            <span>@item.Type</span>
+                        </td>
+                        <td class="text-center">
+                            <span>@item.Date</span>
+                        </td>
+                        <td class="text-center">
+                            <span>@item.Duration</span>
+                        </td>
+                        <td class="text-center">
+                            <span>@item.Address</span>
+                        </td>
+                        <td class="text-center">
+                            <span>@item.Observations</span>
+                        </td>
+                        <td class="text-center" style="width: 15%;">
+                            <a href="#" class="table-link">
+                                <span class="fa-stack">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                            <a href="#" class="table-link">
+                                <span class="fa-stack">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                            <a href="#" class="table-link danger">
+                                <span class="fa-stack">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@if (Model.ProfessionalHistoryList != null) {
+    <div class="container-fluid">
+        <div class="table-responsive">
+            <table id="works" class="row-border" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="text-center"><span>Cliente</span></th>
+                        <th class="text-center"><span>Tipo</span></th>
+                        <th class="text-center"><span>Data</span></th>
+                        <th class="text-center"><span>Duração</span></th>
+                        <th class="text-center"><span>Rating</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ProfessionalHistoryList) {
+                    <tr>
+                        <td class="text-center">
+                            <span>@item.Client.UserName</span>
+                        </td>
+                        <td class="text-center">
+                            <span>@item.Type</span>
+                        </td>
+                        <td class="text-center">
+                            <span>@item.Date</span>
+                        </td>
+                        <td class="text-center">
+                            <span>@item.Duration</span>
+                        </td>
+                        <td class="text-center">
+                            <span>@item.Rating</span>
                         </td>
                     </tr>
                     }

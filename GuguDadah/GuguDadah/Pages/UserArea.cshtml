@@ -15,6 +15,9 @@
 @section Scripts
     {
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
     @if (User.IsInRole("Client")) {
 
         <script type='text/javascript'>
@@ -126,7 +129,6 @@
             <div class="col-md-6 col-centered">
                 <div class="panel panel-default col-centered">
                     <div class="panel-body">
-
                         <div class="row">
                             <div class="col-xs-12 col-sm-8">
                                 <h2 class="text-primary"><b><span class="glyphicon glyphicon-user"></span> @Model.professional.Name</b></h2>
@@ -151,19 +153,21 @@
                             <a class="btn btn-primary btn-block" asp-page="/Babysitters">Babysitters</a>
                         </div><!--/col-->
                         <div class="col-xs-12 col-sm-4">
-                            <div class="btn-group" style="width: 100%">
+                            <div class="dropdown" style="width: 100%">
                                 <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown">
                                     Trabalhos <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a asp-page="/Register">Avaliar trabalhos</a></li>
-                                    <li><a asp-page="/Babysitters">Histórico</a></li>
-                                    <li><a asp-page="/Babysitters">Propostas</a></li>
-                                    <li><a asp-page="/Babysitters">Pendentes</a></li>
+                                    <li><a class="dropdown-item" asp-page="/ProfessionalActivity" asp-page-handler="OffersList"><span class="glyphicon glyphicon-user"></span> Ofertas</a></li>
+                                    <li><a class="dropdown-item" asp-page="/ProfessionalActivity" asp-page-handler="PendentList"><span class="glyphicon glyphicon-user"></span> Pendentes</a></li>
+                                    <li><a class="dropdown-item" asp-page="/ProfessionalActivity" asp-page-handler="HistoryList"><span class="glyphicon glyphicon-user"></span> Histórico</a></li>
                                 </ul>
                             </div>
                         </div><!--/col-->
+                        <br />
+                        <br />
                     </div><!--/row-->
+                    <br />
                 </div><!--/panel-body-->
             </div><!--/panel-->
         </div>

@@ -67,23 +67,27 @@ namespace GuguDadah.Pages {
 
             if (!ModelState.IsValid) return Page();
 
-            Work.Cost = 20;
             Work.Payment = "N";
             Work.Rating = 0;
-            Work.Status = "P";
+
+            // offered
+            Work.Status = "O";
 
             var parsedStartDate = DateTime.ParseExact(StartDate, "yyyy-MM-dd", null);
-            var parsedStartTime = DateTime.ParseExact(StartTime, "hh:mm", null);
+            var parsedStartTime = DateTime.ParseExact(StartTime, "HH:mm", null);
 
             DateTime FinalStartTime = new DateTime(parsedStartDate.Year, parsedStartDate.Month, parsedStartDate.Day, parsedStartTime.Hour, parsedStartTime.Minute, 0);
 
             var parsedEndDate = DateTime.ParseExact(EndDate, "yyyy-MM-dd", null);
-            var parsedEndTime = DateTime.ParseExact(EndTime, "hh:mm", null);
+            var parsedEndTime = DateTime.ParseExact(EndTime, "HH:mm", null);
 
             DateTime FinalEndTime = new DateTime(parsedEndDate.Year, parsedEndDate.Month, parsedEndDate.Day, parsedEndTime.Hour, parsedEndTime.Minute, 0);
 
-            var diff = (int) FinalEndTime.Subtract(FinalStartTime).TotalHours;
-            Work.Duration = diff;
+            var diff = FinalEndTime.Subtract(FinalStartTime).TotalHours;
+
+            Work.Duration = (int) Math.Ceiling(diff);
+
+            Work.Cost = FinalPrice(Type, (int) Work.Duration);
 
             Work.Date = FinalStartTime;
 
@@ -104,5 +108,34 @@ namespace GuguDadah.Pages {
             return RedirectToPage("/ChooseBabysitter");
 
         }
+
+
+        private decimal FinalPrice(string typeOfWork, int duration) {
+
+            // preço à hora
+            decimal hourPrice = 10;
+
+            // multiplicador para o caso de ser ou não cliente golden
+            decimal multiplier = 1;
+
+            // obtém o username do utilizador logado
+            var LoggedUser = User.Identity.Name;
+
+            // vai à BD buscar o cliente logado
+            var client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(LoggedUser));
+
+            if (client.Status.Equals("G")) multiplier = 0.8m;
+            
+
+            if (typeOfWork.Equals("exterior")) hourPrice += 5;
+
+            if (typeOfWork.Equals("study")) hourPrice += 10;
+
+            decimal price = (hourPrice * duration) * multiplier;
+
+
+            return price;
+        }
+
     }
 }
