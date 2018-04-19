@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GuguDadah.Data;
 
-namespace GuguDadah.Pages {
+namespace GuguDadah.Includes {
     public interface ILoginService {
 
         Client AuthenticateClient(string username, string password);

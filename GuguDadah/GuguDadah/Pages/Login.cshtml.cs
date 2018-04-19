@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 
 using GuguDadah.Data;
+using GuguDadah.Includes;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
@@ -108,7 +109,7 @@ namespace GuguDadah.Pages {
                 });
 
             // redireciona para a Index novamente, porém já autenticado
-            return RedirectToPage("/Index");
+            return RedirectToPage("/Index").WithSuccess("Login", "efetuado com sucesso.", "1000"); ;
         }
 
         public IActionResult OnGetLogout() {

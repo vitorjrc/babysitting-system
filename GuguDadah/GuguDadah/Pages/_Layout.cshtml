@@ -63,7 +63,6 @@
         </div>
     </nav>
 
-
     <div class="container body-content">
         <div id="banner">
             <a target="banner" href="/" onclick="return false;">
@@ -76,14 +75,16 @@
 
         <div>
             @if (@User.Identity.Name != null) {
-                <p>Logado como @User.Identity.Name</p>
-            }
-            else {
-                <p>Utilizador não autenticado</p>
-            }
+            <p>Logado como @User.Identity.Name</p>
+    }
+    else {
+        <p>Utilizador não autenticado</p>
+}
         </div>
 
+        @Html.Partial("_StatusMessages")
         <hr />
+
         @RenderBody()
         <hr />
 
