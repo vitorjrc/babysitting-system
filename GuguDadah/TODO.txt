@@ -1,0 +1,14 @@
+TABELAS DO ADMIN
+clientes - marcar como golden ou que são normais e marcar como normais os que são golden, apagar??
+profissionais - editar, apagar
+trabalhos - marcar como pago os que ainda não estão
+
+TABELAS DO PROFISSIONAL
+ofertas - aceitar, recusar
+pendentes - localização
+trabalhos - NENHUM BOTÃO
+
+CARDS DO CLIENTE
+ofertas - cancelar
+pendentes - não vê nada, editar o trabalho??
+trabalhos - Avaliar se ainda n tiver avaliação.

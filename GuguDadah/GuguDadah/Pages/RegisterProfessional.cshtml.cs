@@ -22,7 +22,7 @@ namespace GuguDadah.Pages {
     [Authorize(Roles = "Admin")]
     public class RegisterProfessional : PageModel {
 
-        [BindRequired]
+        [Required]
         [BindProperty]
         [Display(Name = "Confirmar Password")]
         public string ConfirmPassword { get; set; }

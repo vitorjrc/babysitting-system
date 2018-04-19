@@ -1,5 +1,5 @@
 ﻿@page
-@model GuguDadah.Pages.AdminOverview
+@model GuguDadah.Pages.ProfessionalActivity
 @{
     ViewData["Title"] = "Visão Geral";
 
@@ -86,7 +86,7 @@
     </script>
 }
 
-@if (Model.ClientsList != null) {
+@if (Model.ProfessionalOffersList != null) {
     <div class="container-fluid">
         <div class="table-responsive">
             <table id="clients" class="row-border" style="width:100%">
@@ -101,7 +101,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.ClientsList) {
+                    @foreach (var item in Model.ProfessionalOffersList) {
                         <tr>
                             <td class="text-center">
                                 <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" width="50" height="50" alt="" />
@@ -145,7 +145,7 @@
     </div>
 }
 
-@if (Model.ProfessionalsList != null) {
+@if (Model.ProfessionalPendentList != null) {
     <div class="container-fluid">
         <div class="table-responsive">
             <table id="professionals" class="row-border" style="width:100%">
@@ -162,7 +162,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.ProfessionalsList) {
+                    @foreach (var item in Model.ProfessionalPendentList) {
                         <tr>
                             <td class="text-center">
                                 <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" width="50" height="50" alt="" />
@@ -214,7 +214,7 @@
     </div>
 }
 
-@if (Model.WorksList != null) {
+@if (Model.ProfessionalHistoryList != null) {
     <div class="container-fluid">
         <div class="table-responsive">
             <table id="works" class="row-border" style="width:100%">
@@ -231,7 +231,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.WorksList) {
+                    @foreach (var item in Model.ProfessionalHistoryList) {
                     <tr>
                         <td class="text-center">
                             <span>@item.Id</span>

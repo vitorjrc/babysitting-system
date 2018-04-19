@@ -19,12 +19,12 @@ namespace GuguDadah.Pages {
     [AllowAnonymous]
     public class Login : PageModel {
 
-        [BindRequired]
+        [Required]
         [BindProperty]
         [Display(Name = "Nickname")]
         public string UserName { get; set; }
 
-        [BindRequired]
+        [Required]
         [BindProperty]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -43,7 +43,9 @@ namespace GuguDadah.Pages {
 
         //metodo post do formulario
         public IActionResult OnPostLoginUser() {
-            
+
+            TryUpdateModelAsync(this);
+
             // para o caso de as credenciais não terem sido preenchidas. Mostra mensagens de erro...
             if (!ModelState.IsValid) return Page();
 

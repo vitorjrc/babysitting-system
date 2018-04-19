@@ -29,7 +29,7 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
-    public ActionResult OnGetListOfClients() {
+        public ActionResult OnGetListOfClients() {
 
             var query = (from p in dbContext.Clients
                          orderby p.UserName
@@ -37,13 +37,14 @@ namespace GuguDadah.Pages {
 
             ClientsList = new List<Client>();
 
-            //retrieve each item and assign to model
+            // vai buscar o conteúdo de toda a query
             foreach (var item in query) {
 
                 string displayStatus = null;
                 if (item.Status.Equals("N")) displayStatus = "Normal";
-                else displayStatus = "Golden";
+                if (item.Status.Equals("G")) displayStatus = "Golden";
 
+                // coloca numa lista que será lida pela view
                 ClientsList.Add(new Client() {
                     UserName = item.UserName,
                     Name = item.Name,
@@ -58,14 +59,18 @@ namespace GuguDadah.Pages {
         }
 
         public ActionResult OnGetListOfProfessionals() {
+
+
             var query = (from p in dbContext.Professionals
                          orderby p.UserName
                          select p).ToList();
 
             ProfessionalsList = new List<Professional>();
 
-            //retrieve each item and assign to model
+            // vai buscar o conteúdo de toda a query
             foreach (var item in query) {
+
+                // coloca numa lista que será lida pela view
                 ProfessionalsList.Add(new Professional() {
                     UserName = item.UserName,
                     Contact = item.Contact,
@@ -90,8 +95,19 @@ namespace GuguDadah.Pages {
 
             WorksList = new List<Work>();
 
-            //retrieve each item and assign to model
+            // vai buscar o conteúdo de toda a query
             foreach (var item in query) {
+
+                string displayStatus = null;
+                string displayPayment = null;
+
+                if (item.work.Status.Equals("O")) displayStatus = "Oferta";
+                if (item.work.Status.Equals("P")) displayStatus = "Pendente";
+                if (item.work.Status.Equals("C")) displayStatus = "Completo";
+                if (item.work.Payment.Equals("P")) displayPayment = "Pago";
+                if (item.work.Payment.Equals("N")) displayPayment = "Não Pago";
+
+                // coloca numa lista que será lida pela view
                 WorksList.Add(new Work() {
                     Id = item.work.Id,
                     Address = item.work.Address,
@@ -100,8 +116,8 @@ namespace GuguDadah.Pages {
                     Cost = item.work.Cost,
                     Date = item.work.Date,
                     Duration = item.work.Duration,
-                    Payment = item.work.Payment,
-                    Status = item.work.Status,
+                    Payment = displayPayment,
+                    Status = displayStatus,
                     Rating = item.work.Rating,
                     Type = item.work.Type
                 });
@@ -109,8 +125,6 @@ namespace GuguDadah.Pages {
 
             return Page();
         }
-
-
 
     }
 }

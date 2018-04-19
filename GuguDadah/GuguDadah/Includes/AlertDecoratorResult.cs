@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GuguDadah.Includes
 {
     public class AlertDecoratorResult : IActionResult {
+
         public IActionResult Result { get; }
         public string Type { get; }
         public string Title { get; }
@@ -13,6 +14,7 @@ namespace GuguDadah.Includes
         public string DurationAlert { get; }
 
         public AlertDecoratorResult(IActionResult result, string type, string title, string body, string durationAlert) {
+
             Result = result;
             Type = type;
             Title = title;
@@ -21,8 +23,7 @@ namespace GuguDadah.Includes
         }
 
         public async Task ExecuteResultAsync(ActionContext context) {
-            //NOTE: Be sure you add a using statement for Microsoft.Extensions.DependencyInjection, otherwise
-            //      this overload of GetService won't be available!
+
             var factory = context.HttpContext.RequestServices.GetService<ITempDataDictionaryFactory>();
 
             var tempData = factory.GetTempData(context.HttpContext);

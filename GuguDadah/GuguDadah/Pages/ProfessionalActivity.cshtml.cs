@@ -2,25 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using GuguDadah.Data;
+using System.IO;
 using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http.Authentication;
 
 namespace GuguDadah.Pages {
-    public class ClientActivity : PageModel {
+
+    public class ProfessionalActivity : PageModel {
 
         private readonly AppDbContext dbContext;
 
-        public List<Work> ClientHistoryList { get; set; }
+        public List<Work> ProfessionalHistoryList { get; set; }
 
-        public List<Work> ClientOffersList { get; set; }
+        public List<Work> ProfessionalOffersList { get; set; }
 
-        public List<Work> ClientPendentList { get; set; }
+        public List<Work> ProfessionalPendentList { get; set; }
 
-        public ClientActivity(AppDbContext context) {
+        public ProfessionalActivity(AppDbContext context) {
 
             dbContext = context;
         }
@@ -32,10 +36,10 @@ namespace GuguDadah.Pages {
                          where p.Status == "C" && p.Client.UserName.Equals(User.Identity.Name)
                          select p).ToList();
 
-            ClientHistoryList = new List<Work>();
+            ProfessionalHistoryList = new List<Work>();
 
             foreach (var item in query) {
-                ClientHistoryList.Add(new Work() {
+                ProfessionalHistoryList.Add(new Work() {
 
                     Address = item.Address,
                     Cost = item.Cost,
@@ -59,10 +63,10 @@ namespace GuguDadah.Pages {
                          where p.Status == "P" && p.Client.UserName.Equals(User.Identity.Name)
                          select p).ToList();
 
-            ClientPendentList = new List<Work>();
+            ProfessionalPendentList = new List<Work>();
 
             foreach (var item in query) {
-                ClientPendentList.Add(new Work() {
+                ProfessionalPendentList.Add(new Work() {
 
                     Address = item.Address,
                     Cost = item.Cost,
@@ -86,10 +90,10 @@ namespace GuguDadah.Pages {
                          where p.Status == "P" && p.Client.UserName.Equals(User.Identity.Name)
                          select p).ToList();
 
-            ClientOffersList = new List<Work>();
+            ProfessionalOffersList = new List<Work>();
 
             foreach (var item in query) {
-                ClientOffersList.Add(new Work() {
+                ProfessionalOffersList.Add(new Work() {
 
                     Address = item.Address,
                     Cost = item.Cost,
