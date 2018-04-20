@@ -1,6 +1,8 @@
-Meter alertas para todos os botões
+Limitar as datas dos agendamentos
+Detetar turno automaticamente
 Ver questões da segurança
-Página PAGAMENTO
 Editar perfil utilizador
 Editar perfil profissional
 Remover profissional
+
+Restringir M, T, N

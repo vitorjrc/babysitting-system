@@ -34,7 +34,7 @@ namespace GuguDadah.Pages {
                          orderby p.UserName
                          select p).ToList();
 
-            foreach (var item in query) //retrieve each item and assign to model
+            foreach (var item in query) 
             {
                 list.Add(new Professional() {
                     UserName = item.UserName,
@@ -75,26 +75,6 @@ namespace GuguDadah.Pages {
 
             return Page();
 
-        }
-
-        public ActionResult OnPostChoosedProfessional(string username) {
-
-            Work work;
-            work = JsonConvert.DeserializeObject<Work>(TempData["tempWork"].ToString());
-
-            if (work == null) return Page();
-
-            Professional professional = dbContext.Professionals.FirstOrDefault(m => m.UserName.Equals(username));
-            Client Client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(User.Identity.Name));
-
-            work.Client = Client;
-            work.Professional = professional;
-
-            dbContext.Works.Add(work);
-
-            dbContext.SaveChanges();
-
-            return RedirectToPage("/Index");
         }
     }
 }

@@ -136,7 +136,7 @@ namespace GuguDadah.Pages {
 
             dbContext.SaveChanges();
 
-            return RedirectToPage("/AdminOverview", "ListOfClients").WithSuccess("Admin", "Cliente marcado como golden com sucesso.", "1000"); ;
+            return RedirectToPage("/AdminOverview", "ListOfClients").WithSuccess("Admin", "Cliente marcado como golden com sucesso.", "2000");
         }
 
         public IActionResult OnPostMarkAsNormal(string username) {
@@ -148,7 +148,7 @@ namespace GuguDadah.Pages {
 
             dbContext.SaveChanges();
 
-            return RedirectToPage("/AdminOverview", "ListOfClients").WithSuccess("Admin", "Cliente marcado como normal com sucesso.", "3000"); ;
+            return RedirectToPage("/AdminOverview", "ListOfClients").WithSuccess("Admin", "Cliente marcado como normal com sucesso.", "2000");
         }
 
         public IActionResult OnPostMarkAsPaid(int id) {
@@ -160,7 +160,7 @@ namespace GuguDadah.Pages {
 
             dbContext.SaveChanges();
 
-            return RedirectToPage("/AdminOverview", "ListOfWorks").WithSuccess("Admin", "O trabalho foi marcado como pago com sucesso.", "3000"); ;
+            return RedirectToPage("/AdminOverview", "ListOfWorks").WithSuccess("Admin", "O trabalho foi marcado como pago com sucesso.", "2000");
         }
 
     }

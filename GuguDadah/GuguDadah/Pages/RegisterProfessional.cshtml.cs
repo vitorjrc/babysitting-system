@@ -16,6 +16,7 @@ using ImageMagick;
 using GuguDadah.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using GuguDadah.Includes;
 
 namespace GuguDadah.Pages {
 
@@ -104,7 +105,7 @@ namespace GuguDadah.Pages {
 
             dbContext.SaveChanges();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./AdminArea").WithSuccess("Profissional", "registado com sucesso.", "3000");
         }
 
     }

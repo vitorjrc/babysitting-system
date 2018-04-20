@@ -66,17 +66,15 @@ namespace GuguDadah.Pages {
 
             if (!ModelState.IsValid) return Page();
 
-            Work.Payment = "N";
-
             // offered
             Work.Status = "O";
 
-            var parsedStartDate = DateTime.ParseExact(StartDate, "yyyy-MM-dd", null);
+            var parsedStartDate = DateTime.ParseExact(StartDate, "dd-MM-yyyy", null);
             var parsedStartTime = DateTime.ParseExact(StartTime, "HH:mm", null);
 
             DateTime FinalStartTime = new DateTime(parsedStartDate.Year, parsedStartDate.Month, parsedStartDate.Day, parsedStartTime.Hour, parsedStartTime.Minute, 0);
 
-            var parsedEndDate = DateTime.ParseExact(EndDate, "yyyy-MM-dd", null);
+            var parsedEndDate = DateTime.ParseExact(EndDate, "dd-MM-yyyy", null);
             var parsedEndTime = DateTime.ParseExact(EndTime, "HH:mm", null);
 
             DateTime FinalEndTime = new DateTime(parsedEndDate.Year, parsedEndDate.Month, parsedEndDate.Day, parsedEndTime.Hour, parsedEndTime.Minute, 0);

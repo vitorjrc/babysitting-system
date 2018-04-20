@@ -118,7 +118,7 @@ namespace GuguDadah.Pages {
 
             Response.Cookies.Delete("GuguDadahLogin");
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("/Index").WithSuccess("Logout", "efetuado com sucesso.", "3000");
         }
 
     }

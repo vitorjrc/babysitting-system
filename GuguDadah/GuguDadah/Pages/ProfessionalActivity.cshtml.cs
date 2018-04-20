@@ -11,6 +11,7 @@ using GuguDadah.Data;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http.Authentication;
+using GuguDadah.Includes;
 
 namespace GuguDadah.Pages {
 
@@ -131,8 +132,7 @@ namespace GuguDadah.Pages {
             return Page();
         }
 
-        public ActionResult OnPostAcceptOffer(int id) {
-
+        public IActionResult OnPostAcceptOffer(int id) {
 
             var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
 
@@ -140,22 +140,22 @@ namespace GuguDadah.Pages {
 
             dbContext.SaveChanges();
 
-            return RedirectToPage("/UserArea", "ProfessionalLoggedIn");
+            return RedirectToPage("/UserArea", "ProfessionalLoggedIn").WithSuccess("Proposta", "aceite com sucesso.", "2000");
 
         }
 
-        public ActionResult OnPostRejectOffer(int id) {
+        public IActionResult OnPostRejectOffer(int id) {
 
             var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
 
             dbContext.Works.Remove(work);
             dbContext.SaveChanges();
 
-            return RedirectToPage("/UserArea", "ProfessionalLoggedIn");
+            return RedirectToPage("/UserArea", "ProfessionalLoggedIn").WithSuccess("Proposta", "rejeitada com sucesso.", "2000");
 
         }
 
-        public ActionResult OnPostMarkAsDone(int id) {
+        public IActionResult OnPostMarkAsDone(int id) {
 
 
             var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
@@ -164,7 +164,7 @@ namespace GuguDadah.Pages {
 
             dbContext.SaveChanges();
 
-            return RedirectToPage("/UserArea", "ProfessionalLoggedIn");
+            return RedirectToPage("/UserArea", "ProfessionalLoggedIn").WithSuccess("Trabalho", "marcado como realizado com sucesso.", "2000");
 
         }
 

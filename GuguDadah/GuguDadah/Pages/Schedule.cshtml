@@ -7,6 +7,25 @@
 <h4>Agendar trabalho</h4>
 <hr />
 
+@section head
+    {
+
+    <link href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" />
+
+}
+
+@section Scripts
+    {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script>
+        $("#mydate").datepicker({ dateFormat: "dd-mm-yy" }).datepicker("setDate", "0");
+    </script>
+    <script>
+        $("#mydate1").datepicker({ dateFormat: "dd-mm-yy" }).datepicker("setDate", "0");
+    </script>
+}
+
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <div class="well">
@@ -21,22 +40,22 @@
 
                     <div class="form-group">
                         @Html.LabelFor(m => m.StartDate, new { @class = "control-label" })
-                        <p><input type="date" asp-for="StartDate" class="datepicker form-control"></p>
+                        <p><input type="text" id="mydate" asp-for="StartDate" class="form-control"></p>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(m => m.StartTime, new { @class = "control-label" })
-                        <p><input type="time" class="timepicker form-control" asp-for="StartTime"></p>
+                        <p><input type="time" class="timepicker form-control" value="@DateTime.Now.ToShortTimeString()" asp-for="StartTime"></p>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(m => m.EndDate, new { @class = "control-label" })
-                        <p><input type="date" asp-for="EndDate" class="datepicker form-control"></p>
+                        <p><input type="text" id="mydate1" asp-for="EndDate" class="form-control"></p>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(m => m.EndTime, new { @class = "control-label" })
-                        <p><input type="time" class="timepicker form-control" asp-for="EndTime"></p>
+                        <p><input type="time" class="timepicker form-control" value="@DateTime.Now.ToShortTimeString()" asp-for="EndTime"></p>
                     </div>
 
                     <div class="form-group">

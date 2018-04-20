@@ -50,7 +50,7 @@
                             <p><strong>Data de registo:</strong> @item.RegistrationDate.ToShortDateString()</p>
                             <p>@item.Presentation</p>
                             <div class="panel-footer">
-                                <form asp-page-handler="ChoosedProfessional" asp-page="Babysitters" asp-route-username="@item.UserName" method="post">
+                                <form asp-page-handler="PaymentEnter" asp-page="Payment" asp-route-username="@item.UserName" method="post">
                                     <button type="submit" class="btn btn-default">Selecionar</button>
                                 </form>
                             </div>

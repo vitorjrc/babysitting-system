@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using GuguDadah.Data;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using GuguDadah.Includes;
 
 namespace GuguDadah.Pages {
     public class ClientActivity : PageModel {
@@ -124,19 +125,18 @@ namespace GuguDadah.Pages {
             return Page();
         }
 
-        // TODO
-        public ActionResult OnPostCancelOffer(int id) {
+        public IActionResult OnPostCancelOffer(int id) {
 
             var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
 
             dbContext.Works.Remove(work);
             dbContext.SaveChanges();
 
-            return RedirectToPage("/UserArea", "ClientLoggedIn");
+            return RedirectToPage("/UserArea", "ClientLoggedIn").WithSuccess("Oferta", "cancelada com sucesso.", "2000");
 
         }
 
-        public ActionResult OnPostRateOffer(int id) {
+        public IActionResult OnPostRateOffer(int id) {
 
             var query = (from work in dbContext.Works
                          join pro in dbContext.Professionals on work.Professional.UserName equals pro.UserName
@@ -149,7 +149,7 @@ namespace GuguDadah.Pages {
 
             dbContext.SaveChanges();
 
-            return RedirectToPage("/UserArea", "ClientLoggedIn");
+            return RedirectToPage("/UserArea", "ClientLoggedIn").WithSuccess("Trabalho", "avaliado com sucesso.", "2000");
         }
 
 
