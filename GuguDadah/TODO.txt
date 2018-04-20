@@ -2,4 +2,3 @@ Detetar turno automaticamente
 Ver questões da segurança
 Editar perfil utilizador
 Editar perfil profissional
-Remover profissional

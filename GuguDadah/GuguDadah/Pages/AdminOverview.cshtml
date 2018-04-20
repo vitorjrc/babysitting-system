@@ -170,7 +170,7 @@
                         <th class="text-center"><span>Rating</span></th>
                         <th class="text-center"><span>Turno</span></th>
                         <th class="text-center"><span>Data de Registo</span></th>
-                        <th class="text-center">Ações</th>
+                        <th class="text-center">Remover</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -199,24 +199,15 @@
                                 </span>
                             </td>
                             <td class="text-center" style="width: 15%;">
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                                <a href="#" class="table-link danger">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
+
+                                <form asp-page-handler="DeleteProfessional" asp-route-username="@item.UserName" method="post">
+                                    <button type="submit" class="myButton">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-minus-square fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </button>
+                                </form>
+
                             </td>
                         </tr>
                     }

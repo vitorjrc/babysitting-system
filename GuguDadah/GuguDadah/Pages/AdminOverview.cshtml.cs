@@ -163,5 +163,17 @@ namespace GuguDadah.Pages {
             return RedirectToPage("/AdminOverview", "ListOfWorks").WithSuccess("Admin", "O trabalho foi marcado como pago com sucesso.", "2000");
         }
 
+        public IActionResult OnPostDeleteProfessional(string username) {
+
+
+            var pro = dbContext.Professionals.FirstOrDefault(m => m.UserName.Equals(username));
+
+            dbContext.Professionals.Remove(pro);
+
+            dbContext.SaveChanges();
+
+            return RedirectToPage("/AdminOverview", "ListOfWorks").WithSuccess("Admin", "O profissional foi removido com sucesso.", "2000");
+        }
+
     }
 }

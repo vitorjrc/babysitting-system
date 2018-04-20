@@ -22,6 +22,7 @@ namespace GuguDadah.Data {
             modelBuilder.Entity<Professional>().ToTable("Professional");
             modelBuilder.Entity<Client>().ToTable("Client");
             modelBuilder.Entity<Work>().ToTable("Work");
+
         }
     }
 }
