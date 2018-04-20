@@ -93,7 +93,7 @@ namespace GuguDadah.Pages {
 
             if (duration > 8) {
 
-                ModelState.AddModelError(string.Empty, "O intervalo de horas excede as 8 horas.");
+                ModelState.AddModelError(string.Empty, "O intervalo de tempo excede as 8 horas.");
 
                 return Page();
             }
@@ -116,7 +116,11 @@ namespace GuguDadah.Pages {
                 Work.Type = "N";
             }
 
+            TimeSpan time = FinalStartTime.TimeOfDay;
+
             TempData["tempWork"] = JsonConvert.SerializeObject(Work);
+
+            TempData["time"] = JsonConvert.SerializeObject(time);
 
             return RedirectToPage("/Babysitters", "ChooseBS");
 
