@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http.Authentication;
 
 namespace GuguDadah.Pages {
 
+    [Authorize(Roles = "Professional")]
     public class GPSLocation : PageModel {
 
         public string Address{ get; set; }

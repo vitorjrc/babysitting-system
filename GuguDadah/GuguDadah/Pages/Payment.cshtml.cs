@@ -16,6 +16,7 @@ using GuguDadah.Includes;
 
 namespace GuguDadah.Pages {
 
+    [Authorize(Roles = "Client")]
     public class Payment : PageModel {
 
         [Required]

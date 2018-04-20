@@ -9,8 +9,11 @@ using GuguDadah.Data;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using GuguDadah.Includes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GuguDadah.Pages {
+
+    [Authorize(Roles = "Client")]
     public class ClientActivity : PageModel {
 
         private readonly AppDbContext dbContext;

@@ -15,6 +15,7 @@ using GuguDadah.Includes;
 
 namespace GuguDadah.Pages {
 
+    [Authorize(Roles = "Admin")]
     public class AdminOverview : PageModel {
 
         public List<Client> ClientsList { get; set; }

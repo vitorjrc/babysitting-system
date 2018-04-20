@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using GuguDadah.Data;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GuguDadah.Pages {
 
@@ -26,6 +27,7 @@ namespace GuguDadah.Pages {
 
         public int ChooseBabysitters { get; set; }
 
+        [Authorize(Roles = "Client")]
         public ActionResult OnGetShowBS() {
 
             ShowBabysitters = 1;
@@ -50,6 +52,7 @@ namespace GuguDadah.Pages {
             return Page();
         }
 
+        [Authorize(Roles = "Client")]
         public ActionResult OnGetChooseBS() {
 
             ChooseBabysitters = 1;

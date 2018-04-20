@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Routing;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GuguDadah.Pages {
 
+    [Authorize(Roles = "Client")]
     public class Schedule : PageModel {
 
         [Required]

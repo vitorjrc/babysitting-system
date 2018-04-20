@@ -15,6 +15,7 @@ using GuguDadah.Includes;
 
 namespace GuguDadah.Pages {
 
+    [Authorize(Roles = "Professional")]
     public class ProfessionalActivity : PageModel {
 
         private readonly AppDbContext dbContext;
