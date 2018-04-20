@@ -90,6 +90,10 @@
 }
 
 @if (Model.ClientsList != null) {
+
+    <h4>Lista de Clientes</h4>
+    <hr />
+
     <div class="container-fluid">
         <div class="table-responsive">
             <table id="clients" class="row-border" style="width:100%">
@@ -123,7 +127,7 @@
                             <td class="text-center" style="width: 15%;">
 
                                 @if (item.Status.Equals("Normal")) {
-                                    <form asp-page-handler="ReturningTempWork" method="post">
+                                    <form asp-page-handler="MarkAsGolden" asp-route-username="@item.UserName" method="post">
                                         <button type="submit" class="myButton">
                                             <span class="fa-stack">
                                                 <i class="fa fa-google fa-stack-1x fa-inverse"></i>
@@ -132,7 +136,7 @@
                                     </form>
                                 }
                                 else {
-                                    <form asp-page-handler="ReturningTempWork" method="post">
+                                    <form asp-page-handler="MarkAsNormal" asp-route-username="@item.UserName" method="post">
                                         <button type="submit" class="myButton">
                                             <span class="fa-stack">
                                                 <i class="fa fa-angle-left fa-stack-1x fa-inverse"></i>
@@ -150,6 +154,10 @@
 }
 
 @if (Model.ProfessionalsList != null) {
+
+    <h4>Lista de Profissionais</h4>
+    <hr />
+
     <div class="container-fluid">
         <div class="table-responsive">
             <table id="professionals" class="row-border" style="width:100%">
@@ -219,6 +227,10 @@
 }
 
 @if (Model.WorksList != null) {
+
+    <h4>Lista de Trabalhos</h4>
+    <hr />
+
     <div class="container-fluid">
         <div class="table-responsive">
             <table id="works" class="row-border" style="width:100%">
@@ -265,7 +277,7 @@
 
                             <td class="text-center" style="width: 15%;">
                                 @if (item.Payment.Equals("Não Pago")) {
-                                    <form asp-page-handler="ReturningTempWork" method="post">
+                                    <form asp-page-handler="MarkAsPaid" asp-route-id="@item.Id" method="post">
                                         <button type="submit" class="myButton">
                                             <span class="fa-stack">
                                                 <i class="fa fa-credit-card fa-stack-1x fa-inverse"></i>

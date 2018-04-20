@@ -1,14 +1,14 @@
 ﻿@page
 @model GuguDadah.Pages.Schedule
 @{
-    ViewData["Title"] = "Schedule";
+    ViewData["Title"] = "Agendar trabalho";
 }
 
-<h4>Reservar</h4>
+<h4>Agendar trabalho</h4>
 <hr />
 
 <div class="row">
-    <div class="col-sm-6 mainContentWrapper">
+    <div class="col-lg-8 col-lg-offset-2">
         <div class="well">
             <form asp-page-handler="ReturningTempWork" asp-page="Schedule" method="post">
 
@@ -69,7 +69,7 @@
                     @Html.ValidationSummary(false)
 
                     <div class="form-group">
-                        <input type="submit" class="btn btn btn-info" value="Continuar" />
+                        <input type="submit" class="btn btn btn-info pull-right" value="Continuar" />
                     </div>
                 </section>
             </form>

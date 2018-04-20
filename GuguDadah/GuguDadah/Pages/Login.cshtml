@@ -4,8 +4,11 @@
     ViewData["Title"] = "Login";
 }
 
+<h4>Iniciar sessão</h4>
+<hr />
+
 <div class="row">
-    <div class="col-sm-6 mainContentWrapper">
+    <div class="col-lg-6 col-lg-offset-3">
         <div class="well">
             <form asp-page-handler="LoginUser" method="post">
                 <div class="form-group">
@@ -26,7 +29,7 @@
                 @Html.ValidationSummary(false)
 
                 <div class="form-group">
-                    <input type="submit" value="Iniciar Sessão" class="btn btn-default" />
+                    <input type="submit" value="Iniciar Sessão" class="btn btn-default pull-right" />
                 </div>
             </form>
 

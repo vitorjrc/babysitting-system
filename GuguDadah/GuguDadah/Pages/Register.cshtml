@@ -4,13 +4,15 @@
     ViewData["Title"] = "Registo";
 }
 
+<h4>Criar conta</h4>
+<hr />
+
 <div class="row">
-    <div class="col-sm-6 mainContentWrapper">
+    <div class="col-lg-8 col-lg-offset-2">
         <div class="well">
             @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" })) {
                 @Html.AntiForgeryToken()
-                <h4>Criar conta</h4>
-                <hr />
+
                 <section>
 
                     <div class="form-group">
@@ -51,7 +53,7 @@
                     @Html.ValidationSummary(false)
 
                     <div class="form-group">
-                        <input type="submit" value="Registar" class="btn btn-default" />
+                        <input type="submit" value="Registar" class="btn btn-default pull-right" />
                     </div>
                 </section>
             }

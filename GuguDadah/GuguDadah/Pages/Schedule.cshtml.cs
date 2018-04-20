@@ -103,7 +103,7 @@ namespace GuguDadah.Pages {
 
             TempData["tempWork"] = JsonConvert.SerializeObject(Work);
 
-            return RedirectToPage("/ChooseBabysitter", "ChooseBS");
+            return RedirectToPage("/Babysitters", "ChooseBS");
 
         }
 

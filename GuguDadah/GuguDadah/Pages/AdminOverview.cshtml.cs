@@ -11,6 +11,7 @@ using GuguDadah.Data;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http.Authentication;
+using GuguDadah.Includes;
 
 namespace GuguDadah.Pages {
 
@@ -104,7 +105,7 @@ namespace GuguDadah.Pages {
                 if (item.work.Status.Equals("O")) displayStatus = "Oferta";
                 if (item.work.Status.Equals("P")) displayStatus = "Pendente";
                 if (item.work.Status.Equals("C")) displayStatus = "Completo";
-                if (item.work.Payment.Equals("P")) displayPayment = "Pago";
+                if (item.work.Payment.Equals("S")) displayPayment = "Pago";
                 if (item.work.Payment.Equals("N")) displayPayment = "Não Pago";
 
                 // coloca numa lista que será lida pela view
@@ -124,6 +125,42 @@ namespace GuguDadah.Pages {
             }
 
             return Page();
+        }
+
+        public IActionResult OnPostMarkAsGolden(string username) {
+
+
+            var client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(username));
+
+            client.Status = "G";
+
+            dbContext.SaveChanges();
+
+            return RedirectToPage("/AdminOverview", "ListOfClients").WithSuccess("Admin", "Cliente marcado como golden com sucesso.", "1000"); ;
+        }
+
+        public IActionResult OnPostMarkAsNormal(string username) {
+
+
+            var client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(username));
+
+            client.Status = "N";
+
+            dbContext.SaveChanges();
+
+            return RedirectToPage("/AdminOverview", "ListOfClients").WithSuccess("Admin", "Cliente marcado como normal com sucesso.", "3000"); ;
+        }
+
+        public IActionResult OnPostMarkAsPaid(int id) {
+
+
+            var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
+
+            work.Payment = "S";
+
+            dbContext.SaveChanges();
+
+            return RedirectToPage("/AdminOverview", "ListOfWorks").WithSuccess("Admin", "O trabalho foi marcado como pago com sucesso.", "3000"); ;
         }
 
     }

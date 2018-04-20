@@ -10,10 +10,33 @@
 
 }
 
+<h4>Área do Administrador</h4>
+<hr />
 
-<h2>Área do Administrador</h2>
-
-<a class="btn btn-primary" asp-page="/RegisterProfessional">Registo de Profissionais</a>
-<a class="btn btn-primary" asp-page="/AdminOverview" asp-page-handler="ListOfClients">Ver lista de utilizadores</a>
-<a class="btn btn-primary" asp-page="/AdminOverview" asp-page-handler="ListOfProfessionals">Ver lista de profissionais</a>
-<a class="btn btn-primary" asp-page="/AdminOverview" asp-page-handler="ListOfWorks">Ver lista de trabalhos</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-centered">
+            <div class="panel panel-default col-centered">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            <a class="btn btn-info" asp-page="/RegisterProfessional">Registo de Profissionais</a>
+                        </div><!--/col-->
+                        <div class="col-xs-12 col-sm-3">
+                            <a class="btn btn-info" asp-page="/AdminOverview" asp-page-handler="ListOfProfessionals">Ver lista de profissionais</a>
+                        </div><!--/col-->
+                        <div class="col-xs-12 col-sm-3">
+                            <a class="btn btn-info" asp-page="/AdminOverview" asp-page-handler="ListOfClients">Ver lista de utilizadores</a>
+                        </div><!--/col-->
+                        <div class="col-xs-12 col-sm-3">
+                            <a class="btn btn-info" asp-page="/AdminOverview" asp-page-handler="ListOfWorks">Ver lista de trabalhos</a>
+                        </div><!--/col-->
+                        <br />
+                        <br />
+                    </div><!--/row-->
+                    <br />
+                </div><!--/panel-body-->
+            </div><!--/panel-->
+        </div>
+    </div>
+</div>

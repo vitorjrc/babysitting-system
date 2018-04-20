@@ -4,12 +4,11 @@
     ViewData["Title"] = "Babysitters";
 }
 
-<h2>Lista de Babysitters</h2>
-
 @section head
     {
     <link href="~/lib/bootstrap/dist/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
     <link href="~/lib/bootstrap/dist/css/theme.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="~/lib/bootstrap/dist/css/cards.css" media="all" rel="stylesheet" type="text/css" />
 
 }
 
@@ -26,42 +25,34 @@
         });
     </script>
 }
-<div class="row">
-    <div class="col-sm-6 mainContentWrapper">
-        <div class="well">
-            <form>
-                <input id="input-3" name="input-3" value="2" class="rating" data-filled="glyphicon glyphicon-heart" data-empty="glyphicon glyphicon-heart-empty"
-                       data-show-clear="false" data-show-caption="false">
-                <button class="btn btn-primary">Submeter</button>
-            </form>
-        </div>
-    </div>
-</div>
 
 
-@if (Model.ClientHistoryList != null) {
+@if (Model.ChooseBabysitters == 1) {
 
-    <h4>Histórico de trabalhos</h4>
+    <h4>Escolha de Babysitter</h4>
     <hr />
 
     <div class="container-fluid">
         <div class="row">
-            @foreach (var item in Model.ClientHistoryList) {
+            @foreach (var item in Model.list) {
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="panel panel-blue userlist">
                         <div class="panel-body text-center">
                             <div class="userprofile">
-                                <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Professional.Avatar)" alt="" class="userpicimg"> </div>
-                                <h3 class="username">@item.Professional.Name</h3>
-                                <input type="hidden" class="rating" disabled="disabled" value="@item.Professional.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" alt="" class="userpicimg"> </div>
+                                <h3 class="username">@item.Name</h3>
+                                @{
+                                    var rating = Math.Round((float)item.Rating, 1);
+                                    <input type="hidden" class="rating" disabled="disabled" value="@rating" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                }
                             </div>
                             <br>
-                            <p>Data </p>
-                            <p>Preço: @item.Cost</p>
-                            <p>Morada: @item.Address</p>
-                            <input type="hidden" class="rating" disabled="disabled" value="@item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                            <p><strong>Data de registo:</strong> @item.RegistrationDate.ToShortDateString()</p>
+                            <p>@item.Presentation</p>
                             <div class="panel-footer">
-                                <a class="btn btn-primary btn-block" asp-page-handler="ChoosedProfessional">Avaliar</a>
+                                <form asp-page-handler="ChoosedProfessional" asp-page="Babysitters" asp-route-username="@item.UserName" method="post">
+                                    <button type="submit" class="btn btn-default">Selecionar</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -70,5 +61,37 @@
         </div>
     </div>
 }
+
+@if (Model.ShowBabysitters == 1) {
+
+    <h4>Babysitters</h4>
+    <hr />
+
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model.list) {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="panel panel-blue userlist">
+                        <div class="panel-body text-center">
+                            <div class="userprofile">
+                                <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Avatar)" alt="" class="userpicimg"> </div>
+                                <h3 class="username">@item.Name</h3>
+                                @{
+                                    var rating = Math.Round((float)item.Rating, 1);
+                                    <input type="hidden" class="rating" disabled="disabled" value="@rating" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                }
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+
+
+
 
 

@@ -111,7 +111,7 @@ namespace GuguDadah.Pages {
                 });
 
             // redireciona para a Index novamente, porém já autenticado
-            return RedirectToPage("/Index").WithSuccess("Login", "efetuado com sucesso.", "1000"); ;
+            return RedirectToPage("/Index").WithSuccess("Login", "efetuado com sucesso.", "3000");
         }
 
         public IActionResult OnGetLogout() {

@@ -98,7 +98,7 @@
                         </div><!--/col-->
 
                         <div class="col-xs-12 col-sm-4">
-                            <a class="btn btn-primary btn-block" asp-page="/ChooseBabysitter" asp-page-handler="ShowBS">Babysitters</a>
+                            <a class="btn btn-primary btn-block" asp-page="/Babysitters" asp-page-handler="ShowBS">Babysitters</a>
                         </div><!--/col-->
 
                         <div class="col-xs-12 col-sm-4">
@@ -139,7 +139,10 @@
                                 <p><strong><span class="glyphicon glyphicon-phone"></span> Contacto: </strong>@Model.professional.Contact</p>
                                 <p><strong><span class="glyphicon glyphicon-pencil"></span> Inscrito desde: </strong>@Model.professional.RegistrationDate.ToShortDateString()</p>
                                 <p><strong><span class="glyphicon glyphicon-time"></span> Turno: </strong><span id="shift"></span></p>
-                                <input type="hidden" class="rating" disabled="disabled" value="@Model.professional.Rating" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                @{
+                                    var rating = Math.Round((float)Model.professional.Rating, 1);
+                                    <input type="hidden" class="rating" disabled="disabled" value="@rating" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                }
                             </div><!--/col-->
                             <div id="profileID" class="col-xs-12 col-sm-4 text-center">
                                 <br />

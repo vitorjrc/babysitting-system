@@ -41,7 +41,10 @@
                             <div class="userprofile">
                                 <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Professional.Avatar)" alt="" class="userpicimg"> </div>
                                 <h3 class="username">@item.Professional.Name</h3>
-                                <input type="hidden" class="rating" disabled="disabled" value="@item.Professional.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                @{
+                                    var rating = Math.Round((float)item.Professional.Rating, 1);
+                                    <input type="hidden" class="rating" disabled="disabled" value="@rating" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                }
                             </div>
                             <br>
                             <p><strong>Data:</strong> @item.Date</p>
@@ -50,12 +53,19 @@
 
                             <form asp-page-handler="RateOffer" asp-route-id="@item.Id" method="post">
                                 <div class="panel-footer">
-                                    @if (item.Rating == 0.0f) {
-                                        <input type="hidden" class="rating" asp-for="Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
-                                        <input type="submit" class="btn btn btn-info" value="Avaliar" />
-                                    }
-                                    else {
-                                        <input type="hidden" class="rating" disabled="disabled" value="item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                    @{
+                                        var rating1 = 0.0F;
+                                        if (item.Rating != 0.0F) {
+                                            rating1 = (float)Math.Round((float)item.Rating, 1);
+                                        }
+
+                                        if (item.Rating == 0.0f) {
+                                            <input type="hidden" class="rating" asp-for="Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                            <input type="submit" class="btn btn btn-info" value="Avaliar" />
+                                        }
+                                        else {
+                                            <input type="hidden" class="rating" disabled="disabled" value="@rating1" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                        }
                                     }
                                 </div>
                             </form>
@@ -81,6 +91,10 @@
                             <div class="userprofile">
                                 <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Professional.Avatar)" alt="" class="userpicimg"> </div>
                                 <h3 class="username">@item.Professional.Name</h3>
+                                @{
+                                    var rating = Math.Round((float)item.Professional.Rating, 1);
+                                    <input type="hidden" class="rating" disabled="disabled" value="@rating" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                }
                             </div>
                             <br>
                             <p><strong>Data:</strong> @item.Date</p>
@@ -111,7 +125,10 @@
                             <div class="userprofile">
                                 <div class="userpic"> <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(item.Professional.Avatar)" alt="" class="userpicimg"> </div>
                                 <h3 class="username">@item.Professional.Name</h3>
-                                <input type="hidden" class="rating" disabled="disabled" value="@item.Professional.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                @{
+                                    var rating = Math.Round((float)item.Professional.Rating, 1);
+                                    <input type="hidden" class="rating" disabled="disabled" value="@rating" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                                }
                             </div>
                             <br>
                             <p><strong>Data:</strong> @item.Date.ToShortDateString()</p>

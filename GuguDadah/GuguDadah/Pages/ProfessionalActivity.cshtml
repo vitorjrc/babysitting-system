@@ -9,6 +9,8 @@
     {
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+    <link href="~/lib/bootstrap/dist/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="~/lib/bootstrap/dist/css/theme.css" media="all" rel="stylesheet" type="text/css" />
 
 }
 
@@ -18,10 +20,10 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script>
-        $('#clients').DataTable({
+        $('#pendent').DataTable({
             paging: true,
             "columnDefs": [{
-                "targets": 5,
+                "targets": 6,
                 "searchable": false,
                 "orderable": false,
                 "visible": true
@@ -42,7 +44,7 @@
     </script>
 
     <script>
-        $('#works').DataTable({
+        $('#offers').DataTable({
             paging: true,
             "columnDefs": [{
                 "targets": 5,
@@ -65,14 +67,8 @@
         });
     </script>
     <script>
-        $('#professionals').DataTable({
+        $('#history').DataTable({
             paging: true,
-            "columnDefs": [{
-                "targets": 7,
-                "searchable": false,
-                "orderable": false,
-                "visible": true
-            }],
             "language": {
                 "lengthMenu": "Mostrar _MENU_ linhas por página",
                 "zeroRecords": "Nada encontrado.",
@@ -85,6 +81,17 @@
                     "next": "Seguinte"
                 }
             }
+        });
+    </script>
+
+    <script src="~/lib/bootstrap/dist/js/star-rating.js" type="text/javascript"></script>
+    <script src="~/lib/bootstrap/dist/js/theme.js"></script>
+    <script>
+        $(document).on('ready', function () {
+            $('.kv-ltr-theme-svg-star').rating({
+                hoverOnClear: false,
+                theme: 'krajee-svg'
+            });
         });
     </script>
 }
@@ -96,7 +103,7 @@
 
     <div class="container-fluid">
         <div class="table-responsive">
-            <table id="clients" class="row-border" style="width:100%">
+            <table id="offers" class="row-border" style="width:100%">
                 <thead>
                     <tr>
                         <th class="text-center"><span>Cliente</span></th>
@@ -126,14 +133,14 @@
                                 <span>@item.Address</span>
                             </td>
                             <td class="text-center" style="width: 20%;">
-                                <form asp-page-handler="ReturningTempWork" method="post" style="display: inline;">
+                                <form asp-page-handler="AcceptOffer" asp-route-id="@item.Id" method="post" style="display: inline;">
                                     <button type="submit" class="myButton">
                                         <span class="fa-stack">
                                             <i class="fa fa-check fa-stack-1x fa-inverse"></i>
                                         </span>
                                     </button>
                                 </form>
-                                <form asp-page-handler="ReturningTempWork" method="post" style="display: inline;">
+                                <form asp-page-handler="RejectOffer" asp-route-id="@item.Id" method="post" style="display: inline;">
                                     <button type="submit" class="myButton">
                                         <span class="fa-stack">
                                             <i class="fa fa-times fa-stack-1x fa-inverse"></i>
@@ -156,7 +163,7 @@
 
     <div class="container-fluid">
         <div class="table-responsive">
-            <table id="professionals" class="row-border" style="width:100%">
+            <table id="pendent" class="row-border" style="width:100%">
                 <thead>
                     <tr>
                         <th class="text-center"><span>Cliente</span></th>
@@ -165,7 +172,7 @@
                         <th class="text-center"><span>Duração</span></th>
                         <th class="text-center"><span>Morada</span></th>
                         <th class="text-center"><span>Observações</span></th>
-                        <th class="text-center">Navegar</th>
+                        <th class="text-center">Navegar/Feito?</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -182,7 +189,7 @@
                                 <span>@item.Date</span>
                             </td>
                             <td class="text-center">
-                                <span>@item.Duration</span>
+                                <span>@item.Duration horas</span>
                             </td>
                             <td class="text-center">
                                 <span>@item.Address</span>
@@ -191,10 +198,17 @@
                                 <span>@item.Observations</span>
                             </td>
                             <td class="text-center" style="width: 15%;">
-                                <form asp-page-handler="GPSLocation" asp-page="GPSLocation" asp-route-address="@item.Address" method="post">
+                                <form asp-page-handler="GPSLocation" asp-page="GPSLocation" asp-route-address="@item.Address" method="post" style="display: inline;">
                                     <button type="submit" class="myButton">
                                         <span class="fa-stack">
                                             <i class="fa fa-location-arrow fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </button>
+                                </form>
+                                <form asp-page-handler="MarkAsDone" asp-route-id="@item.Id" method="post" style="display: inline;">
+                                    <button type="submit" class="myButton">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
                                         </span>
                                     </button>
                                 </form>
@@ -214,7 +228,7 @@
 
     <div class="container-fluid">
         <div class="table-responsive">
-            <table id="works" class="row-border" style="width:100%">
+            <table id="history" class="row-border" style="width:100%">
                 <thead>
                     <tr>
                         <th class="text-center"><span>Cliente</span></th>
@@ -237,10 +251,10 @@
                                 <span>@item.Date</span>
                             </td>
                             <td class="text-center">
-                                <span>@item.Duration</span>
+                                <span>@item.Duration horas</span>
                             </td>
                             <td class="text-center">
-                                <span>@item.Rating</span>
+                                <span><input type="hidden" class="rating" disabled="disabled" value="item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" /></span>
                             </td>
                         </tr>
                     }

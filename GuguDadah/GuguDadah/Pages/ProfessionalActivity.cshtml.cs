@@ -40,14 +40,23 @@ namespace GuguDadah.Pages {
             ProfessionalHistoryList = new List<Work>();
 
             foreach (var item in query) {
+
+                string displayType = null;
+
+                if (item.work.Type.Equals("E")) displayType = "Exterior";
+                if (item.work.Type.Equals("S")) displayType = "Estudo";
+                if (item.work.Type.Equals("N")) displayType = "Normal";
+
+                var ratingRounded = Math.Round((float)item.work.Rating, 1);
+
                 ProfessionalHistoryList.Add(new Work() {
 
                     Id = item.work.Id,
                     Client = item.cli,
                     Date = item.work.Date,
                     Duration = item.work.Duration,
-                    Rating = item.work.Rating,
-                    Type = item.work.Type
+                    Rating = (float) ratingRounded,
+                    Type = displayType
                 });
             }
 
@@ -65,6 +74,13 @@ namespace GuguDadah.Pages {
             ProfessionalPendentList = new List<Work>();
 
             foreach (var item in query) {
+
+                string displayType = null;
+
+                if (item.work.Type.Equals("E")) displayType = "Exterior";
+                if (item.work.Type.Equals("S")) displayType = "Estudo";
+                if (item.work.Type.Equals("N")) displayType = "Normal";
+
                 ProfessionalPendentList.Add(new Work() {
 
                     Id = item.work.Id,
@@ -74,7 +90,7 @@ namespace GuguDadah.Pages {
                     Date = item.work.Date,
                     Duration = item.work.Duration,
                     Observations = item.work.Observations,
-                    Type = item.work.Type
+                    Type = displayType
                 });
             }
 
@@ -92,6 +108,14 @@ namespace GuguDadah.Pages {
             ProfessionalOffersList = new List<Work>();
 
             foreach (var item in query) {
+
+                string displayType = null;
+
+                if (item.work.Type.Equals("E")) displayType = "Exterior";
+                if (item.work.Type.Equals("S")) displayType = "Estudo";
+                if (item.work.Type.Equals("N")) displayType = "Normal";
+
+
                 ProfessionalOffersList.Add(new Work() {
 
                     Id = item.work.Id,
@@ -99,11 +123,49 @@ namespace GuguDadah.Pages {
                     Client = item.cli,
                     Date = item.work.Date,
                     Duration = item.work.Duration,
-                    Type = item.work.Type
+                    Type = displayType
+
                 });
             }
 
             return Page();
+        }
+
+        public ActionResult OnPostAcceptOffer(int id) {
+
+
+            var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
+
+            work.Status = "P";
+
+            dbContext.SaveChanges();
+
+            return RedirectToPage("/UserArea", "ProfessionalLoggedIn");
+
+        }
+
+        public ActionResult OnPostRejectOffer(int id) {
+
+            var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
+
+            dbContext.Works.Remove(work);
+            dbContext.SaveChanges();
+
+            return RedirectToPage("/UserArea", "ProfessionalLoggedIn");
+
+        }
+
+        public ActionResult OnPostMarkAsDone(int id) {
+
+
+            var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
+
+            work.Status = "C";
+
+            dbContext.SaveChanges();
+
+            return RedirectToPage("/UserArea", "ProfessionalLoggedIn");
+
         }
 
 

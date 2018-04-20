@@ -39,6 +39,12 @@ namespace GuguDadah.Pages {
             ClientHistoryList = new List<Work>();
 
             foreach (var item in query) {
+
+                string displayPayment = null;
+
+                if (item.work.Payment.Equals("S")) displayPayment = "Sim";
+                if (item.work.Payment.Equals("N")) displayPayment = "Não";
+
                 ClientHistoryList.Add(new Work() {
 
                     Id = item.work.Id,
@@ -47,7 +53,8 @@ namespace GuguDadah.Pages {
                     Duration = item.work.Duration,
                     Address = item.work.Address,
                     Cost = item.work.Cost,
-                    Payment = item.work.Payment
+                    Payment = displayPayment,
+                    Rating = item.work.Rating
                 });
             }
 
@@ -65,6 +72,12 @@ namespace GuguDadah.Pages {
             ClientPendentList = new List<Work>();
 
             foreach (var item in query) {
+
+                string displayPayment = null;
+
+                if (item.work.Payment.Equals("S")) displayPayment = "Sim";
+                if (item.work.Payment.Equals("N")) displayPayment = "Não";
+
                 ClientPendentList.Add(new Work() {
 
                     Id = item.work.Id,
@@ -73,7 +86,7 @@ namespace GuguDadah.Pages {
                     Duration = item.work.Duration,
                     Address = item.work.Address,
                     Cost = item.work.Cost,
-                    Payment = item.work.Payment
+                    Payment = displayPayment
                 });
             }
 
@@ -91,13 +104,19 @@ namespace GuguDadah.Pages {
             ClientOffersList = new List<Work>();
 
             foreach (var item in query) {
+
+                string displayPayment = null;
+
+                if (item.work.Payment.Equals("S")) displayPayment = "Sim";
+                if (item.work.Payment.Equals("N")) displayPayment = "Não";
+
                 ClientOffersList.Add(new Work() {
 
                     Id = item.work.Id,
                     Professional = item.pro,
                     Date = item.work.Date,
                     Cost = item.work.Cost,
-                    Payment = item.work.Payment,
+                    Payment = displayPayment,
                     Rating = item.work.Rating
                 });
             }
@@ -108,10 +127,15 @@ namespace GuguDadah.Pages {
         // TODO
         public ActionResult OnPostCancelOffer(int id) {
 
+            var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
+
+            dbContext.Works.Remove(work);
+            dbContext.SaveChanges();
+
             return RedirectToPage("/UserArea", "ClientLoggedIn");
+
         }
 
-        // TODO
         public ActionResult OnPostRateOffer(int id) {
 
             var query = (from work in dbContext.Works
