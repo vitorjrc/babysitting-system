@@ -82,6 +82,13 @@ namespace GuguDadah.Pages {
 
                     return Page();
                 }
+
+                if (Professional.Shift != "M" && Professional.Shift != "T" && Professional.Shift != "N") {
+
+                    ModelState.AddModelError(string.Empty, "Turno inválido.");
+
+                    return Page();
+                }
             }
 
             var dateAndTime = DateTime.Now;

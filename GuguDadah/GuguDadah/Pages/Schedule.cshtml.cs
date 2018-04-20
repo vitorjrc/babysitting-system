@@ -79,9 +79,26 @@ namespace GuguDadah.Pages {
 
             DateTime FinalEndTime = new DateTime(parsedEndDate.Year, parsedEndDate.Month, parsedEndDate.Day, parsedEndTime.Hour, parsedEndTime.Minute, 0);
 
-            var diff = FinalEndTime.Subtract(FinalStartTime).TotalHours;
+            var today = DateTime.Now;
 
-            Work.Duration = (int) Math.Ceiling(diff);
+            if (FinalEndTime < today || FinalStartTime < today ) {
+
+                ModelState.AddModelError(string.Empty, "Datas inválidas.");
+
+                return Page();
+            }
+
+            var diff = FinalEndTime.Subtract(FinalStartTime).TotalHours;
+            var duration = (int)Math.Ceiling(diff);
+
+            if (duration > 8) {
+
+                ModelState.AddModelError(string.Empty, "O intervalo de horas excede as 8 horas.");
+
+                return Page();
+            }
+
+            Work.Duration = duration;
 
             Work.Cost = FinalPrice(Type, (int) Work.Duration);
 

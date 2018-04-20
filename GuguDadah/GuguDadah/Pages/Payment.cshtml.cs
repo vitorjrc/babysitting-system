@@ -23,9 +23,6 @@ namespace GuguDadah.Pages {
         [Display(Name = "Método de Pagamento")]
         public string PaymentType { get; set; }
 
-        [BindProperty]
-        public string ProUsername { get; set; }
-
         private readonly AppDbContext dbContext;
 
         public Payment(AppDbContext context) {
@@ -40,6 +37,8 @@ namespace GuguDadah.Pages {
         }
 
         public IActionResult OnPostChoosedPayment() {
+
+            TryUpdateModelAsync(this);
 
             Work work;
             work = JsonConvert.DeserializeObject<Work>(TempData["tempWork"].ToString());

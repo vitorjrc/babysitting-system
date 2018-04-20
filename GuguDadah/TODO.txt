@@ -1,8 +1,5 @@
-Limitar as datas dos agendamentos
 Detetar turno automaticamente
 Ver questões da segurança
 Editar perfil utilizador
 Editar perfil profissional
 Remover profissional
-
-Restringir M, T, N

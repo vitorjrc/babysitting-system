@@ -35,7 +35,7 @@ namespace GuguDadah.Data {
 
         [Column(TypeName = "char(1)")]
         [Required]
-        [Display(Name = "Turno")]
+        [Display(Name = "Turno: M, T ou N")]
         [StringLength(1)]
         public string Shift { get; set; }
 
