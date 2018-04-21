@@ -134,10 +134,12 @@ namespace GuguDadah.Pages {
                 }
             }
 
+            var hash = BCrypt.Net.BCrypt.HashPassword(Client.Password);
+
             Client newClient = new Client() {
                 UserName = Client.UserName,
                 Avatar = GetAvatar(Avatar).ToArray(),
-                Password = Client.Password,
+                Password = hash,
                 Email = Client.Email,
                 Contact = Client.Contact,
                 Name = Client.Name,

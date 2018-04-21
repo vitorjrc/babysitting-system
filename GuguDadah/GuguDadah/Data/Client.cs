@@ -30,10 +30,8 @@ namespace GuguDadah.Data {
         [EmailAddress]
         public string Email { get; set; }
 
-        [Column(TypeName = "varchar(50)")]
         [Required]
         [Display(Name = "Password")]
-        [StringLength(50)]
         public string Password { get; set; }
 
         [Column(TypeName = "char(1)")]

@@ -96,12 +96,14 @@ namespace GuguDadah.Pages {
             var dateAndTime = DateTime.Now;
             var date = dateAndTime.Date;
 
+            var hash = BCrypt.Net.BCrypt.HashPassword(Professional.Password);
+
             Register register = new Register(dbContext);
 
             Professional newProfessional = new Professional() {
                 UserName = Professional.UserName,
                 Avatar = register.GetAvatar(Avatar).ToArray(),
-                Password = Professional.Password,
+                Password = hash,
                 Email = Professional.Email,
                 Contact = Professional.Contact,
                 Name = Professional.Name,

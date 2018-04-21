@@ -25,8 +25,9 @@ namespace GuguDadah.Includes {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 return null;
 
-            Client client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(username));
-            if (client != null && password.Equals(client.Password)) return client;
+            Client client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(username));;
+
+            if (client != null && BCrypt.Net.BCrypt.Verify(password, client.Password)) return client;
 
             return null;
         }
@@ -38,7 +39,8 @@ namespace GuguDadah.Includes {
                 return null;
 
             Professional professional = dbContext.Professionals.FirstOrDefault(m => m.UserName.Equals(username));
-            if (professional != null && password.Equals(professional.Password)) return professional;
+
+            if (professional != null && BCrypt.Net.BCrypt.Verify(password, professional.Password)) return professional;
 
             return null;
         }
