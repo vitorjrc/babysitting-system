@@ -61,7 +61,7 @@ namespace GuguDadah.Pages {
 
             dbContext.SaveChanges();
 
-            return RedirectToPage("/Index").WithSuccess("Agendamento", "efetuado com sucesso.", "3000");
+            return RedirectToPage("/UserArea", "ClientLoggedIn").WithSuccess("Agendamento", "efetuado com sucesso.", "3000");
         }
     }
 }

@@ -17,10 +17,10 @@ using GuguDadah.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using GuguDadah.Includes;
+using Microsoft.EntityFrameworkCore;
 
 namespace GuguDadah.Pages {
 
-    [Authorize(Roles = "Admin")]
     public class RegisterProfessional : PageModel {
 
         [Required]
@@ -34,6 +34,8 @@ namespace GuguDadah.Pages {
         [BindProperty]
         public Professional Professional { get; set; }
 
+        public int EditProfile = 0;
+
         private readonly AppDbContext dbContext;
 
         public RegisterProfessional(AppDbContext context) {
@@ -41,7 +43,8 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
-        public IActionResult OnPost() {
+        [Authorize(Roles = "Admin")]
+        public IActionResult OnPostCreateAccount() {
 
             TryUpdateModelAsync(this);
 
@@ -50,7 +53,6 @@ namespace GuguDadah.Pages {
             ModelState.Remove("Professional.RegistrationDate");
 
             if (!ModelState.IsValid) return Page();
-
 
             if (ModelState.IsValid) {
 
@@ -113,7 +115,54 @@ namespace GuguDadah.Pages {
             dbContext.SaveChanges();
 
             return RedirectToPage("./AdminArea").WithSuccess("Profissional", "registado com sucesso.", "3000");
+
         }
 
+        [Authorize(Roles = "Professional")]
+        public IActionResult OnPostUpdateAccount() {
+
+            TryUpdateModelAsync(this);
+
+            ModelState.Remove("Professional.Avatar");
+            ModelState.Remove("Professional.Status");
+            ModelState.Remove("ConfirmPassword");
+            ModelState.Remove("Professional.Password");
+            ModelState.Remove("Professional.Email");
+            ModelState.Remove("Professional.UserName");
+            ModelState.Remove("Professional.Rating");
+
+            Register register = new Register(dbContext);
+
+            Professional oldProfessional = dbContext.Professionals.FirstOrDefault(o => o.UserName.Equals(User.Identity.Name));
+
+            if (!ModelState.IsValid) return Page();
+
+            if (Avatar != null) {
+
+                oldProfessional.Avatar = register.GetAvatar(Avatar).ToArray();
+            }
+
+            oldProfessional.Name = Professional.Name;
+            oldProfessional.Contact = Professional.Contact;
+            oldProfessional.Shift = Professional.Shift;
+
+            dbContext.Entry(oldProfessional).State = EntityState.Modified;
+
+            dbContext.SaveChanges();
+
+            return RedirectToPage("/UserArea", "ProfessionalLoggedIn").WithSuccess("Perfil", "editado com sucesso.", "3000");
+
+        }
+
+        public IActionResult OnGetEditProfile() {
+
+            EditProfile = 1;
+
+            Professional = dbContext.Professionals.FirstOrDefault(o => o.UserName.Equals(User.Identity.Name));
+
+            return Page();
+
+        }
     }
+
 }

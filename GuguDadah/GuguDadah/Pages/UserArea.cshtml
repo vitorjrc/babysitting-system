@@ -15,9 +15,6 @@
 @section Scripts
     {
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
     @if (User.IsInRole("Client")) {
 
         <script type='text/javascript'>
@@ -93,15 +90,15 @@
                             </div><!--/col!-->
                         </div>
                         <hr />
-                        <div class="col-xs-12 col-sm-4">
-                            <a class="btn btn-primary btn-block" asp-page="/Schedule">Agendar trabalho</a>
+                        <div class="col-xs-12 col-sm-3">
+                            <a class="btn btn-primary btn-block" asp-page="/Schedule">Agendar</a>
                         </div><!--/col-->
 
-                        <div class="col-xs-12 col-sm-4">
+                        <div class="col-xs-12 col-sm-3">
                             <a class="btn btn-primary btn-block" asp-page="/Babysitters" asp-page-handler="ShowBS">Babysitters</a>
                         </div><!--/col-->
 
-                        <div class="col-xs-12 col-sm-4">
+                        <div class="col-xs-12 col-sm-3">
                             <div class="btn-group" style="width: 100%">
                                 <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown">
                                     Trabalhos <span class="caret"></span>
@@ -113,6 +110,11 @@
                                 </ul>
                             </div>
                         </div><!--/col-->
+
+                        <div class="col-xs-12 col-sm-3">
+                            <a class="btn btn-primary btn-block" asp-page="/Register" asp-page-handler="EditProfile">Editar Perfil</a>
+                        </div><!--/col-->
+
                     </div><!--/row-->
                 </div><!--/panel-body-->
             </div><!--/panel-->
@@ -140,8 +142,8 @@
                                 <p><strong><span class="glyphicon glyphicon-pencil"></span> Inscrito desde: </strong>@Model.professional.RegistrationDate.ToShortDateString()</p>
                                 <p><strong><span class="glyphicon glyphicon-time"></span> Turno: </strong><span id="shift"></span></p>
                                 @{
-                                    var rating = Math.Round((float)Model.professional.Rating, 1);
-                                    <input type="hidden" class="rating" disabled="disabled" value="@rating" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
+                var rating = Math.Round((float)Model.professional.Rating, 1);
+                    <input type="hidden" class="rating" disabled="disabled" value="@rating" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
                                 }
                             </div><!--/col-->
                             <div id="profileID" class="col-xs-12 col-sm-4 text-center">
@@ -151,16 +153,21 @@
                             </div><!--/col!-->
                         </div>
                         <hr />
-                        <div class="col-xs-12 col-sm-4">
+                        <div class="col-xs-12 col-sm-3">
                             <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="OffersList"><span class="glyphicon glyphicon-user"></span> Ofertas</a>
                         </div><!--/col-->
 
-                        <div class="col-xs-12 col-sm-4">
+                        <div class="col-xs-12 col-sm-3">
                             <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="PendentList"><span class="glyphicon glyphicon-user"></span> Pendentes</a>
                         </div><!--/col-->
-                        <div class="col-xs-12 col-sm-4">
+                        <div class="col-xs-12 col-sm-3">
                             <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="HistoryList"><span class="glyphicon glyphicon-user"></span> Histórico</a>
                         </div><!--/col-->
+
+                        <div class="col-xs-12 col-sm-3">
+                            <a class="btn btn-primary btn-block" asp-page="/RegisterProfessional" asp-page-handler="EditProfile">Editar Perfil</a>
+                        </div><!--/col-->
+
                         <br />
                         <br />
                     </div><!--/row-->

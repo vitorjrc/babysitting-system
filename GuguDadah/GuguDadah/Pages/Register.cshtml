@@ -4,59 +4,106 @@
     ViewData["Title"] = "Registo";
 }
 
-<h4>Criar conta</h4>
-<hr />
+@if (Model.EditProfile == 0) {
 
-<div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-        <div class="well">
-            @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" })) {
-                @Html.AntiForgeryToken()
+    <h4>Criar conta</h4>
+    <hr />
 
-                <section>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="well">
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Client.UserName, new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.Client.UserName, new { @class = "form-control" })
-                    </div>
+                @using (Html.BeginForm("CreateAccount", "Register", FormMethod.Post, new { enctype = "multipart/form-data" })) {
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Client.Name, new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.Client.Name, new { @class = "form-control" })
-                    </div>
+                    @Html.AntiForgeryToken()
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Client.Email, new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.Client.Email, new { @class = "form-control" })
-                    </div>
+                    <section>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Client.Contact, new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.Client.Contact, new { @class = "form-control", @type = "number" })
-                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Client.UserName, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.Client.UserName, new { @class = "form-control" })
+                        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Client.Password, new { @class = "control-label" })
-                        @Html.PasswordFor(m => m.Client.Password, new { @class = "form-control" })
-                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Client.Name, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.Client.Name, new { @class = "form-control" })
+                        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Client.Email, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.Client.Email, new { @class = "form-control" })
+                        </div>
 
-                    <div class="form-group">
-                        <label asp-for="Avatar"></label>
-                        <input type="file" asp-for="Avatar" />
-                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Client.Contact, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.Client.Contact, new { @class = "form-control", @type = "number" })
+                        </div>
 
-                    @Html.ValidationSummary(false)
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Client.Password, new { @class = "control-label" })
+                            @Html.PasswordFor(m => m.Client.Password, new { @class = "form-control" })
+                        </div>
 
-                    <div class="form-group">
-                        <input type="submit" value="Registar" class="btn btn-default pull-right" />
-                    </div>
-                </section>
-            }
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Avatar"></label>
+                            <input type="file" asp-for="Avatar" />
+                        </div>
+
+                        @Html.ValidationSummary(false)
+
+                        <div class="form-group">
+                            <input type="submit" value="Registar" class="btn btn-default pull-right" />
+                        </div>
+                    </section>
+                }
+            </div>
         </div>
     </div>
-</div>
+}
+
+@if (Model.EditProfile == 1) {
+
+    <h4>Editar perfil</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="well">
+
+                <form asp-page-handler="UpdateAccount" asp-page="Register" method="post" enctype="multipart/form-data">
+
+                    @Html.AntiForgeryToken()
+
+                    <section>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Client.Name, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.Client.Name, new { @class = "form-control", @Value = Model.Client.Name })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Client.Contact, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.Client.Contact, new { @class = "form-control", @type = "number", @Value = Model.Client.Contact })
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Avatar"></label>
+                            <input type="file" asp-for="Avatar" />
+                        </div>
+
+                        @Html.ValidationSummary(false)
+
+                        <div class="form-group">
+                            <input type="submit" value="Editar" class="btn btn-default pull-right" />
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </div>
+    </div>
+}
