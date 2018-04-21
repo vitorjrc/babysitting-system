@@ -5,16 +5,6 @@
     var DurationAlert = (string)TempData["_alert.DurationAlert"];
 }
 
-<div class="alert-container">
-    @if (!string.IsNullOrEmpty(type))
-{
-    <div class="alert alert-@type alert-dismissible" auto-close="@DurationAlert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>@title</strong> @body
-    </div>
-}
-</div>
-
 <environment include="Development">
     <script type="text/javascript">
         $(function () {
@@ -29,3 +19,12 @@
         });
     </script>
 </environment>
+
+<div class="alert-container">
+    @if (!string.IsNullOrEmpty(type)) {
+        <div class="alert alert-@type alert-dismissible" auto-close="@DurationAlert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>@title</strong> @body
+        </div>
+    }
+</div>
