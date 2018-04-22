@@ -254,7 +254,12 @@
                                 <span>@item.Duration horas</span>
                             </td>
                             <td class="text-center">
-                                <span><input type="hidden" class="rating" disabled="disabled" value="item.Rating" data-show-clear="false" data-show-caption="false" data-size="xs" /></span>
+                                @if (item.Rating != null) {
+                                    var rating = Math.Round((float)item.Rating, 1);
+                                    <span><input type="hidden" class="rating" disabled="disabled" value="@rating" data-show-clear="false" data-show-caption="false" data-size="xs" /></span>
+                                } else {
+                                    <span>Sem classificação atribuída</span>
+                                }
                             </td>
                         </tr>
                     }

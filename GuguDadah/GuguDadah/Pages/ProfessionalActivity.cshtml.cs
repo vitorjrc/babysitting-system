@@ -49,15 +49,13 @@ namespace GuguDadah.Pages {
                 if (item.work.Type.Equals("S")) displayType = "Estudo";
                 if (item.work.Type.Equals("N")) displayType = "Normal";
 
-                var ratingRounded = Math.Round((float)item.work.Rating, 1);
-
                 ProfessionalHistoryList.Add(new Work() {
 
                     Id = item.work.Id,
                     Client = item.cli,
                     Date = item.work.Date,
                     Duration = item.work.Duration,
-                    Rating = (float) ratingRounded,
+                    Rating = item.work.Rating,
                     Type = displayType
                 });
             }
