@@ -104,7 +104,7 @@
                         <th class="text-center"><span>Email</span></th>
                         <th class="text-center"><span>Contacto</span></th>
                         <th class="text-center"><span>Estatuto</span></th>
-                        <th class="text-center">Normal/Golden</th>
+                        <th class="text-center">Remover/Estatuto</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -126,8 +126,16 @@
                             </td>
                             <td class="text-center" style="width: 15%;">
 
+                                <form asp-page-handler="DeleteClient" asp-route-username="@item.UserName" method="post" style="display: inline;">
+                                    <button type="submit" class="myButton">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-minus-square fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </button>
+                                </form>
+
                                 @if (item.Status.Equals("Normal")) {
-                                    <form asp-page-handler="MarkAsGolden" asp-route-username="@item.UserName" method="post">
+                                    <form asp-page-handler="MarkAsGolden" asp-route-username="@item.UserName" method="post" style="display: inline;">
                                         <button type="submit" class="myButton">
                                             <span class="fa-stack">
                                                 <i class="fa fa-google fa-stack-1x fa-inverse"></i>
@@ -136,7 +144,7 @@
                                     </form>
                                 }
                                 else {
-                                    <form asp-page-handler="MarkAsNormal" asp-route-username="@item.UserName" method="post">
+                                    <form asp-page-handler="MarkAsNormal" asp-route-username="@item.UserName" method="post" style="display: inline;">
                                         <button type="submit" class="myButton">
                                             <span class="fa-stack">
                                                 <i class="fa fa-angle-left fa-stack-1x fa-inverse"></i>

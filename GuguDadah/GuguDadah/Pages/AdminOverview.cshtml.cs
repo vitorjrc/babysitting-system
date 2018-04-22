@@ -173,7 +173,18 @@ namespace GuguDadah.Pages {
 
             dbContext.SaveChanges();
 
-            return RedirectToPage("/AdminOverview", "ListOfWorks").WithSuccess("Admin", "O profissional foi removido com sucesso.", "2000");
+            return RedirectToPage("/AdminOverview", "ListOfProfessionals").WithSuccess("Admin", "O profissional foi removido com sucesso.", "2000");
+        }
+
+        public IActionResult OnPostDeleteClient(string username) {
+
+            var cli = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(username));
+
+            dbContext.Clients.Remove(cli);
+
+            dbContext.SaveChanges();
+
+            return RedirectToPage("/AdminOverview", "ListOfClients").WithSuccess("Admin", "O cliente foi removido com sucesso.", "2000");
         }
 
     }
