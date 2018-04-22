@@ -32,6 +32,11 @@
     <h4>Histórico de trabalhos</h4>
     <hr />
 
+    if (!Model.ClientHistoryList.Any()) {
+        <h5>Sem trabalhos.</h5>
+
+    }
+
     <div class="container-fluid">
         <div class="row">
             @foreach (var item in Model.ClientHistoryList) {
@@ -55,15 +60,14 @@
                                 <div class="panel-footer">
                                     @{
                                         var rating1 = 0.0F;
-                                        if (item.Rating != 0.0F) {
+                                        if (item.Rating != 0.0F && item.Rating != null) {
                                             rating1 = (float)Math.Round((float)item.Rating, 1);
                                         }
 
-                                        if (item.Rating == 0.0f) {
+                                        if (item.Rating == 0.0f || item.Rating == null) {
                                             <input type="hidden" class="rating" asp-for="Rating" data-show-clear="false" data-show-caption="false" data-size="xs" />
                                             <input type="submit" class="btn btn btn-info" value="Avaliar" />
-                                        }
-                                        else {
+                                        } else {
                                             <input type="hidden" class="rating" disabled="disabled" value="@rating1" displayOnly="true" data-show-clear="false" data-show-caption="false" data-size="xs" />
                                         }
                                     }
@@ -81,6 +85,11 @@
 
     <h4>Trabalhos pendentes</h4>
     <hr />
+
+    if (!Model.ClientPendentList.Any()) {
+        <h5>Sem trabalhos.</h5>
+
+    }
 
     <div class="container-fluid">
         <div class="row">
@@ -116,6 +125,11 @@
     <h4>Ofertas de trabalho</h4>
     <hr />
 
+    if (!Model.ClientOffersList.Any()) {
+        <h5>Sem trabalhos.</h5>
+
+    }
+
     <div class="container-fluid">
         <div class="row">
             @foreach (var item in Model.ClientOffersList) {
@@ -144,6 +158,3 @@
         </div>
     </div>
 }
-
-
-

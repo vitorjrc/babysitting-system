@@ -63,6 +63,11 @@
         </script>
 
     }
+        <script>
+            $(document).ready(function () {
+                $('.dropdown-toggle').dropdown();
+            });
+        </script>
 }
 
 <!--CLIENT AREA-->
@@ -104,9 +109,9 @@
                                     Trabalhos <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a class="dropdown-item" asp-page="/ClientActivity" asp-page-handler="OffersList"><span class="glyphicon glyphicon-user"></span> Ofertas</a></li>
-                                    <li><a class="dropdown-item" asp-page="/ClientActivity" asp-page-handler="PendentList"><span class="glyphicon glyphicon-user"></span> Pendentes</a></li>
-                                    <li><a class="dropdown-item" asp-page="/ClientActivity" asp-page-handler="HistoryList"><span class="glyphicon glyphicon-user"></span> Histórico</a></li>
+                                    <li><a class="dropdown-item" asp-page="/ClientActivity" asp-page-handler="OffersList"><span class="glyphicon glyphicon-time"></span> Ofertas</a></li>
+                                    <li><a class="dropdown-item" asp-page="/ClientActivity" asp-page-handler="PendentList"><span class="glyphicon glyphicon-cloud"></span> Pendentes</a></li>
+                                    <li><a class="dropdown-item" asp-page="/ClientActivity" asp-page-handler="HistoryList"><span class="glyphicon glyphicon-saved"></span> Histórico</a></li>
                                 </ul>
                             </div>
                         </div><!--/col-->
@@ -154,14 +159,14 @@
                         </div>
                         <hr />
                         <div class="col-xs-12 col-sm-3">
-                            <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="OffersList"><span class="glyphicon glyphicon-user"></span> Ofertas</a>
+                            <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="OffersList"><span class="glyphicon glyphicon-time"></span> Ofertas</a>
                         </div><!--/col-->
 
                         <div class="col-xs-12 col-sm-3">
-                            <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="PendentList"><span class="glyphicon glyphicon-user"></span> Pendentes</a>
+                            <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="PendentList"><span class="glyphicon glyphicon-cloud"></span> Pendentes</a>
                         </div><!--/col-->
                         <div class="col-xs-12 col-sm-3">
-                            <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="HistoryList"><span class="glyphicon glyphicon-user"></span> Histórico</a>
+                            <a class="btn btn-primary btn-block" asp-page="/ProfessionalActivity" asp-page-handler="HistoryList"><span class="glyphicon glyphicon-saved"></span> Histórico</a>
                         </div><!--/col-->
 
                         <div class="col-xs-12 col-sm-3">
