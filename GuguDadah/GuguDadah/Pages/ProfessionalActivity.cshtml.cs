@@ -135,9 +135,19 @@ namespace GuguDadah.Pages {
 
         public IActionResult OnPostAcceptOffer(int id) {
 
-            var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
+            var query = (from work in dbContext.Works
+                         join cli in dbContext.Clients on work.Client.UserName equals cli.UserName
+                         where work.Id == id
+                         select new { work, cli }).FirstOrDefault();
 
-            work.Status = "P";
+            query.work.Status = "P";
+
+            Email email = new Email();
+            string destination = query.cli.Email;
+            string subject = "GuguDadah - Oferta aceite";
+            string body = "A sua proposta foi aceite. Por favor, consulte o site.";
+
+            email.SendEmail(destination, subject, body);
 
             dbContext.SaveChanges();
 
@@ -147,9 +157,19 @@ namespace GuguDadah.Pages {
 
         public IActionResult OnPostRejectOffer(int id) {
 
-            var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
+            var query = (from work in dbContext.Works
+                         join cli in dbContext.Clients on work.Client.UserName equals cli.UserName
+                         where work.Id == id
+                         select new { work, cli }).FirstOrDefault();
 
-            dbContext.Works.Remove(work);
+            Email email = new Email();
+            string destination = query.cli.Email;
+            string subject = "GuguDadah - Oferta rejeitada";
+            string body = "A sua proposta foi rejeitada. Por favor, consulte o site.";
+
+            email.SendEmail(destination, subject, body);
+
+            dbContext.Works.Remove(query.work);
             dbContext.SaveChanges();
 
             return RedirectToPage("/UserArea", "ProfessionalLoggedIn").WithSuccess("Proposta", "rejeitada com sucesso.", "2000");
@@ -158,10 +178,19 @@ namespace GuguDadah.Pages {
 
         public IActionResult OnPostMarkAsDone(int id) {
 
+            var query = (from work in dbContext.Works
+                         join cli in dbContext.Clients on work.Client.UserName equals cli.UserName
+                         where work.Id == id
+                         select new { work, cli }).FirstOrDefault();
 
-            var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
+            Email email = new Email();
+            string destination = query.cli.Email;
+            string subject = "GuguDadah - Avalie o trabalho";
+            string body = "A trabalho foi concluído... Agradecíamos que avaliasse o trabalho. Por favor, consulte o site.";
 
-            work.Status = "C";
+            email.SendEmail(destination, subject, body);
+
+            query.work.Status = "C";
 
             dbContext.SaveChanges();
 

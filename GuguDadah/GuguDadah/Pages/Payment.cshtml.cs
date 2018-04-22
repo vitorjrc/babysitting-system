@@ -57,6 +57,13 @@ namespace GuguDadah.Pages {
             work.Client = Client;
             work.Professional = professional;
 
+            Email email = new Email();
+            string destination = professional.Email;
+            string subject = "GuguDadah - Oferta recebida";
+            string body = "Recebeu uma oferta de trabalho. Por favor, consulte o site.";
+
+            email.SendEmail(destination, subject, body);
+
             dbContext.Works.Add(work);
 
             dbContext.SaveChanges();
