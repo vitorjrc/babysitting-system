@@ -35,8 +35,6 @@ namespace GuguDadah.Pages {
         [BindProperty]
         public Client Client { get; set; }
 
-        public int EditProfile = 0;
-
         private readonly AppDbContext dbContext;
 
         public Register(AppDbContext context) {
@@ -92,6 +90,7 @@ namespace GuguDadah.Pages {
             return ms1;
         }
 
+        [AllowAnonymous]
         public IActionResult OnPostCreateAccount() {
 
             TryUpdateModelAsync(this);
@@ -152,47 +151,6 @@ namespace GuguDadah.Pages {
 
             return RedirectToPage("./Index").WithSuccess("Utilizador", "registado com sucesso.", "3000");
 
-        }
-
-        public IActionResult OnPostUpdateAccount() {
-
-            TryUpdateModelAsync(this);
-
-            ModelState.Remove("Client.Avatar");
-            ModelState.Remove("Client.Status");
-            ModelState.Remove("ConfirmPassword");
-            ModelState.Remove("Client.Status");
-            ModelState.Remove("Client.Password");
-            ModelState.Remove("Client.Email");
-            ModelState.Remove("Client.UserName");
-
-            Client oldClient = dbContext.Clients.FirstOrDefault(o => o.UserName.Equals(User.Identity.Name));
-
-            if (!ModelState.IsValid) return Page();
-
-            if (Avatar != null) {
-
-                oldClient.Avatar = GetAvatar(Avatar).ToArray();
-            }
-
-            oldClient.Name = Client.Name;
-            oldClient.Contact = Client.Contact;
-
-            dbContext.Entry(oldClient).State = EntityState.Modified;
-
-            dbContext.SaveChanges();
-
-            return RedirectToPage("/UserArea", "ClientLoggedIn").WithSuccess("Perfil", "editado com sucesso.", "3000");
-
-        }
-
-        public IActionResult OnGetEditProfile() {
-
-            EditProfile = 1;
-
-            Client = dbContext.Clients.FirstOrDefault(o => o.UserName.Equals(User.Identity.Name));
-
-            return Page();
         }
     }
 }

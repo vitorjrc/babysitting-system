@@ -19,9 +19,11 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using GuguDadah.Includes;
 using Microsoft.EntityFrameworkCore;
 
-namespace GuguDadah.Pages {
+namespace GuguDadah.Pages
+{
 
-    public class RegisterProfessional : PageModel {
+    public class RegisterProfessional : PageModel
+    {
 
         [Required]
         [BindProperty]
@@ -34,17 +36,17 @@ namespace GuguDadah.Pages {
         [BindProperty]
         public Professional Professional { get; set; }
 
-        public int EditProfile = 0;
-
         private readonly AppDbContext dbContext;
 
-        public RegisterProfessional(AppDbContext context) {
+        public RegisterProfessional(AppDbContext context)
+        {
 
             dbContext = context;
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult OnPostCreateAccount() {
+        public IActionResult OnPostCreateAccount()
+        {
 
             TryUpdateModelAsync(this);
 
@@ -54,13 +56,15 @@ namespace GuguDadah.Pages {
 
             if (!ModelState.IsValid) return Page();
 
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
 
                 //check whether username is already exists in the database or not
                 bool clientUsernameAlreadyExists = dbContext.Clients.Any(o => o.UserName == Professional.UserName);
                 bool professionalUsernameAlreadyExists = dbContext.Professionals.Any(o => o.UserName == Professional.UserName);
 
-                if (clientUsernameAlreadyExists || professionalUsernameAlreadyExists || Professional.UserName.Equals("admin")) {
+                if (clientUsernameAlreadyExists || professionalUsernameAlreadyExists || Professional.UserName.Equals("admin"))
+                {
 
                     ModelState.AddModelError(string.Empty, "Este nickname já existe no sistema.");
 
@@ -71,21 +75,24 @@ namespace GuguDadah.Pages {
                 bool clientEmailAlreadyExists = dbContext.Clients.Any(o => o.Email == Professional.Email);
                 bool professionalEmailAlreadyExists = dbContext.Professionals.Any(o => o.Email == Professional.Email);
 
-                if (clientEmailAlreadyExists || professionalEmailAlreadyExists) {
+                if (clientEmailAlreadyExists || professionalEmailAlreadyExists)
+                {
 
                     ModelState.AddModelError(string.Empty, "Este email já existe no sistema.");
 
                     return Page();
                 }
 
-                if (ConfirmPassword != Professional.Password) {
+                if (ConfirmPassword != Professional.Password)
+                {
 
                     ModelState.AddModelError(string.Empty, "Passwords não coincidem");
 
                     return Page();
                 }
 
-                if (Professional.Shift != "M" && Professional.Shift != "T" && Professional.Shift != "N") {
+                if (Professional.Shift != "M" && Professional.Shift != "T" && Professional.Shift != "N")
+                {
 
                     ModelState.AddModelError(string.Empty, "Turno inválido.");
 
@@ -100,7 +107,8 @@ namespace GuguDadah.Pages {
 
             Register register = new Register(dbContext);
 
-            Professional newProfessional = new Professional() {
+            Professional newProfessional = new Professional()
+            {
                 UserName = Professional.UserName,
                 Avatar = register.GetAvatar(Avatar).ToArray(),
                 Password = hash,
@@ -120,51 +128,6 @@ namespace GuguDadah.Pages {
 
         }
 
-        [Authorize(Roles = "Professional")]
-        public IActionResult OnPostUpdateAccount() {
-
-            TryUpdateModelAsync(this);
-
-            ModelState.Remove("Professional.Avatar");
-            ModelState.Remove("Professional.Status");
-            ModelState.Remove("ConfirmPassword");
-            ModelState.Remove("Professional.Password");
-            ModelState.Remove("Professional.Email");
-            ModelState.Remove("Professional.UserName");
-            ModelState.Remove("Professional.Rating");
-
-            Register register = new Register(dbContext);
-
-            Professional oldProfessional = dbContext.Professionals.FirstOrDefault(o => o.UserName.Equals(User.Identity.Name));
-
-            if (!ModelState.IsValid) return Page();
-
-            if (Avatar != null) {
-
-                oldProfessional.Avatar = register.GetAvatar(Avatar).ToArray();
-            }
-
-            oldProfessional.Name = Professional.Name;
-            oldProfessional.Contact = Professional.Contact;
-            oldProfessional.Shift = Professional.Shift;
-
-            dbContext.Entry(oldProfessional).State = EntityState.Modified;
-
-            dbContext.SaveChanges();
-
-            return RedirectToPage("/UserArea", "ProfessionalLoggedIn").WithSuccess("Perfil", "editado com sucesso.", "3000");
-
-        }
-
-        public IActionResult OnGetEditProfile() {
-
-            EditProfile = 1;
-
-            Professional = dbContext.Professionals.FirstOrDefault(o => o.UserName.Equals(User.Identity.Name));
-
-            return Page();
-
-        }
     }
 
 }
