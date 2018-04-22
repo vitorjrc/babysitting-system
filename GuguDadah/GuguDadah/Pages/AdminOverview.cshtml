@@ -262,7 +262,7 @@
                                 <span>@item.Cost €</span>
                             </td>
                             <td class="text-center">
-                                <span>@item.Date.ToShortDateString()</span>
+                                <span>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Date))</span>
                             </td>
                             <td class="text-center">
                                 <span>@item.Duration horas</span>
