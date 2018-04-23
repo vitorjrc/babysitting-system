@@ -184,7 +184,7 @@ namespace GuguDadah.Pages {
             Email email = new Email();
             string destination = query.cli.Email;
             string subject = "GuguDadah - Avalie o trabalho";
-            string body = "A trabalho foi concluído... Agradecíamos que avaliasse o trabalho. Por favor, consulte o site.";
+            string body = "O trabalho foi concluído... Agradecíamos que o avaliasse. Por favor, consulte o site.";
 
             email.SendEmail(destination, subject, body);
 
