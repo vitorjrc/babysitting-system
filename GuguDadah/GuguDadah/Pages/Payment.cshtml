@@ -18,31 +18,38 @@
     <div class="col-lg-6 col-lg-offset-3">
         <div class="well">
 
-            <form asp-page-handler="ChoosedPayment" asp-page="Payment" method="post">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Cost, new { @class = "control-label" })
+                <p>@Model.Cost €</p>
+                <div>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.PaymentType, new { @class = "control-label" })
-                    <div>
-                        <label>
-                            @Html.RadioButtonFor(m => m.PaymentType, "card")
-                            Cartão de Crédito
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            @Html.RadioButtonFor(m => m.PaymentType, "money")
-                            Numerário
-                        </label>
-                    </div>
+                    <form asp-page-handler="ChoosedPayment" asp-page="Payment" method="post">
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PaymentType, new { @class = "control-label" })
+                            <div>
+                                <label>
+                                    @Html.RadioButtonFor(m => m.PaymentType, "card")
+                                    Cartão de Crédito
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.RadioButtonFor(m => m.PaymentType, "money")
+                                    Numerário
+                                </label>
+                            </div>
+                        </div>
+
+                        @Html.ValidationSummary(false)
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn btn-info pull-right" value="Agendar" />
+                        </div>
+
+                    </form>
                 </div>
-
-                @Html.ValidationSummary(false)
-
-                <div class="form-group">
-                    <input type="submit" class="btn btn btn-info pull-right" value="Agendar" />
-                </div>
-
-            </form>
+            </div>
         </div>
     </div>
 </div>

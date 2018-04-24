@@ -24,18 +24,66 @@
     <script>
         $("#mydate1").datepicker({ dateFormat: "dd-mm-yy" }).datepicker("setDate", "0");
     </script>
+    <script>
+        $(document).ready(function () {
+
+            var currgeocoder;
+
+            //Set geo location lat and long
+            navigator.geolocation.getCurrentPosition(function (position, html5Error) {
+                geo_loc = processGeolocationResult(position);
+                currLatLong = geo_loc.split(",");
+                initializeCurrent(currLatLong[0], currLatLong[1]);
+            });
+
+            //Get geo location result
+            function processGeolocationResult(position) {
+                html5Lat = position.coords.latitude; //Get latitude
+                html5Lon = position.coords.longitude; //Get longitude
+                html5TimeStamp = position.timestamp; //Get timestamp
+                html5Accuracy = position.coords.accuracy; //Get accuracy in meters
+                return (html5Lat).toFixed(8) + ", " + (html5Lon).toFixed(8);
+            }
+
+            //Check value is present or
+            function initializeCurrent(latcurr, longcurr) {
+                currgeocoder = new google.maps.Geocoder();
+
+                console.log(latcurr + "-- ######## --" + longcurr);
+
+                if (latcurr != '' && longcurr != '') {
+                    //call google api function
+                    var myLatlng = new google.maps.LatLng(latcurr, longcurr);
+                    return getCurrentAddress(myLatlng);
+                }
+            }
+
+            //Get current address
+            function getCurrentAddress(location) {
+                currgeocoder.geocode({
+                    'location': location
+                }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        console.log(results[0]);
+                        document.getElementById('actualLocation').value = results[0].formatted_address;
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAu-XPGnW2XGLA1z8_qQqhApBwAMJJthQg"></script>
 }
 
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <div class="well">
             <form asp-page-handler="ReturningTempWork" asp-page="Schedule" method="post">
-
                 <section>
-
                     <div class="form-group">
                         @Html.LabelFor(m => m.Work.Address, new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.Work.Address, new { placeholder = "Rua das 7 casas, nº8", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Work.Address, new { @class = "form-control", @id = "actualLocation", @name = "actualLocation" })
                     </div>
 
                     <div class="form-group">
