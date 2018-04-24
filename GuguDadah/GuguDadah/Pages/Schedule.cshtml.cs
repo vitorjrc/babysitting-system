@@ -124,6 +124,8 @@ namespace GuguDadah.Pages {
 
             TempData["time"] = JsonConvert.SerializeObject(time);
 
+            TempData["cost"] = Work.Cost;
+
             return RedirectToPage("/Babysitters", "ChooseBS");
 
         }

@@ -24,6 +24,11 @@ namespace GuguDadah.Pages {
         [Display(Name = "Método de Pagamento")]
         public string PaymentType { get; set; }
 
+        [Required]
+        [BindProperty]
+        [Display(Name = "Preço")]
+        public double Cost { get; set; }
+
         private readonly AppDbContext dbContext;
 
         public Payment(AppDbContext context) {
@@ -34,6 +39,7 @@ namespace GuguDadah.Pages {
         public void OnPostPaymentEnter(string username) {
 
             TempData["proUsername"] = username;
+            Cost = (double) TempData["cost2"];
 
         }
 

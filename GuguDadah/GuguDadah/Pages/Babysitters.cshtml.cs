@@ -57,6 +57,9 @@ namespace GuguDadah.Pages {
 
             ChooseBabysitters = 1;
 
+            Object cost = TempData["cost"];
+            TempData["cost2"] = cost;
+
             TimeSpan TimeScheduled = JsonConvert.DeserializeObject<TimeSpan>(TempData["time"].ToString());
 
             TimeSpan NShiftStart = new TimeSpan(0, 0, 0); 
