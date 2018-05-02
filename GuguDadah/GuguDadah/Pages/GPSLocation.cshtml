@@ -26,19 +26,21 @@
             }
         }
 
-        document.getElementById('map').innerHTML = '<img src="https://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=16&size=600x400&key=AIzaSyCEiIZpFRIPjRrynmKw0tiIF4rfLQdNI6o" id="imageBox"/>';
+        document.getElementById('map').innerHTML = '<img class="img-responsive center-block" src="https://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=16&size=600x400&key=AIzaSyCEiIZpFRIPjRrynmKw0tiIF4rfLQdNI6o" id="imageBox"/>';
     </script>
 }
 
 <h4>Localização</h4>
 <hr />
 
-<div class="row">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
 
-    <div id="map"></div>
+            <div id="map"></div>
 
-    <br />
+            <br />
 
-    <input type="button" class="btn btn-info" value="Iniciar Navegação" onclick="myNavFunc()" />
+            <input type="button" class="btn btn-info pull-right" value="Iniciar Navegação" onclick="myNavFunc()" />
 
-</div>
+        </div>
+    </div>
