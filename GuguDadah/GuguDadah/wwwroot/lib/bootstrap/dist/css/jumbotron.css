@@ -70,12 +70,13 @@ container body-content .navbar-collapse {
     background-color: transparent !important;
 }
 
-    .jumbotron h1, .jumbotron .h1 {
+.jumbotron h1, .jumbotron .h1 {
         color: white;
-    }
+}
 
 .container.body-content {
     background-color: rgba(83, 101, 111, 0.6) !important;
+    font-size: 15px !important;
 }
 
 .well {
