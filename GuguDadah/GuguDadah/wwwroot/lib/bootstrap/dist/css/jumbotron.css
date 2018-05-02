@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 @media (max-width: 767px) {
     .navbar-nav > li > a {
-        line-height: 20px; /*changing this particular line does a lot, this is where the increase and decrease are done */
+        line-height: 30px; /*changing this particular line does a lot, this is where the increase and decrease are done */
         padding-top: 5px;
         padding-bottom: 0px;
         text-align: right;
