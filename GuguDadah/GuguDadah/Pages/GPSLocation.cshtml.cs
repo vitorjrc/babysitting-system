@@ -19,6 +19,12 @@ namespace GuguDadah.Pages {
 
         public string Address{ get; set; }
 
+        public IActionResult OnGet() {
+
+            return Unauthorized();
+        }
+
+        // este método é chamado quando se carrega no botão localização e atribui o endereço à variável local.
         public void OnPostGPSLocation(string address) {
 
             Address = address;

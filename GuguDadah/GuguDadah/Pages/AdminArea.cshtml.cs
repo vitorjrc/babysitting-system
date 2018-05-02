@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
 using GuguDadah.Data;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
@@ -16,10 +15,6 @@ namespace GuguDadah.Pages {
 
     [Authorize(Roles = "Admin")]
     public class AdminArea : PageModel {
-
-        public void OnGet() {
-
-        }
 
     }
 }

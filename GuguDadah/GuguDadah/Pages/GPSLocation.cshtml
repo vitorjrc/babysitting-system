@@ -13,7 +13,7 @@
 
         function myNavFunc() {
 
-            // If it's an iPhone..
+            // se é um iPhone
             if ((navigator.platform.indexOf("iPhone") != -1)
                 || (navigator.platform.indexOf("iPod") != -1)
                 || (navigator.platform.indexOf("iPad") != -1)) {
@@ -26,10 +26,19 @@
             }
         }
 
-        document.getElementById('foo').innerHTML = '<img src="https://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=16&size=600x400&key=AIzaSyCEiIZpFRIPjRrynmKw0tiIF4rfLQdNI6o" id="imageBox"/>';
+        document.getElementById('map').innerHTML = '<img src="https://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=16&size=600x400&key=AIzaSyCEiIZpFRIPjRrynmKw0tiIF4rfLQdNI6o" id="imageBox"/>';
     </script>
 }
 
-<input type="button" class="btn btn-info" value="Iniciar Navegação" onclick="myNavFunc()" />
+<h4>Localização</h4>
+<hr />
 
-<div id="foo"></div>
+<div class="row">
+
+    <div id="map"></div>
+
+    <br />
+
+    <input type="button" class="btn btn-info" value="Iniciar Navegação" onclick="myNavFunc()" />
+
+</div>

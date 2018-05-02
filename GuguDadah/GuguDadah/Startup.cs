@@ -16,45 +16,43 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace GuguDadah
-{
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
+namespace GuguDadah {
+    public class Startup {
+        public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
+
+        public void ConfigureServices(IServiceCollection services) {
+
+            // passa o dbContext a todas as páginas
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc(config =>
-            {
+
+            services.AddMvc(config => {
                 var policy = new AuthorizationPolicyBuilder()
                                  .RequireAuthenticatedUser()
                                  .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
+
             services.AddCors();
 
             services.AddMemoryCache();
-            // Adds a default in-memory implementation of IDistributedCache.
+
             services.AddDistributedMemoryCache();
 
-            services.AddSession(options =>
-            {
-                // Set a short timeout for easy testing.
+            services.AddSession(options => {
+
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.HttpOnly = true;
             });
 
             services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
 
-            // adiciona a classe de serviço ao scope para utilizarmos nas páginas
+            // adiciona a classe de serviç para utilizarmos nas páginas
             services.AddScoped<ILoginService, LoginService>();
 
             // configura autenticação por cookie
@@ -67,16 +65,12 @@ namespace GuguDadah
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+
+            if (env.IsDevelopment()) {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
+            } else {
                 app.UseExceptionHandler("/Error");
             }
 

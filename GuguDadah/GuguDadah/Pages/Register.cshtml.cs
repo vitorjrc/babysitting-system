@@ -42,30 +42,39 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
-        // público porque o método é acedido pelo RegisterProfessional
+        // recebe a imagem que o user deu update
         public MemoryStream GetAvatar(IFormFile imageUploaded) {
 
+            // define a path do avatar default
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "user.png");
 
             byte[] data = null;
 
             MemoryStream ms1 = new MemoryStream();
 
+            // se a imagem do upload é diferente de nula e se é realmente uma IMAGEM
             if (imageUploaded != null && imageUploaded.ContentType.ToLower().StartsWith("image/")) {
 
                 MemoryStream ms = new MemoryStream();
+
+                // passa a imagem para um array de bytes
                 imageUploaded.OpenReadStream().CopyTo(ms);
                 data = ms.ToArray();
 
+                // usa uma biblioteca de tratamento de imagens
                 using (MagickImage image = new MagickImage(data)) {
 
+                    // define um tamanho para a imagem (150x150)
                     MagickGeometry size = new MagickGeometry(150, 150);
                     size.IgnoreAspectRatio = true;
 
+                    // dá resize da imagem
                     image.Resize(size);
+
+                    // converte-a para JPEG
                     image.Format = MagickFormat.Jpeg;
 
-                    // Save the result
+                    // guarda o resultado
                     image.Write(ms1);
 
                 }
@@ -73,15 +82,20 @@ namespace GuguDadah.Pages {
                 return ms1;
             }
 
-            if (imageUploaded == null) {
+            // se o que deu upload não é uma imagem ou se é null
+            else {
+
+                // vai buscar a imagem padrão
                 using (MagickImage image = new MagickImage(path)) {
 
+                    // define tamanho 150x150
                     MagickGeometry size = new MagickGeometry(150, 150);
                     size.IgnoreAspectRatio = true;
 
+                    // dá resize à imagem
                     image.Resize(size);
 
-                    // Save the result
+                    // guarda o resultado
                     image.Write(ms1);
 
                 }
@@ -90,6 +104,7 @@ namespace GuguDadah.Pages {
             return ms1;
         }
 
+        // método acedido quando o utilizador carrega em criar conta
         [AllowAnonymous]
         public IActionResult OnPostCreateAccount() {
 
@@ -98,15 +113,16 @@ namespace GuguDadah.Pages {
             ModelState.Remove("Client.Avatar");
             ModelState.Remove("Client.Status");
 
+            // retorna erros se os campos foram incorretamente preenchidos ou não preenchidos
             if (!ModelState.IsValid) return Page();
-
 
             if (ModelState.IsValid) {
 
-                //check whether username is already exists in the database or not
+                // verifica se o username já existe
                 bool clientUsernameAlreadyExists = dbContext.Clients.Any(o => o.UserName == Client.UserName);
                 bool professionalUsernameAlreadyExists = dbContext.Professionals.Any(o => o.UserName == Client.UserName);
 
+                // retorna erro em caso de já existir
                 if (clientUsernameAlreadyExists || professionalUsernameAlreadyExists || Client.UserName.Equals("admin")) {
 
                     ModelState.AddModelError(string.Empty, "Este nickname já existe no sistema.");
@@ -114,10 +130,11 @@ namespace GuguDadah.Pages {
                     return Page();
                 }
 
-                //check whether email is already exists in the database or not
+                // verifica se o email já existe
                 bool clientEmailAlreadyExists = dbContext.Clients.Any(o => o.Email == Client.Email);
                 bool professionalEmailAlreadyExists = dbContext.Professionals.Any(o => o.Email == Client.Email);
 
+                // retorna erro em caso de já existir
                 if (clientEmailAlreadyExists || professionalEmailAlreadyExists) {
 
                     ModelState.AddModelError(string.Empty, "Este email já existe no sistema.");
@@ -125,6 +142,7 @@ namespace GuguDadah.Pages {
                     return Page();
                 }
 
+                // retorna erro se as passwords não coincidirem
                 if (ConfirmPassword != Client.Password) {
 
                     ModelState.AddModelError(string.Empty, "Passwords não coincidem");
@@ -133,8 +151,10 @@ namespace GuguDadah.Pages {
                 }
             }
 
+            // encripta a password
             var hash = BCrypt.Net.BCrypt.HashPassword(Client.Password);
 
+            // cria o cliente
             Client newClient = new Client() {
                 UserName = Client.UserName,
                 Avatar = GetAvatar(Avatar).ToArray(),
@@ -145,8 +165,10 @@ namespace GuguDadah.Pages {
                 Status = "N"
             };
 
+            // adiciona cliente à BD
             dbContext.Clients.Add(newClient);
 
+            // guarda as alterações
             dbContext.SaveChanges();
 
             return RedirectToPage("./Index").WithSuccess("Utilizador", "registado com sucesso.", "3000");
