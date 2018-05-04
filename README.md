@@ -1,7 +1,7 @@
 # babysitting-system
 A babysitting system developed for the course of LI4, entirely with Microsoft Tools.
 
-## TODO
+## To Do:
 
 - [x] Implementar o site;
 - [ ] Testar todas as funcionalidades do site;
