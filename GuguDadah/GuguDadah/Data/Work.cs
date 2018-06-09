@@ -47,10 +47,10 @@ namespace GuguDadah.Data
         [Display(Name = "Data")]
         public DateTime Date { get; set; }
 
-        [Column(TypeName = "varchar(50)")]
+        [Column(TypeName = "varchar(100)")]
         [Required]
         [Display(Name = "Morada")]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Address { get; set; }
 
         [Column(TypeName = "text")]
