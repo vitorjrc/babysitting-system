@@ -41,7 +41,7 @@ namespace GuguDadah.Pages {
 
             // vai buscar todos os profissionais à BD
             var query = (from p in dbContext.Professionals
-                         orderby p.UserName
+                         orderby p.Rating descending
                          select p).ToList();
 
             // itera pela query e adiciona à lista que será lida pela view
@@ -108,7 +108,7 @@ namespace GuguDadah.Pages {
 
             // vai buscar os profissionais à BD que têm o turno definido
             var query = (from p in dbContext.Professionals
-                         orderby p.UserName
+                         orderby p.Rating descending
                          where p.Shift == ShiftFilter
                          select p).ToList();
 

@@ -94,5 +94,10 @@ namespace GuguDadah.Pages {
 
             return RedirectToPage("/UserArea", "ClientLoggedIn").WithSuccess("Agendamento", "efetuado com sucesso.", "3000");
         }
+
+        public IActionResult OnGetCancelSchedule() {
+
+            return RedirectToPage("/UserArea", "ClientLoggedIn").WithDanger("Agendamento", "cancelado.", "3000");
+        }
     }
 }
