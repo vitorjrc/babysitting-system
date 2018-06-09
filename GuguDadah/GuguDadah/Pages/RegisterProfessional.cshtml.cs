@@ -117,6 +117,7 @@ namespace GuguDadah.Pages {
                 Name = Professional.Name,
                 Shift = Professional.Shift,
                 Rating = 3,
+                Presentation = Professional.Presentation,
                 RegistrationDate = date
             };
 
