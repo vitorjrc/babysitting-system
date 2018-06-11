@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 @media (max-width: 767px) {
     .navbar-nav > li > a {
-        line-height: 20px; /*changing this particular line does a lot, this is where the increase and decrease are done */
+        line-height: 30px; /*changing this particular line does a lot, this is where the increase and decrease are done */
         padding-top: 5px;
         padding-bottom: 0px;
         text-align: right;
@@ -70,12 +70,13 @@ container body-content .navbar-collapse {
     background-color: transparent !important;
 }
 
-    .jumbotron h1, .jumbotron .h1 {
+.jumbotron h1, .jumbotron .h1 {
         color: white;
-    }
+}
 
 .container.body-content {
     background-color: rgba(83, 101, 111, 0.6) !important;
+    font-size: 15px !important;
 }
 
 .well {

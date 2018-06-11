@@ -31,8 +31,15 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
+        public IActionResult OnGet() {
+
+            return Unauthorized();
+        }
+            
+        // método chamado quando se carrega no botão lista de clientes
         public ActionResult OnGetListOfClients() {
 
+            // traz os clientes da BD, ordenados pelo username
             var query = (from p in dbContext.Clients
                          orderby p.UserName
                          select p).ToList();
@@ -60,9 +67,10 @@ namespace GuguDadah.Pages {
             return Page();
         }
 
+        // método chamado quando se carrega no botão lista de profissionais
         public ActionResult OnGetListOfProfessionals() {
 
-
+            // traz os profissionais da BD, ordenados pelo username
             var query = (from p in dbContext.Professionals
                          orderby p.UserName
                          select p).ToList();
@@ -88,7 +96,10 @@ namespace GuguDadah.Pages {
             return Page();
         }
 
+        // método chamado quando se carrega no botão lista de trabalhos
         public ActionResult OnGetListOfWorks() {
+
+            // traz os trabalhos da BD, ordenados pelo data
             var query = (from work in dbContext.Works
                          join pro in dbContext.Professionals on work.Professional.UserName equals pro.UserName
                          join cli in dbContext.Clients on work.Client.UserName equals cli.UserName
@@ -103,6 +114,7 @@ namespace GuguDadah.Pages {
                 string displayStatus = null;
                 string displayPayment = null;
 
+                // converte os carateres em strings user-friendly para a view
                 if (item.work.Status.Equals("O")) displayStatus = "Oferta";
                 if (item.work.Status.Equals("P")) displayStatus = "Pendente";
                 if (item.work.Status.Equals("C")) displayStatus = "Completo";
@@ -128,60 +140,76 @@ namespace GuguDadah.Pages {
             return Page();
         }
 
+        // método chamado quando se carrega no botão marcar como golden. Traz o username do cliente...
         public IActionResult OnPostMarkAsGolden(string username) {
 
-
+            // vai buscar o cliente à BD
             var client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(username));
 
+            // muda o estatuto da cliente
             client.Status = "G";
 
+            // guarda o cliente na BD
             dbContext.SaveChanges();
 
             return RedirectToPage("/AdminOverview", "ListOfClients").WithSuccess("Admin", "Cliente marcado como golden com sucesso.", "2000");
         }
 
+        // método chamado quando se carrega no botão marcar como normal. Traz o username do cliente...
         public IActionResult OnPostMarkAsNormal(string username) {
 
-
+            // vai buscar o cliente à BD
             var client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(username));
 
+            // muda o estatuto do cliente
             client.Status = "N";
 
+            // guarda o cliente na BD
             dbContext.SaveChanges();
 
             return RedirectToPage("/AdminOverview", "ListOfClients").WithSuccess("Admin", "Cliente marcado como normal com sucesso.", "2000");
         }
 
+        // método chamado quando se carrega no botão marcar como pago. Traz o id do trabalho...
         public IActionResult OnPostMarkAsPaid(int id) {
 
-
+            // vai buscar o trabalho à BD
             var work = dbContext.Works.FirstOrDefault(m => m.Id.Equals(id));
 
+            // muda o estado do pagamento para SIM
             work.Payment = "S";
 
+            // guarda o trabalho na BD
             dbContext.SaveChanges();
 
             return RedirectToPage("/AdminOverview", "ListOfWorks").WithSuccess("Admin", "O trabalho foi marcado como pago com sucesso.", "2000");
         }
 
+        // método chamado quando se carrega no botão apagar profissional. Traz o username do profissional...
         public IActionResult OnPostDeleteProfessional(string username) {
 
-
+            // vai buscar o profissional à BD
             var pro = dbContext.Professionals.FirstOrDefault(m => m.UserName.Equals(username));
 
+            // remove o profissional
             dbContext.Professionals.Remove(pro);
 
+            // guarda as alterações
             dbContext.SaveChanges();
 
             return RedirectToPage("/AdminOverview", "ListOfProfessionals").WithSuccess("Admin", "O profissional foi removido com sucesso.", "2000");
         }
 
+        // método chamado quando se carrega no botão apagar cliente. Traz o username do cliente...
         public IActionResult OnPostDeleteClient(string username) {
 
+            // vai buscar o cliente à BD
             var cli = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(username));
 
+            // remove o cliente
             dbContext.Clients.Remove(cli);
 
+            // guarda as alterações
             dbContext.SaveChanges();
 
             return RedirectToPage("/AdminOverview", "ListOfClients").WithSuccess("Admin", "O cliente foi removido com sucesso.", "2000");

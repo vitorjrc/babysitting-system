@@ -19,11 +19,10 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using GuguDadah.Includes;
 using Microsoft.EntityFrameworkCore;
 
-namespace GuguDadah.Pages
-{
+namespace GuguDadah.Pages {
 
-    public class RegisterProfessional : PageModel
-    {
+    [Authorize(Roles = "Admin")]
+    public class RegisterProfessional : PageModel {
 
         [Required]
         [BindProperty]
@@ -38,15 +37,13 @@ namespace GuguDadah.Pages
 
         private readonly AppDbContext dbContext;
 
-        public RegisterProfessional(AppDbContext context)
-        {
+        public RegisterProfessional(AppDbContext context) {
 
             dbContext = context;
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult OnPostCreateAccount()
-        {
+        public IActionResult OnPostCreateAccount() {
 
             TryUpdateModelAsync(this);
 
@@ -54,45 +51,45 @@ namespace GuguDadah.Pages
             ModelState.Remove("Professional.Rating");
             ModelState.Remove("Professional.RegistrationDate");
 
+            // retorna erros se os campos foram incorretamente preenchidos
             if (!ModelState.IsValid) return Page();
 
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
 
-                //check whether username is already exists in the database or not
+                // verifica se o username já existe
                 bool clientUsernameAlreadyExists = dbContext.Clients.Any(o => o.UserName == Professional.UserName);
                 bool professionalUsernameAlreadyExists = dbContext.Professionals.Any(o => o.UserName == Professional.UserName);
 
-                if (clientUsernameAlreadyExists || professionalUsernameAlreadyExists || Professional.UserName.Equals("admin"))
-                {
+                // retorna erro se já existir
+                if (clientUsernameAlreadyExists || professionalUsernameAlreadyExists || Professional.UserName.Equals("admin")) {
 
                     ModelState.AddModelError(string.Empty, "Este nickname já existe no sistema.");
 
                     return Page();
                 }
 
-                //check whether email is already exists in the database or not
+                // verifica se o email já existe
                 bool clientEmailAlreadyExists = dbContext.Clients.Any(o => o.Email == Professional.Email);
                 bool professionalEmailAlreadyExists = dbContext.Professionals.Any(o => o.Email == Professional.Email);
 
-                if (clientEmailAlreadyExists || professionalEmailAlreadyExists)
-                {
+                // retorna erro se já existe
+                if (clientEmailAlreadyExists || professionalEmailAlreadyExists) {
 
                     ModelState.AddModelError(string.Empty, "Este email já existe no sistema.");
 
                     return Page();
                 }
 
-                if (ConfirmPassword != Professional.Password)
-                {
+                // retorna erro se as passwords não coincidirem
+                if (ConfirmPassword != Professional.Password) {
 
                     ModelState.AddModelError(string.Empty, "Passwords não coincidem");
 
                     return Page();
                 }
 
-                if (Professional.Shift != "M" && Professional.Shift != "T" && Professional.Shift != "N")
-                {
+                // retorna erro se tentar ir para um turno inválido
+                if (Professional.Shift != "M" && Professional.Shift != "T" && Professional.Shift != "N") {
 
                     ModelState.AddModelError(string.Empty, "Turno inválido.");
 
@@ -100,15 +97,18 @@ namespace GuguDadah.Pages
                 }
             }
 
+
+            // define data atual (data de registo)
             var dateAndTime = DateTime.Now;
             var date = dateAndTime.Date;
 
+            // encripta a password
             var hash = BCrypt.Net.BCrypt.HashPassword(Professional.Password);
 
+            // instancia a classe de registo de clientes para aceder ao método GetAvatar
             Register register = new Register(dbContext);
 
-            Professional newProfessional = new Professional()
-            {
+            Professional newProfessional = new Professional() {
                 UserName = Professional.UserName,
                 Avatar = register.GetAvatar(Avatar).ToArray(),
                 Password = hash,
@@ -117,11 +117,14 @@ namespace GuguDadah.Pages
                 Name = Professional.Name,
                 Shift = Professional.Shift,
                 Rating = 3,
+                Presentation = Professional.Presentation,
                 RegistrationDate = date
             };
 
+            // adiciona o profissional à BD
             dbContext.Professionals.Add(newProfessional);
 
+            // guarda as alterações
             dbContext.SaveChanges();
 
             return RedirectToPage("./AdminArea").WithSuccess("Profissional", "registado com sucesso.", "3000");

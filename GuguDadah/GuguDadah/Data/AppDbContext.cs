@@ -17,8 +17,10 @@ namespace GuguDadah.Data {
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
+            // define nome do esquema
             modelBuilder.HasDefaultSchema("GuguDadah");
 
+            // transforma classes em tabelas SQL
             modelBuilder.Entity<Professional>().ToTable("Professional");
             modelBuilder.Entity<Client>().ToTable("Client");
             modelBuilder.Entity<Work>().ToTable("Work");

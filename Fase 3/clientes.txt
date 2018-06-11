@@ -1,0 +1,5 @@
+Nickname, Nome, Email, Contacto, Password
+clijose, José Bernardo Barros, jbb@email.com, 912345678, jose
+clijosejoao, José João Antunes Guimarães Dias de Almeida, jj@email.com, 911222333, jose
+clitoy, Toy Rosa Negra, toy@email.com, 916667788, toy
+clibelo, Orlando Belo, obelo@email.com, 911133344, orlando

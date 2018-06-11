@@ -53,10 +53,13 @@ namespace GuguDadah.Pages {
             dbContext = context;
         }
 
+
+        // método que é acedido quando o cliente preencheu os campos da página
         public ActionResult OnPostReturningTempWork() {
 
             TryUpdateModelAsync(this);
 
+            // define as variáveis como não required
             ModelState.Remove("Work.Cost");
             ModelState.Remove("Work.Date");
             ModelState.Remove("Work.Client");
@@ -66,16 +69,19 @@ namespace GuguDadah.Pages {
             ModelState.Remove("Work.Duration");
             ModelState.Remove("Work.Professional");
 
+            // retorna erros se algo foi mal preenchido
             if (!ModelState.IsValid) return Page();
 
-            // offered
+            // define o estado como oferta
             Work.Status = "O";
 
+            // calcula hora e dia do início do trabalho
             var parsedStartDate = DateTime.ParseExact(StartDate, "dd-MM-yyyy", null);
             var parsedStartTime = DateTime.ParseExact(StartTime, "HH:mm", null);
 
             DateTime FinalStartTime = new DateTime(parsedStartDate.Year, parsedStartDate.Month, parsedStartDate.Day, parsedStartTime.Hour, parsedStartTime.Minute, 0);
 
+            // calcula hora e dia do fim do trabalho
             var parsedEndDate = DateTime.ParseExact(EndDate, "dd-MM-yyyy", null);
             var parsedEndTime = DateTime.ParseExact(EndTime, "HH:mm", null);
 
@@ -83,6 +89,7 @@ namespace GuguDadah.Pages {
 
             var today = DateTime.Now;
 
+            // retorna erro se as datas são anteriores ao dia e hora atual
             if (FinalEndTime < today || FinalStartTime < today ) {
 
                 ModelState.AddModelError(string.Empty, "Datas inválidas.");
@@ -90,9 +97,11 @@ namespace GuguDadah.Pages {
                 return Page();
             }
 
+            // calcula diferença entre as horas
             var diff = FinalEndTime.Subtract(FinalStartTime).TotalHours;
             var duration = (int)Math.Ceiling(diff);
 
+            // retorna erro se exceder 8 horas
             if (duration > 8) {
 
                 ModelState.AddModelError(string.Empty, "O intervalo de tempo excede as 8 horas.");
@@ -100,12 +109,15 @@ namespace GuguDadah.Pages {
                 return Page();
             }
 
+            // popula a instância
             Work.Duration = duration;
 
+            // chama o método final price que calcula o preço, passando-lhe o tipo e a duração do trabalho
             Work.Cost = FinalPrice(Type, (int) Work.Duration);
 
             Work.Date = FinalStartTime;
 
+            // transforma as strings da view em carateres pra serem guardados na BD
             if (Type.Equals("exterior")) {
                 Work.Type = "E";
             }
@@ -119,6 +131,8 @@ namespace GuguDadah.Pages {
             }
 
             TimeSpan time = FinalStartTime.TimeOfDay;
+
+            // passa as informações para a página seguinte (Babysitters e pagamento)
 
             TempData["tempWork"] = JsonConvert.SerializeObject(Work);
 
@@ -145,15 +159,17 @@ namespace GuguDadah.Pages {
             // vai à BD buscar o cliente logado
             var client = dbContext.Clients.FirstOrDefault(m => m.UserName.Equals(LoggedUser));
 
+            // faz desconto de 20% se o cliente for golden
             if (client.Status.Equals("G")) multiplier = 0.8m;
             
-
+            // adiciona 5€ ao preço por hora se o tipo for exterior
             if (typeOfWork.Equals("exterior")) hourPrice += 5;
 
+            // adiciona 10€ ao preço por hora se o tipo for study
             if (typeOfWork.Equals("study")) hourPrice += 10;
 
+            // calcula o preço
             decimal price = (hourPrice * duration) * multiplier;
-
 
             return price;
         }

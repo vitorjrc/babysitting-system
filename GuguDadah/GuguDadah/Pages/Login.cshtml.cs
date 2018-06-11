@@ -33,15 +33,16 @@ namespace GuguDadah.Pages {
         [Display(Name = "Lembrar-me")]
         public bool RememberMe { get; set; }
 
-        //instanciando uma classe de serviço por injeção
+        //instanciando a classe login por injeção
         private ILoginService _loginService;
 
+        // recebe a instância da classe login
         public Login(ILoginService loginService) {
 
             _loginService = loginService;
         }
 
-        //metodo post do formulario
+        // método chamado quando o utilizador carrega em login, na página login
         public IActionResult OnPostLoginUser() {
 
             TryUpdateModelAsync(this);
@@ -62,6 +63,7 @@ namespace GuguDadah.Pages {
             var user = (dynamic)null;
             var claims = (dynamic)null;
 
+            // login do ADMIN
             if (UserName.Equals(AdminUsername) && Password.Equals(PasswordUsername)) {
                 claims = new[]
 {
@@ -71,15 +73,17 @@ namespace GuguDadah.Pages {
                 goto Checked;
             }
 
-            //faz a busca do usuário e verifica se existe
+            // faz a busca do utilizador e verifica se existe na tabela clientes ou na tabela profissionais
             Client client = _loginService.AuthenticateClient(UserName, Password);
             Professional professional = _loginService.AuthenticateProfessional(UserName, Password);
 
+            // se não encontrou nada então algo falhou
             if (client == null && professional == null) {
                 ModelState.AddModelError("", "Username ou Password inválidas.");
                 return Page();
             }
 
+            // se encontrou alguma coisa nos profissionais, então é um profissional
             else if (client == null) {
                 user = professional;
 
@@ -90,6 +94,7 @@ namespace GuguDadah.Pages {
             };
             }
 
+            // se encontrou alguma coisa nos clientes, então é um profissional
             else {
                 user = client;
 
@@ -114,8 +119,10 @@ namespace GuguDadah.Pages {
             return RedirectToPage("/Index").WithSuccess("Login", "efetuado com sucesso.", "3000");
         }
 
+        // método chamado quando carrega em logout
         public IActionResult OnGetLogout() {
 
+            // remove o cookie
             Response.Cookies.Delete("GuguDadahLogin");
 
             return RedirectToPage("/Index").WithSuccess("Logout", "efetuado com sucesso.", "3000");
